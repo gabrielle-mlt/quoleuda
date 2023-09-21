@@ -11,10 +11,17 @@
         <v-app-bar-nav-icon @click.stop="$emit('handleDrawer')" />
       </template>
       <v-spacer v-if="!$vuetify.display.mobile" />
-      <v-app-bar-title style="color: #ff7081;font-weight: bold;">
+      <v-img
+        alt="Quoleuda"
+        contain
+        max-width="60"
+        src="/quoleuda.svg"
+      />
+      <v-app-bar-title
+        style="color: #ff7081;font-weight: bold;"
+      >
         Quoleuda
       </v-app-bar-title>
-
       <v-tabs
         v-if="!$vuetify.display.mobile"
         :mandatory="false"
