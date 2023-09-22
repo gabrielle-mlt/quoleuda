@@ -1,10 +1,10 @@
 # Quoleuda
 
+🌐[Quoleuda.com](https://www.quoleuda.com)
+
 ## Description
 
 Quoleuda is a quiz app for learning the Korean alphabet, Hangul.
-
-*It will soon be available online.*
 
 ## Coming features
 
