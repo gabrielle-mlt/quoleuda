@@ -24,18 +24,29 @@
                       mdi-book-open-page-variant
                     </v-icon>
                   </template>
-                  <a href="https://www.korean.go.kr/front_eng/roman/roman_01.do">
+                  <a
+                    class="custom-link"
+                    href="https://www.korean.go.kr/front_eng/roman/roman_01.do"
+                  >
                     National Institute of Korean Language
                   </a>
                 </v-list-item>
               </v-list>
             </p>
             <p>
-              The concept of the quiz is inspired by <a href="https://kana-quiz.tofugu.com/">Tofugu Quiz</a> which
+              The concept of the quiz is inspired by <a
+                class="custom-link"
+                href="https://kana-quiz.tofugu.com/"
+              >Tofugu
+                Quiz</a> which
               stands for the Japanese alphabet.
             </p>
             <p>
-              The source code is available on <a href="">GitHub</a>.
+              The source code is available on <a
+                class="custom-link"
+                href="https://github.com/gabrielle-mlt/quoleuda"
+              >
+                GitHub</a>.
             </p>
           </v-col>
         </v-row>
@@ -43,9 +54,3 @@
     </v-card>
   </v-container>
 </template>
-
-<script setup>
-</script>
-<style scoped>
-
-</style>

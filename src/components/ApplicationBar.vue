@@ -89,6 +89,9 @@ const theme = useTheme()
 defineEmits(['handleDrawer'])
 const toggleTheme = () => {
   theme.global.name.value = theme.global.current.value.dark ? 'lightTheme' : 'darkTheme'
+
+  // Save theme to localStorage
+  localStorage.setItem('quoleuda_theme', theme.global.name.value)
 }
 
 </script>

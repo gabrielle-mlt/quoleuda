@@ -63,9 +63,8 @@
             </v-col>
             <v-col>
               <a
-                class="text-decoration-underline"
+                class="custom-link"
                 href="https://paypal.me/gabzette"
-                style="color: unset;"
               >
                 Donate ♡
               </a>
@@ -88,6 +87,20 @@ export default {
     return {
       drawer: false
     }
+  },
+  created () {
+    this.$vuetify.theme.global.name = localStorage.getItem('quoleuda_theme') || 'darkTheme'
   }
 }
 </script>
+
+<style>
+.custom-link {
+  color: unset;
+  text-decoration: underline;
+}
+
+.custom-link:hover {
+  color: #ff7081;
+}
+</style>
