@@ -30,6 +30,7 @@
                   <a
                     class="custom-link"
                     href="https://www.korean.go.kr/front_eng/roman/roman_01.do"
+                    target="_blank"
                   >
                     National Institute of Korean Language
                   </a>
@@ -43,6 +44,7 @@
                   <a
                     class="custom-link"
                     href="https://www.duolingo.com/"
+                    target="_blank"
                   >
                     Duolingo
                   </a>
@@ -61,6 +63,7 @@
               The source code is available on <a
                 class="custom-link"
                 href="https://github.com/gabrielle-mlt/quoleuda"
+                target="_blank"
               >
                 GitHub</a>.
             </p>

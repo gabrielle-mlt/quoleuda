@@ -63,6 +63,7 @@
               <a
                 class="custom-link ml-4"
                 href="https://paypal.me/gabzette"
+                target="_blank"
               >Donate ♡</a>
             </v-col>
             <v-col />
