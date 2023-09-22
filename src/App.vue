@@ -62,7 +62,7 @@
               {{ new Date().getFullYear() }} — <strong>Quoleuda</strong>
               <a
                 class="custom-link ml-4"
-                href="https://paypal.me/gabzette"
+                href="https://www.paypal.me/gabzette"
                 target="_blank"
               >Donate ♡</a>
             </v-col>

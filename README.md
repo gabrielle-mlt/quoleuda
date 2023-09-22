@@ -19,4 +19,10 @@ Feel free to:
 - Report translation errors
 - Propose new set of characters to learn
 
+## TODO
 
+- Improve scoreboard
+- Improve Home page
+- Finish Cheat Sheet page
+
+[![PayPal](https://img.shields.io/badge/Donate-💵-yellow.svg?style=for-the-badge&label=PayPal)](https://www.paypal.me/gabzette)
