@@ -61,6 +61,15 @@
             >
               {{ new Date().getFullYear() }} — <strong>Quoleuda</strong>
             </v-col>
+            <v-col>
+              <a
+                class="text-decoration-underline"
+                href="https://paypal.me/gabzette"
+                style="color: unset;"
+              >
+                Donate ♡
+              </a>
+            </v-col>
           </v-row>
         </v-footer>
       </v-main>
