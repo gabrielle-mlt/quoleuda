@@ -12,12 +12,11 @@ export default [
   { kr: '\u3163', ro: ['i'], type: 'plainVowel' },                  // ᅵ
   { kr: '\u3150', ro: ['ae', 'è'], type: 'doubleVowel' },           // ㅐ
   { kr: '\u3152', ro: ['yae', 'yè'], type: 'doubleVowel' },         // ㅒ
-  { kr: '\u3156', ro: ['e', 'é'], type: 'doubleVowel' },            // ㅔ
-  { kr: '\u3158', ro: ['ye', 'yé'], type: 'doubleVowel' },          // ㅖ
-  { kr: '\u3156', ro: ['wa'], type: 'doubleVowel' },                // ㅘ
+  { kr: '\u3156', ro: ['ye', 'yé'], type: 'doubleVowel' },          // ㅖ
+  { kr: '\u3158', ro: ['wa'], type: 'doubleVowel' },                // ㅘ
   { kr: '\u3159', ro: ['wae', 'wè'], type: 'doubleVowel' },         // ㅙ
   { kr: '\u315a', ro: ['oe', 'wé'], type: 'doubleVowel' },          // ㅚ
-  { kr: '\u315d', ro: ['wo'], type: 'doubleVowel' },                // ㅝ
+  { kr: '\u315d', ro: ['wo', 'weo'], type: 'doubleVowel' },         // ㅝ
   { kr: '\u315e', ro: ['we', 'wé'], type: 'doubleVowel' },          // ㅞ
   { kr: '\u315f', ro: ['wi'], type: 'doubleVowel' },                // ㅟ
   { kr: '\u3162', ro: ['yi'], type: 'doubleVowel' },                // ㅢ
