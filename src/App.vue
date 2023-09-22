@@ -60,15 +60,12 @@
               cols="12"
             >
               {{ new Date().getFullYear() }} — <strong>Quoleuda</strong>
-            </v-col>
-            <v-col>
               <a
-                class="custom-link"
+                class="custom-link ml-4"
                 href="https://paypal.me/gabzette"
-              >
-                Donate ♡
-              </a>
+              >Donate ♡</a>
             </v-col>
+            <v-col />
           </v-row>
         </v-footer>
       </v-main>

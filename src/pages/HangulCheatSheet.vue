@@ -4,6 +4,9 @@
       <v-col>
         <h1>Cheat Sheet</h1>
         <p>This revision sheet will help you take your first steps in learning Korean.</p>
+        <p class="font-italic">
+          (Coming soon!)
+        </p>
 
         <v-btn
           class="mt-4"

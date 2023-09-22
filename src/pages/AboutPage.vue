@@ -16,8 +16,11 @@
               This is a simple quiz app on different sources to help you learn the Korean alphabet.
             </p>
             <p>
-              This is a non-exhaustive list:
-              <v-list bg-color="transparent">
+              This is a non-exhaustive sources list:
+              <v-list
+                bg-color="transparent"
+                density="compact"
+              >
                 <v-list-item>
                   <template #prepend>
                     <v-icon color="primary">
@@ -29,6 +32,19 @@
                     href="https://www.korean.go.kr/front_eng/roman/roman_01.do"
                   >
                     National Institute of Korean Language
+                  </a>
+                </v-list-item>
+                <v-list-item>
+                  <template #prepend>
+                    <v-icon color="primary">
+                      mdi-school
+                    </v-icon>
+                  </template>
+                  <a
+                    class="custom-link"
+                    href="https://www.duolingo.com/"
+                  >
+                    Duolingo
                   </a>
                 </v-list-item>
               </v-list>
@@ -54,3 +70,5 @@
     </v-card>
   </v-container>
 </template>
+<script setup>
+</script>
