@@ -18,7 +18,7 @@
         src="/quoleuda.svg"
       />
       <v-app-bar-title
-        style="color: #ff7081;font-weight: bold;"
+        style="color: #ff7081;font-weight: bold; font-size: 32px;"
       >
         Quoleuda
       </v-app-bar-title>
@@ -44,23 +44,29 @@
               class="mx-4"
               fab
               icon="mdi-home"
+              size="x-large"
               to="/"
             />
           </template>
         </v-tab>
         <v-tab
+          size="x-large"
           to="/quiz-menu"
           value="QuizMenu"
         >
           Quiz
         </v-tab>
         <v-tab
+          size="x-large"
+
           to="/hangul-cheat-sheet"
           value="HangulCheatSheet"
         >
           Hangul
         </v-tab>
         <v-tab
+          size="x-large"
+
           to="/about"
           value="About"
         >
@@ -74,6 +80,7 @@
           color="primary"
           hide-details
           icon="mdi-theme-light-dark"
+          size="x-large"
           @click="toggleTheme()"
         />
       </template>

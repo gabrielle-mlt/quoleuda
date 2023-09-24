@@ -3,6 +3,7 @@
     <v-row class="mt-4">
       <v-col>
         <h1>Welcome to Quoleuda</h1>
+        <h2>Learn Hangul</h2>
         <p class="mt-2">
           Quoleuda is a quiz app for learning the Korean alphabet, Hangul.
         </p>

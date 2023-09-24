@@ -1,5 +1,8 @@
 <template>
-  <v-container fill-height>
+  <v-container
+    :style="$vuetify.display.mobile ? '' : 'max-width: 1400px;'"
+    fill-height
+  >
     <v-row class="mt-8">
       <v-col
         v-for="(set,setInd) in transliterationsSet"
