@@ -4,7 +4,7 @@
 
 ## Description
 
-Quoleuda is a quiz app for learning the Korean alphabet, Hangul.
+Quoleuda is a quiz app for learning the Korean alphabet, hangeul.
 
 ## Coming features
 

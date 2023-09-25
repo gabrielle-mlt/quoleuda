@@ -119,7 +119,7 @@ import ResultsOverview from '../components/ResultsOverview.vue'
 </script>
 
 <script>
-import hangul from '../resources/hangulToRoman.js'
+import hangeul from '../resources/hangeulToRoman.js'
 
 export default {
   data () {
@@ -239,7 +239,7 @@ export default {
       }
     },
     async prepareCharset () {
-      const shuffledArray = this.shuffle([...hangul])
+      const shuffledArray = this.shuffle([...hangeul])
 
       this.characterSet = await new Promise((resolve, reject) => {
         const res = ([...shuffledArray].filter((v) => this.modes.includes(v.type)) || []).map((v, index) => {

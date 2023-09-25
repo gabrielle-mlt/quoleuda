@@ -28,9 +28,9 @@
           <v-list-item>
             <router-link
               style="text-decoration: none; color: inherit;"
-              to="/hangul-cheat-sheet"
+              to="/hangeul-cheat-sheet"
             >
-              Hangul
+              hangeul
             </router-link>
           </v-list-item>
           <v-list-item>

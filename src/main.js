@@ -87,7 +87,7 @@ const routes = [
   { path: '/', name: 'Home', component: () => import('./pages/HomePage.vue') },
   { path: '/quiz-menu', name: 'QuizMenu', component: () => import('./pages/QuizMenu.vue') },
   { path: '/quiz', name: 'Quiz', component: () => import('./pages/QuizPage.vue') },
-  { path: '/hangul-cheat-sheet', name: 'HangulCheatSheet', component: () => import('./pages/HangulCheatSheet.vue') },
+  { path: '/hangeul-cheat-sheet', name: 'hangeulCheatSheet', component: () => import('./pages/hangeulCheatSheet.vue') },
   { path: '/about', name: 'About', component: () => import('./pages/AboutPage.vue') }
 ]
 

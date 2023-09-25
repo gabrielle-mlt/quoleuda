@@ -62,10 +62,10 @@
         <v-tab
           size="x-large"
 
-          to="/hangul-cheat-sheet"
-          value="HangulCheatSheet"
+          to="/hangeul-cheat-sheet"
+          value="hangeulCheatSheet"
         >
-          Hangul
+          hangeul
         </v-tab>
         <v-tab
           size="x-large"

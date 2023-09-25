@@ -41,11 +41,11 @@
               {{ cat.title }}
             </v-btn>
             <v-item-group
-              v-if="hangul.filter(a => a.type === cat.id).length"
+              v-if="hangeul.filter(a => a.type === cat.id).length"
               class="font-weight-bold mt-8"
             >
               <v-item
-                v-for="(char,charInd ) in [...hangul.filter(a => a.type === cat.id)]/*.splice(0, 15)*/"
+                v-for="(char,charInd ) in [...hangeul.filter(a => a.type === cat.id)]/*.splice(0, 15)*/"
                 :key="`char-${cat.id}-${charInd}`"
               >
                 <v-chip
@@ -74,7 +74,7 @@
 </template>
 
 <script>
-import hangul from '../resources/hangulToRoman.js'
+import hangeul from '../resources/hangeulToRoman.js'
 import transliterationsSet from '../resources/transliterationsSet.js'
 
 export default {
@@ -84,7 +84,7 @@ export default {
       categories: ['vowels', 'consonants'],
       subcategories: ['plainVowel', 'doubleVowel', 'mainConsonant'],
       transliterationsSet,
-      hangul
+      hangeul
     }
   },
   methods: {

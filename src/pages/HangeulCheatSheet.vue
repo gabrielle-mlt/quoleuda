@@ -3,8 +3,9 @@
     <v-row class="mt-4">
       <v-col>
         <h1>Cheat Sheet</h1>
-        <h2>Roman alphabet to Hangul</h2>
+        <h2>Roman alphabet to hangeul</h2>
         <p>This revision sheet will help you take your first steps in learning Korean.</p>
+
         <p class="font-italic">
           (Coming soon!)
         </p>
