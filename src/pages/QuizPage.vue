@@ -51,11 +51,14 @@
                 :bg-color="character.color || 'primary-lighten-3'"
                 :placeholder="character.placeholder"
                 :readonly="character.done"
-                class="mt-6 mx-3 elevation-0"
+                class="mt-6 mx-3 elevation-0 font-weight-bold centered-input"
                 hide-details
+                oninput="this.value?.length > 4 ? this.value = this.value.slice(0,4) : this.value"
                 rounded="circle"
                 variant="solo"
-                @keydown.enter="checkCorrespondence($event, character, i)"
+                @keydown.enter.prevent="checkCorrespondence($event, character, i)"
+                @keydown.tab.prevent="$vuetify.display.mobile && $event.target.value !== undefined && $event.target.value !== ''?
+                  checkCorrespondence($event, character, i):goToNextInput(i);"
                 @update:focused="currentCard = i"
               />
             </v-card-text>
@@ -154,7 +157,7 @@ export default {
     },
     checkCorrespondence (event, character, i) {
       if (this.score) return
-      character.placeholder = event.target.value.length > 0 ? event.target.value : character.placeholder
+      character.placeholder = event.target.value.length > 0 ? event.target.value.trim() : character.placeholder
       character.tries = character.tries + 1 || 1
 
       // reset event target value
@@ -162,10 +165,16 @@ export default {
         character.placeholder = event.target.value.length ? event.target.value : character.placeholder
         character.color = 'success-lighten-1'
         character.done = true
+        character.score = character.tries > 1 ? 1 / (character.tries * 0.6) : 1
 
         this.results.push(character)
       }
 
+      this.goToNextInput(i)
+      // character.placeholder = character.answer
+      character.answer = ''
+    },
+    goToNextInput (i) {
       this.$nextTick(() => {
         const nextItem = this.characterSet.find((v, index) => !v.done && index > i)
         const nextId = nextItem?.id || this.characterSet.find((v) => !v.done)?.id
@@ -178,9 +187,6 @@ export default {
         this.currentCard = nextId
         this.setCaretPosition(nextInput, 5)
       })
-
-      // character.placeholder = character.answer
-      character.answer = ''
     },
     setCaretPosition (ctrl, pos) {
       ctrl.focus()
@@ -204,10 +210,11 @@ export default {
       return array
     },
     calculateScore () {
-      const tries = this.characterSet.reduce((acc, curr) => {
-        return acc + curr.tries
+      const scores = this.characterSet.reduce((acc, curr) => {
+        return acc + (curr.score || 0)
       }, 0)
-      this.score = Math.round((this.characterSet.length / tries) * 100) || 0
+
+      this.score = Math.round((scores / this.characterSet.length) * 100) || 0
     },
     finishQuiz () {
       // calculate score
@@ -256,5 +263,9 @@ export default {
 
 .v-field--variant-solo {
   box-shadow: none;
+}
+
+.centered-input input {
+  text-align: center
 }
 </style>

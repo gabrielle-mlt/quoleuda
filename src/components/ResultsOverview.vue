@@ -1,19 +1,75 @@
 <template>
   <v-container :style="$vuetify.display.mobile ? '' : 'max-width: 1400px;'">
+    <div class="ma-auto">
+      <v-switch
+        v-model="groupBy"
+        center-affix
+        hide-details
+        style="justify-items: center;"
+      />
+    </div>
     <v-row justify="center">
-      <v-col v-if="!groupBy">
-        <v-card>
-          <v-list
-            density="compact"
-            lines
+      <v-col
+        v-if="!groupBy"
+        cols="auto"
+      >
+        <v-card
+          :color="$vuetify.theme.global.name === 'darkTheme' ? 'primary-lighten-2' : 'primary-lighten-3'"
+          elevation="0"
+          height="auto"
+          rounded="lg"
+          width="fit-content"
+        >
+          <v-card-title
+            class="my-2"
+            style="font-size: 30px; font-weight: bolder;"
           >
-            <v-list-item
-              v-for="(res,i) in sortedResults"
-              :key="`char-${i}`"
+            Sorted by errors
+          </v-card-title>
+          <v-divider class="mx-6" />
+
+          <v-card-text style="width: fit-content;">
+            <v-sheet
+              class="ma-auto"
+              color="transparent"
+              width="fit-content"
             >
-              {{ res.kr }} : {{ res.tries }}
-            </v-list-item>
-          </v-list>
+              <v-table
+                density="compact"
+                style="background-color: unset;color: #242424 !important;"
+                theme="darkTheme"
+              >
+                <thead style="font-size: 24px; font-weight: bolder;">
+                  <tr>
+                    <th class="text-center text-black">
+                      Letter
+                    </th>
+                    <th class="text-center text-black">
+                      Attemps
+                    </th>
+                    <th class="text-center text-black">
+                      Answer(s)
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr
+                    v-for="(res,i) in sortedResults"
+                    :key="`char-${i}`"
+                  >
+                    <td
+                      class="font-weight-bold"
+                      style="font-size: 24px;"
+                    >
+                      {{ res.kr }}
+                    </td>
+                    <td>{{ res.tries || 0 }}</td>
+                    <td>{{ (res.ro || []).join('\u0009|\u0009') }}</td>
+                  </tr>
+                </tbody>
+              </v-table>
+            </v-sheet>
+          </v-card-text>
         </v-card>
       </v-col>
 
@@ -88,15 +144,18 @@ export default {
       for (const char of [...this.results]) {
         const group = res.find(group => group.type === char.type)
         if (group) {
-          group.items.push({ kr: char.kr, ro: char.ro, answer: char.answer, tries: char.tries })
+          group.items.push({ kr: char.kr, ro: char.ro, answer: char.answer, tries: char.tries, score: char.score })
         } else {
-          res.push({ type: char.type, items: [{ kr: char.kr, ro: char.ro, answer: char.answer, tries: char.tries }] })
+          res.push({
+            type: char.type,
+            items: [{ kr: char.kr, ro: char.ro, answer: char.answer, tries: char.tries, score: char.score }]
+          })
         }
       }
       return res
     },
     sortedResults () {
-      return [...this.results].sort((a, b) => b.tries - a.tries)
+      return [...this.results].sort((a, b) => a.score - b.score)
     }
   }
 }
