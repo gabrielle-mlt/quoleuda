@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container :style="$vuetify.display.mobile ? '' : 'max-width: 1400px;'">
     <v-row justify="center">
       <v-col v-if="!groupBy">
         <v-card>
@@ -26,10 +26,20 @@
         xs="12"
       >
         <v-card
-          color="primary"
-          variant="outlined"
+          :color="$vuetify.theme.global.name === 'darkTheme' ? 'primary-lighten-2' : 'primary-lighten-3'"
+          elevation="0"
+          height="auto"
+          rounded="lg"
+          width="auto"
         >
-          <v-card-title>{{ titles[group?.type] || '' }}</v-card-title>
+          <v-card-title
+            class="my-2"
+            style="font-size: 30px; font-weight: bolder;"
+          >
+            {{ titles[group?.type] || '' }}
+          </v-card-title>
+          <v-divider class="mx-6" />
+
           <v-card-text class="my-5">
             <v-row
               class="justify-center align-center"
@@ -37,10 +47,12 @@
               <v-col
                 v-for="(char,j) in group.items"
                 :key="`char-${j}-group-by`"
-                cols="auto"
-                sm="2"
+                :cols="!$vuetify.display.mobile && group.items.length > 12 ? '1' :'auto' "
               >
-                <span class="font-weight-bold">{{ char.kr }}</span>
+                <span
+                  class="font-weight-bold"
+                  style="font-size: 24px;"
+                >{{ char.kr }}</span>
                 <v-spacer />
                 {{ char.tries || 0 }}
               </v-col>
@@ -64,8 +76,7 @@ export default {
       titles: {
         plainVowel: 'Single vowels',
         doubleVowel: 'Composed vowels',
-        plainConsonant: 'Single consonants',
-        composedConsonant: 'Composed consonants'
+        mainConsonant: 'Consontants'
 
       }
     }

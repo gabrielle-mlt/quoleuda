@@ -19,7 +19,7 @@ export default [
   { kr: '\u315d', ro: ['wo', 'weo'], type: 'doubleVowel' },         // ㅝ
   { kr: '\u315e', ro: ['we', 'wé'], type: 'doubleVowel' },          // ㅞ
   { kr: '\u315f', ro: ['wi'], type: 'doubleVowel' },                // ㅟ
-  { kr: '\u3162', ro: ['yi'], type: 'doubleVowel' },                // ㅢ
+  { kr: '\u3162', ro: ['ui', 'yi'], type: 'doubleVowel' },          // ㅢ
   { kr: '\u3131', ro: ['g', 'k'], type: 'mainConsonant' },          // ㄱ
   { kr: '\u3134', ro: ['n'], type: 'mainConsonant' },               // ㄴ
   { kr: '\u3137', ro: ['d', 't'], type: 'mainConsonant' },          // ㄷ

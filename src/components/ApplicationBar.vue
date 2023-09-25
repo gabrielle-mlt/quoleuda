@@ -1,6 +1,7 @@
 <template>
   <div>
     <v-app-bar
+      class="mt-2"
       color="transparent"
       elevation="0"
     >
@@ -11,12 +12,14 @@
         <v-app-bar-nav-icon @click.stop="$emit('handleDrawer')" />
       </template>
       <v-spacer v-if="!$vuetify.display.mobile" />
-      <v-img
-        alt="Quoleuda"
-        contain
-        max-width="60"
-        src="/quoleuda.svg"
-      />
+      <router-link to="/">
+        <v-img
+          alt="Quoleuda"
+          contain
+          max-width="60"
+          src="/quoleuda.svg"
+        />
+      </router-link>
       <v-app-bar-title
         style="color: #ff7081;font-weight: bold; font-size: 32px;"
       >
