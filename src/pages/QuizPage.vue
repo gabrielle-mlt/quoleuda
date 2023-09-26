@@ -39,6 +39,7 @@
             <v-spacer />
             <v-card-title
               class="font-weight-bold mt-3"
+              lang="ko"
               style="font-size: 2.5rem"
             >
               {{ character.kr }}
@@ -131,7 +132,7 @@ export default {
       currentCard: 0,
       score: 0,
       results: [],
-      acceptedModes: ['plainVowel', 'doubleVowel', 'mainConsonant', 'all'],
+      acceptedModes: ['plainVowel', 'doubleVowel', 'mainConsonant', 'doubleConsonant', 'all'],
       modes: ['plainVowel', 'doubleVowel', 'mainConsonant']
     }
   },

@@ -38,6 +38,18 @@ export default [
   { kr: '\u3138', ro: ['tt'], type: 'mainConsonant' },              // ㄸ
   { kr: '\u3149', ro: ['jj'], type: 'mainConsonant' },              // ㅉ
   { kr: '\u3143', ro: ['bb', 'pp'], type: 'mainConsonant' },        // ㅃ
-  { kr: '\u3146', ro: ['ss'], type: 'mainConsonant' }               // ㅆ
+  { kr: '\u3146', ro: ['ss'], type: 'mainConsonant' },               // ㅆ
+  { kr: '\u3133', ro: ['gs', 'ks'], type: 'doubleConsonant' },      // ㄳ
+  { kr: '\u3135', ro: ['nj'], type: 'doubleConsonant' },            // ㄵ
+  { kr: '\u3136', ro: ['nh'], type: 'doubleConsonant' },           // ㄶ
+  { kr: '\u313a', ro: ['lg', 'lk'], type: 'doubleConsonant' },      // ㄺ
+  { kr: '\u313b', ro: ['lm'], type: 'doubleConsonant' },            // ㄻ
+  { kr: '\u313c', ro: ['lb', 'lp'], type: 'doubleConsonant' },      // ㄼ
+  { kr: '\u313d', ro: ['ls'], type: 'doubleConsonant' },            // ㄽ
+  { kr: '\u313e', ro: ['lt'], type: 'doubleConsonant' },            // ㄾ
+  { kr: '\u313f', ro: ['lp'], type: 'doubleConsonant' },            // ㄿ
+  { kr: '\u3140', ro: ['lh'], type: 'doubleConsonant' },            // ㅀ
+  { kr: '\u3144', ro: ['bs', 'ps'], type: 'doubleConsonant' }      // ㅄ
+
 ]
 /* eslint-enable */

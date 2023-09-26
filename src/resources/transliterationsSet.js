@@ -1,7 +1,7 @@
 export default [
   {
     id: 'vowel',
-    title: { ro: 'Vowels', transliteration: 'choseong', kr: '초성' },
+    title: { ro: 'Vowels', transliteration: 'choseong', kr: '\ucd08\uc131' }, // 초성
     categories: [
       {
         id: 'plainVowel',
@@ -19,7 +19,11 @@ export default [
     categories: [
       {
         id: 'mainConsonant',
-        title: 'Main Consonants'
+        title: 'Single Consonants'
+      },
+      {
+        id: 'doubleConsonant',
+        title: 'Double Consonants'
       }
     ]
   }

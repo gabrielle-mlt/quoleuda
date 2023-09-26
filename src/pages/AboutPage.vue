@@ -49,6 +49,21 @@
                     Duolingo
                   </a>
                 </v-list-item>
+                <v-list-item>
+                  <template #prepend>
+                    <v-icon color="primary">
+                      mdi-book-open-page-variant
+                    </v-icon>
+                  </template>
+                  <a
+                    class="custom-link"
+                    href="https://fr.wikipedia.org/wiki/Romanisation_r%C3%A9vis%C3%A9e_du_cor%C3%A9en"
+                    target="_blank"
+                  >
+                    <span lang="fr">Romanisation révisée du coréen</span> (Revised Romanization of Korean) - Wikipedia
+                    (FR)
+                  </a>
+                </v-list-item>
               </v-list>
             </p>
             <p>

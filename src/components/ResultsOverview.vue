@@ -45,7 +45,7 @@
                       Letter
                     </th>
                     <th class="text-center text-black">
-                      Attemps
+                      Attempts
                     </th>
                     <th class="text-center text-black">
                       Answer(s)
@@ -59,6 +59,7 @@
                   >
                     <td
                       class="font-weight-bold"
+                      lang="ko"
                       style="font-size: 24px;"
                     >
                       {{ res.kr }}
@@ -107,6 +108,7 @@
               >
                 <span
                   class="font-weight-bold"
+                  lang="ko"
                   style="font-size: 24px;"
                 >{{ char.kr }}</span>
                 <v-spacer />
@@ -132,7 +134,8 @@ export default {
       titles: {
         plainVowel: 'Single vowels',
         doubleVowel: 'Composed vowels',
-        mainConsonant: 'Consontants'
+        mainConsonant: 'Single Consontants',
+        doubleConsonant: 'Double consonants'
 
       }
     }

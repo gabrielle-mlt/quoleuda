@@ -19,7 +19,7 @@
         >
           <template #default>
             <div class="d-inline">
-              <span>{{ set.title.ro }}</span><br>
+              <span>{{ set.title.ro }} - </span><span lang="ko">{{ set.title.kr }}</span><br>
               <span style="font-weight: normal; font-size: xx-small;">
                 ({{ set.title.transliteration }})
               </span>
@@ -52,6 +52,7 @@
                   :color="selectedModes.includes(cat.id)? 'primary-lighten-1' : 'primary-desaturate-1'"
                   class="ma-2"
                   elevation="0"
+                  lang="ko"
                   size="small"
                   variant="elevated"
                 >
@@ -82,7 +83,7 @@ export default {
     return {
       selectedModes: [],
       categories: ['vowels', 'consonants'],
-      subcategories: ['plainVowel', 'doubleVowel', 'mainConsonant'],
+      subcategories: ['plainVowel', 'doubleVowel', 'mainConsonant', 'doubleConsontant'],
       transliterationsSet,
       hangeul
     }
