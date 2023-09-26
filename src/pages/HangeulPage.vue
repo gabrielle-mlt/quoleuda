@@ -3,7 +3,7 @@
     <v-row class="mt-4">
       <v-col>
         <h1>Hangeul</h1>
-        <h3 class="mt-13">
+        <h3 class="mt-10">
           What is romanisation ?
         </h3>
         <p>
@@ -18,7 +18,7 @@
           since 2000 by
           the Korean government.
         </p>
-        <h3 class="mt-10">
+        <h3 class="mt-8">
           How it will help you ?
         </h3>
         <p>Know romanisation is helpful because many Korean words are in fact english words writed in hangeul.</p>
@@ -28,7 +28,7 @@
           for exemple.
         </p>
 
-        <h3 class="mt-10">
+        <h3 class="mt-8">
           Is Korean alphabet like Japanes or Chines ?
         </h3>
         <p>
@@ -38,7 +38,7 @@
           each letter.
         </p>
         <p>(A = ㅏ) + (B = ㅂ) = (바 = BA) simple, right ? </p>
-        <h3 class="mt-10">
+        <h3 class="mt-8">
           How many letter is the Hangeul mades of ?
         </h3>
         <p>

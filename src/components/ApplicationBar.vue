@@ -61,11 +61,17 @@
         </v-tab>
         <v-tab
           size="x-large"
-
-          to="/hangeul-cheat-sheet"
-          value="hangeulCheatSheet"
+          to="/hangeul"
+          value="Hangeul"
         >
           hangeul
+        </v-tab>
+        <v-tab
+          size="x-large"
+          to="/cheat-sheet"
+          value="CheatSheet"
+        >
+          Cheat Sheet
         </v-tab>
         <v-tab
           size="x-large"
