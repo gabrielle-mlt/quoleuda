@@ -54,6 +54,7 @@
                 :readonly="character.done"
                 class="mt-6 mx-3 elevation-0 font-weight-bold centered-input"
                 hide-details
+                inputmode="search"
                 oninput="this.value?.length > 4 ? this.value = this.value.slice(0,4) : this.value"
                 rounded="circle"
                 variant="solo"
@@ -232,12 +233,12 @@ export default {
       this.score = undefined
       this.currentCard = 0
 
-      const firstInput = document.getElementById('input-0')
-      if (firstInput) {
-        this.$nextTick(() => {
+      this.$nextTick(() => {
+        const firstInput = document.getElementById('input-0')
+        if (firstInput) {
           this.setCaretPosition(firstInput, 10)
-        })
-      }
+        }
+      })
     },
     async prepareCharset () {
       const shuffledArray = this.shuffle([...hangeul])

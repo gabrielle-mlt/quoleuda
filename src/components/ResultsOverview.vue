@@ -39,13 +39,17 @@
                 style="background-color: unset;color: #242424 !important;"
                 theme="darkTheme"
               >
-                <thead style="font-size: 24px; font-weight: bolder;">
+                <thead
+                  :style="$vuetify.display.mobile ?
+                    'font-size: 14px;':'font-size: 24px;'"
+                  style=" font-weight: bolder;"
+                >
                   <tr>
                     <th class="text-center text-black">
                       Letter
                     </th>
                     <th class="text-center text-black">
-                      Attempts
+                      Attempt(s)
                     </th>
                     <th class="text-center text-black">
                       Answer(s)
