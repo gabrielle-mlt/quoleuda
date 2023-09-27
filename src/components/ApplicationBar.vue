@@ -6,7 +6,7 @@
       elevation="0"
     >
       <template
-        v-if=" $vuetify.display.mobile"
+        v-if="$vuetify.display.mobile"
         #prepend
       >
         <v-app-bar-nav-icon @click.stop="$emit('handleDrawer')" />
@@ -64,7 +64,7 @@
           to="/hangeul"
           value="Hangeul"
         >
-          hangeul
+          Hangeul
         </v-tab>
         <v-tab
           size="x-large"
