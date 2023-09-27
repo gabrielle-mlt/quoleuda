@@ -54,7 +54,7 @@
 
       <v-main>
         <ApplicationBar @handle-drawer="drawer = !drawer;" />
-        <router-view />
+        <router-view style="top: 63px;" />
         <v-footer
           :app="true"
           color="primary-desaturate-1"

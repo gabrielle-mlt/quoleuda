@@ -14,12 +14,14 @@
             (Latin) script.
           </p>
           <p>
-            The official romanization for Korean is the <a
+            The official romanization for Korean is the
+            <a
               class="custom-link"
               href="https://en.wikipedia.org/wiki/Revised_Romanization_of_Korean"
-            >Revised Romanization of Korean</a> used
-            since 2000 by
-            the Korean government.
+            >
+              Revised Romanization of Korean
+            </a>
+            used since 2000 by the Korean government.
           </p>
         </div>
         <div>
@@ -27,7 +29,12 @@
             How it will help you ?
           </h3>
           <p>Know romanization is helpful because many Korean words are in fact english words written in hangeul.</p>
-          <p>As examples : 햄버거 (haembeogeo)= Hamburger, 라면 (ramyeon)= Ramen or 메뉴 (menyu)= menu</p>
+          <p>
+            As examples :
+            <span lang="ko">햄버거</span> (haembeogeo)= Hamburger,
+            <span lang="ko">라면</span> (ramyeon)= Ramen or
+            <span lang="ko">메뉴</span> (menyu)= menu
+          </p>
           <p>
             So it could be help full to know how to read Korean even for few days of vacation, to read menu in
             restaurants for example.
@@ -35,21 +42,26 @@
         </div>
         <div>
           <h3 class="mt-8">
-            Is Korean alphabet like Japanese or Chines ?
+            Is Korean alphabet like Japanese or Chinese ?
           </h3>
           <p>
             No, the Korean alphabet (Hangeul) is not an ideographic, it's an alphabetical alphabet, it means that
             it's made of letter you combine to make sounds. It's exactly like the Latin alphabet, you have a specific
             symbol for each letter.
           </p>
-          <p>(A = ㅏ) + (B = ㅂ) = (바 = BA) simple, right ? </p>
+          <p>
+            (<span lang="ko">{{ '\u314F' }}</span> = A ) +
+            (<span lang="ko">{{ '\u3142' }}</span> = B ) =
+            (<span lang="ko">{{ '\uBC14' }}</span> = BA) simple, right ?
+          </p>
         </div>
         <div>
           <h3 class="mt-8">
             How many letter is the Hangeul made of ?
           </h3>
           <p>
-            There are 40 letters in total but some are very easy like ㅅ (s) and ㅆ (ss).
+            There are 40 letters in total but some are very easy like
+            <span lang="ko">{{ '\u3145' }}</span> (s) and <span lang="ko">{{ '\u3146' }}</span>(ss).
           </p>
           <div />
         </div>
@@ -76,7 +88,7 @@
 </template>
 <script setup>
 </script>
-<style>
+<style scoped>
 .v-col > div {
   margin-top: 5rem;
 }
@@ -91,6 +103,11 @@
     font-size: 20px;
     text-align: justify;
   }
+}
+
+.v-col > div > p > span {
+  color: #ff7081;
+  font-weight: bold;
 }
 
 </style>
