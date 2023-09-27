@@ -4,7 +4,9 @@
       <v-navigation-drawer
         v-if="$vuetify.display.mobile && drawer"
         v-model="drawer"
+        app
         location="left"
+        style="position: fixed;"
       >
         <v-list>
           <v-list-item>
