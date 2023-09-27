@@ -52,6 +52,17 @@
             </router-link>
           </v-list-item>
         </v-list>
+        <v-spacer />
+        <template #append>
+          <div class="my-3">
+            {{ new Date().getFullYear() }} — <strong>Quoleuda</strong>
+            <a
+              class="custom-link ml-4"
+              href="https://www.paypal.me/gabzette"
+              target="_blank"
+            >Donate ♡</a>
+          </div>
+        </template>
       </v-navigation-drawer>
 
       <v-main>
