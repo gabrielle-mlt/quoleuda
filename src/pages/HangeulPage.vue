@@ -7,6 +7,50 @@
       <v-col>
         <div>
           <h3 class="mt-10">
+            Origins
+          </h3>
+          <p>
+            At the origin, Hangeul was created following 2 principles:
+
+            <v-row class="text-center justify-space-evenly align-center d-flex">
+              <v-col cols="6">
+                <v-sheet
+                  class="d-flex align-center justify-center flex-wrap text-center font-weight-bold mx-auto my-6"
+                  color="primary-darken-2"
+                  height="100"
+                  rounded="circle"
+                  style="font-size: 32px;"
+                  width="100"
+                >
+                  <div>
+                    1
+                  </div>
+                </v-sheet>
+
+                It reproduces the <strong>shape</strong> of the letter from the shape of the mouth when pronouncing
+                and three materials: sky, earth and human
+              </v-col>
+              <v-col cols="6">
+                <v-sheet
+                  class="d-flex align-center justify-center flex-wrap text-center font-weight-bold mx-auto my-6"
+                  color="primary-darken-2"
+                  height="100"
+                  rounded="circle"
+                  style="font-size: 32px;"
+                  width="100"
+                >
+                  <div>
+                    2
+                  </div>
+                </v-sheet>
+
+                The rest of letters were made based on the several basic letters to enhance its systematic feature
+              </v-col>
+            </v-row>
+          </p>
+        </div>
+        <div>
+          <h3 class="mt-8">
             What is romanization ?
           </h3>
           <p>
@@ -67,16 +111,6 @@
         </div>
       </v-col>
     </v-row>
-    <!--    <p>
-          At the origin, Hangeul was created following 2 principles:
-          <ul>
-            <li>
-              The <strong>shape</strong> of the letter is inspired by the shape of the mouth when pronouncing the
-              sound
-            </li>
-            <li>The <strong>sound</strong> of the letter is inspired by the sound of the letter</li>
-          </ul>
-        </p>-->
     <v-btn
       class="my-4"
       color="primary"

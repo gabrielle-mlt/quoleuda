@@ -1,15 +1,16 @@
 /* eslint-disable no-multi-spaces */
 export default [
-  { kr: '\u314f', ro: ['a'], type: 'plainVowel' },                  // ㅏ
-  { kr: '\u3151', ro: ['ya'], type: 'plainVowel' },                 // ㅑ
-  { kr: '\u3153', ro: ['eo'], type: 'plainVowel' },                 // ㅓ
-  { kr: '\u3155', ro: ['yeo'], type: 'plainVowel' },                // ㅕ
-  { kr: '\u3157', ro: ['o', 'ô', 'oo'], type: 'plainVowel' },       // ㅗ
-  { kr: '\u315b', ro: ['yo', 'yô', 'yoo'], type: 'plainVowel' },    // ᅭ
-  { kr: '\u315c', ro: ['ou', 'u'], type: 'plainVowel' },            // ᅮ
-  { kr: '\u3160', ro: ['you', 'yu'], type: 'plainVowel' },          // ᅲ
-  { kr: '\u3161', ro: ['eu'], type: 'plainVowel' },                 // ᅳ
-  { kr: '\u3163', ro: ['i'], type: 'plainVowel' },                  // ᅵ
+  // TODO - add a description and a name to each character
+  { kr: '\u314f', ro: ['a'], type: 'plainVowel', name: 'a' },                  // ㅏ
+  { kr: '\u3151', ro: ['ya'], type: 'plainVowel', name: 'ya' },                 // ㅑ
+  { kr: '\u3153', ro: ['eo'], type: 'plainVowel', name: 'eo' },                 // ㅓ
+  { kr: '\u3155', ro: ['yeo'], type: 'plainVowel', name: 'yeo' },                // ㅕ
+  { kr: '\u3157', ro: ['o', 'ô', 'oo'], type: 'plainVowel', name: 'o' },       // ㅗ
+  { kr: '\u315b', ro: ['yo', 'yô', 'yoo'], type: 'plainVowel', name: 'yo' },    // ᅭ
+  { kr: '\u315c', ro: ['ou', 'u'], type: 'plainVowel', name: 'u' },            // ᅮ
+  { kr: '\u3160', ro: ['you', 'yu'], type: 'plainVowel', name: 'yu' },          // ᅲ
+  { kr: '\u3161', ro: ['eu'], type: 'plainVowel', name: 'eu' },                 // ᅳ
+  { kr: '\u3163', ro: ['i'], type: 'plainVowel', name: 'i' },                  // ᅵ
   { kr: '\u3150', ro: ['ae', 'è'], type: 'doubleVowel' },           // ㅐ
   { kr: '\u3152', ro: ['yae', 'yè'], type: 'doubleVowel' },         // ㅒ
   { kr: '\u3156', ro: ['ye', 'yé'], type: 'doubleVowel' },          // ㅖ
@@ -20,25 +21,25 @@ export default [
   { kr: '\u315e', ro: ['we', 'wé'], type: 'doubleVowel' },          // ㅞ
   { kr: '\u315f', ro: ['wi'], type: 'doubleVowel' },                // ㅟ
   { kr: '\u3162', ro: ['ui', 'yi'], type: 'doubleVowel' },          // ㅢ
-  { kr: '\u3131', ro: ['g', 'k'], type: 'mainConsonant' },          // ㄱ
-  { kr: '\u3134', ro: ['n'], type: 'mainConsonant' },               // ㄴ
-  { kr: '\u3137', ro: ['d', 't'], type: 'mainConsonant' },          // ㄷ
-  { kr: '\u3139', ro: ['r', 'l'], type: 'mainConsonant' },          // ㄹ
-  { kr: '\u3141', ro: ['m'], type: 'mainConsonant' },               // ㅁ
-  { kr: '\u3142', ro: ['b', 'p'], type: 'mainConsonant' },          // ㅂ
-  { kr: '\u3145', ro: ['s'], type: 'mainConsonant' },               // ㅅ
-  { kr: '\u3147', ro: ['ng'], type: 'mainConsonant' },              // ㅇ
-  { kr: '\u3148', ro: ['j', 'ch'], type: 'mainConsonant' },         // ㅈ
-  { kr: '\u314a', ro: ['ch'], type: 'mainConsonant' },              // ㅊ
-  { kr: '\u314b', ro: ['k'], type: 'mainConsonant' },               // ㅋ
-  { kr: '\u314c', ro: ['t'], type: 'mainConsonant' },               // ㅌ
-  { kr: '\u314d', ro: ['p'], type: 'mainConsonant' },               // ㅍ
-  { kr: '\u314e', ro: ['h'], type: 'mainConsonant' },               // ㅎ
-  { kr: '\u3132', ro: ['kk'], type: 'mainConsonant' },              // ㄲ
-  { kr: '\u3138', ro: ['tt'], type: 'mainConsonant' },              // ㄸ
-  { kr: '\u3149', ro: ['jj'], type: 'mainConsonant' },              // ㅉ
-  { kr: '\u3143', ro: ['bb', 'pp'], type: 'mainConsonant' },        // ㅃ
-  { kr: '\u3146', ro: ['ss'], type: 'mainConsonant' },               // ㅆ
+  { kr: '\u3131', ro: ['g', 'k'], type: 'mainConsonant', name: 'giyeok' },          // ㄱ
+  { kr: '\u3134', ro: ['n'], type: 'mainConsonant', name: 'nieun' },               // ㄴ
+  { kr: '\u3137', ro: ['d', 't'], type: 'mainConsonant', name: 'digeut' },          // ㄷ
+  { kr: '\u3139', ro: ['r', 'l'], type: 'mainConsonant', name: 'rieul' },          // ㄹ
+  { kr: '\u3141', ro: ['m'], type: 'mainConsonant', name: 'mieum' },               // ㅁ
+  { kr: '\u3142', ro: ['b', 'p'], type: 'mainConsonant', name: 'bieup' },          // ㅂ
+  { kr: '\u3145', ro: ['s'], type: 'mainConsonant', name: 'siot' },               // ㅅ
+  { kr: '\u3147', ro: ['ng'], type: 'mainConsonant', name: 'ieung' },              // ㅇ
+  { kr: '\u3148', ro: ['j', 'ch'], type: 'mainConsonant', name: 'jieut' },         // ㅈ
+  { kr: '\u314a', ro: ['ch'], type: 'mainConsonant', name: 'chieut' },              // ㅊ
+  { kr: '\u314b', ro: ['k'], type: 'mainConsonant', name: 'kieuk' },               // ㅋ
+  { kr: '\u314c', ro: ['t'], type: 'mainConsonant', name: 'tieut' },               // ㅌ
+  { kr: '\u314d', ro: ['p'], type: 'mainConsonant', name: 'pieup' },               // ㅍ
+  { kr: '\u314e', ro: ['h'], type: 'mainConsonant', name: 'hieut' },               // ㅎ
+  { kr: '\u3132', ro: ['kk'], type: 'mainConsonant', name: 'ssang-giyeok', tense: true },              // ㄲ
+  { kr: '\u3138', ro: ['tt'], type: 'mainConsonant', name: 'ssang-digeut', tense: true },              // ㄸ
+  { kr: '\u3149', ro: ['jj'], type: 'mainConsonant', name: 'ssang-jieut', tense: true },              // ㅉ
+  { kr: '\u3143', ro: ['bb', 'pp'], type: 'mainConsonant', name: 'ssang-bieup', tense: true },        // ㅃ
+  { kr: '\u3146', ro: ['ss'], type: 'mainConsonant', name: 'ssang-siot', tense: true },               // ㅆ
   { kr: '\u3133', ro: ['gs', 'ks'], type: 'doubleConsonant' },      // ㄳ
   { kr: '\u3135', ro: ['nj'], type: 'doubleConsonant' },            // ㄵ
   { kr: '\u3136', ro: ['nh'], type: 'doubleConsonant' },           // ㄶ
