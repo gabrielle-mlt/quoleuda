@@ -70,11 +70,14 @@
                   class="text-center"
                   height="200"
                 >
-                  <v-list-item-title style="font-size: 5rem; line-height: 100%;">
-                    <span lang="ko">
+                  <v-list-item-title style="font-size: 3rem;line-height: 100%;">
+                    <span
+                      lang="ko"
+                      style="font-size: 4.7rem!important; line-height: 100%;"
+                    >
                       {{ char.kr }}
                     </span> &#8594;
-                    <span>
+                    <span style="line-height: 100%;">
                       "{{ char.ro[0].toUpperCase() }}"
                     </span>
                   </v-list-item-title>
