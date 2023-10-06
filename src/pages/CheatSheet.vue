@@ -11,9 +11,10 @@
     </p>
     <v-tabs
       v-model="tab"
-      align-tabs="title"
+      align-tabs="center"
       class="mt-12"
       hide-slider
+      @update:model-value="$route.params.tab = $event"
     >
       <v-tab
         :ripple="false"
@@ -52,7 +53,7 @@
             <p>
               The Korean alphabet is made up of
               {{ mainConsonant.length + tenseConsonant.length + doubleConsonant.length }}
-              ({{ mainConsonant.length }} + {{ tenseConsonant.length }} + {{ doubleConsonant.length }}).
+              ( {{ mainConsonant.length }} + {{ tenseConsonant.length }} + {{ doubleConsonant.length }}) consonants.
               The consonants are written in the form of a square or a circle.
             </p>
             <div
@@ -245,15 +246,50 @@
         </v-row>
       </v-window-item>
       <v-window-item value="vowels">
-        <div class="text-left mb-12 mt-4 ">
-          <h3
-            class="mt-12"
-            style="font-size: 32px;"
-          >
-            Vowels
-          </h3>
-          <p>(Coming soon !)</p>
-        </div>
+        <v-row class="text-left mb-12 mt-4 ">
+          <v-col>
+            <h3>Vowels</h3>
+            <p>
+              The Korean alphabet is made up of
+              {{ plainVowels.length + doubleVowels.length }}
+              ( {{ plainVowels.length }} + {{ doubleVowels.length }} ) vowels.
+            </p>
+            <div
+              v-for="(subtype, i) in vowelSubtype"
+              :key="`subtype-${i}`"
+              class="mt-12"
+            >
+              <h4 style="font-size: 1.6rem;">
+                {{ subtype.title }}
+              </h4>
+              <v-list bg-color="transparent">
+                <v-list-item
+                  v-for="(char, j) in subtype.items"
+                  :key="`subtype-char-${i}-${j}`"
+                  class="text-center"
+                  height="200"
+                >
+                  <v-list-item-title style="font-size: 3rem;line-height: 100%;">
+                    <span
+                      lang="ko"
+                      style="font-size: 4.7rem!important; line-height: 100%;"
+                    >
+                      {{ char.kr }}
+                    </span> &#8594;
+                    <span style="line-height: 100%;">
+                      "{{ char.ro[0].toUpperCase() }}"
+                    </span>
+                  </v-list-item-title>
+                  <!--                  <v-list-item-subtitle
+                                      style="font-size: 1.5rem; overflow: unset; line-height: 2rem;"
+                                    >
+                                      {{ char.name }}
+                                    </v-list-item-subtitle>-->
+                </v-list-item>
+              </v-list>
+            </div>
+          </v-col>
+        </v-row>
       </v-window-item>
     </v-window>
     <v-btn
@@ -288,6 +324,18 @@ export default {
           type: 'doubleConsonant',
           items: hangeul.filter(c => c.type === 'doubleConsonant')
         }
+      ],
+      vowelSubtype: [
+        {
+          title: 'Plain vowel',
+          type: 'plainVowel',
+          items: hangeul.filter(c => c.type === 'plainVowel')
+        },
+        {
+          title: 'Double vowel',
+          type: 'doubleVowel',
+          items: hangeul.filter(c => c.type === 'doubleVowel')
+        }
       ]
     }
   },
@@ -300,6 +348,12 @@ export default {
     },
     doubleConsonant () {
       return hangeul.filter(c => c.type === 'doubleConsonant')
+    },
+    plainVowels () {
+      return hangeul.filter(c => c.type === 'plainVowel')
+    },
+    doubleVowels () {
+      return hangeul.filter(c => c.type === 'doubleVowel')
     }
   }
 }

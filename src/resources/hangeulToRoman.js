@@ -13,6 +13,7 @@ export default [
   { kr: '\u3163', ro: ['i'], type: 'plainVowel', name: 'i' },                  // ᅵ
   { kr: '\u3150', ro: ['ae', 'è'], type: 'doubleVowel' },           // ㅐ
   { kr: '\u3152', ro: ['yae', 'yè'], type: 'doubleVowel' },         // ㅒ
+  { kr: '\u3154', ro: ['e', 'è'], type: 'doubleVowel' },           // ㅔ
   { kr: '\u3156', ro: ['ye', 'yé'], type: 'doubleVowel' },          // ㅖ
   { kr: '\u3158', ro: ['wa'], type: 'doubleVowel' },                // ㅘ
   { kr: '\u3159', ro: ['wae', 'wè'], type: 'doubleVowel' },         // ㅙ
