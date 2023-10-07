@@ -14,7 +14,7 @@
       align-tabs="center"
       class="mt-12"
       hide-slider
-      @update:model-value="$route.params.tab = $event"
+      @update:model-value="$router.push({ name: 'CheatSheet', query: { tab: $event } });"
     >
       <v-tab
         :ripple="false"
@@ -253,7 +253,49 @@
               The Korean alphabet is made up of
               {{ plainVowels.length + doubleVowels.length }}
               ( {{ plainVowels.length }} + {{ doubleVowels.length }} ) vowels.
+              Vowels were created from the consideration of not only sounds but also philosophical principles.
+              '<span lang="ko">{{ '\u318D' }}</span>',
+              '<span lang="ko">{{ '\u3161' }}</span>' and
+              '<span lang="ko">{{ '\u3163' }}</span>' as basic. The letter
+              '<span lang="ko">{{ '\u318D' }}</span>' symbolizes the round shape of the sky, the letter
+              '<span lang="ko">{{ '\u3161' }}</span>' means the plate shape of the land, and the letter
+              '<span lang="ko">{{ '\u3163' }}</span>' indicates the upright shape of the human. These three, sky,
+              land and human, are considered as the fundamental features of all things in Oriental philosophy.
             </p>
+            <p>
+              Other vowels were made by properly combining those three letters.
+            </p>
+            <div>
+              <v-card
+                class="my-4 mx-auto text-center"
+                color="primary-lighten-3"
+                width="fit-content"
+              >
+                <v-card-text>
+                  <v-table
+                    density="compact"
+                    style="background-color: unset;color: #242424 !important;"
+                    theme="darkTheme"
+                  >
+                    <tbody>
+                      <tr
+                        v-for="(line,i) in combinationVowels"
+                        :key="`line-${i}`"
+                      >
+                        <td
+                          lang="ko"
+                          style="font-size: 20px;"
+                        >
+                          {{ line.components.join(' + ') }}
+                        </td>
+                        <td>&#8594;</td>
+                        <td>{{ line.result }}</td>
+                      </tr>
+                    </tbody>
+                  </v-table>
+                </v-card-text>
+              </v-card>
+            </div>
             <div
               v-for="(subtype, i) in vowelSubtype"
               :key="`subtype-${i}`"
@@ -285,6 +327,12 @@
                                     >
                                       {{ char.name }}
                                     </v-list-item-subtitle>-->
+                  <!--                  <v-list-subheader>
+                                      <v-chip class="mx-2">
+                                        <span lang="ko">{{ char.kr }}</span>
+                                      </v-chip>
+                                      <span v-html="char.description" />
+                                    </v-list-subheader>-->
                 </v-list-item>
               </v-list>
             </div>
@@ -336,6 +384,13 @@ export default {
           type: 'doubleVowel',
           items: hangeul.filter(c => c.type === 'doubleVowel')
         }
+      ],
+      combinationVowels: [
+        { components: ['\u318D', '\u3161'], result: '\u3157' },
+        { components: ['\u3161', '\u318D'], result: '\u315C' },
+        { components: ['\u318D', '\u3163'], result: '\u3153' },
+        { components: ['\u3163', '\u318D'], result: '\u314F' }
+
       ]
     }
   },
@@ -355,6 +410,9 @@ export default {
     doubleVowels () {
       return hangeul.filter(c => c.type === 'doubleVowel')
     }
+  },
+  created () {
+    this.tab = this.$route.query.tab || 'consonants'
   }
 }
 </script>

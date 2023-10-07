@@ -1,11 +1,35 @@
 /* eslint-disable no-multi-spaces */
 export default [
   // TODO - add a description and a name to each character
-  { kr: '\u314f', ro: ['a'], type: 'plainVowel', name: 'a' },                  // ㅏ
-  { kr: '\u3151', ro: ['ya'], type: 'plainVowel', name: 'ya' },                 // ㅑ
-  { kr: '\u3153', ro: ['eo'], type: 'plainVowel', name: 'eo' },                 // ㅓ
+  {
+    kr: '\u314f', // ㅏ
+    ro: ['a'],
+    type: 'plainVowel',
+    name: 'a',
+    description: 'is pronounced like "ah!". It sounds like <u>a</u> in "Kore<u>a</u>" or "<u>A</u>meric<u>a</u>".'
+  },
+  {
+    kr: '\u3151', // ㅑ
+    ro: ['ya'],
+    type: 'plainVowel',
+    name: 'ya',
+    description: 'is pronounced like "yah!". It sounds like <u>ya</u> in "<u>Ya</u>rd" or "<u>Ya</u>le"'
+  },
+  {
+    kr: '\u3153',
+    ro: ['eo'],
+    type: 'plainVowel',
+    name: 'eo',
+    description: 'is pronounced like "...". It\'s exactly like the <u>o</u> in the word"g<u>o</u>ld"'
+  },                 // ㅓ
   { kr: '\u3155', ro: ['yeo'], type: 'plainVowel', name: 'yeo' },                // ㅕ
-  { kr: '\u3157', ro: ['o', 'ô', 'oo'], type: 'plainVowel', name: 'o' },       // ㅗ
+  {
+    kr: '\u3157',
+    ro: ['o', 'ô', 'oo'],
+    type: 'plainVowel',
+    name: 'o',
+    description: 'is pronounced like "oh!". It sounds like <u>o</u> in "<u>O</u>hio" or "<u>O</u>ctober"'
+  },       // ㅗ
   { kr: '\u315b', ro: ['yo', 'yô', 'yoo'], type: 'plainVowel', name: 'yo' },    // ᅭ
   { kr: '\u315c', ro: ['ou', 'u'], type: 'plainVowel', name: 'u' },            // ᅮ
   { kr: '\u3160', ro: ['you', 'yu'], type: 'plainVowel', name: 'yu' },          // ᅲ
