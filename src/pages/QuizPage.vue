@@ -122,6 +122,7 @@ import ResultsOverview from '../components/ResultsOverview.vue'
 
 <script>
 import hangeul from '../resources/hangeulToRoman.js'
+import syllables from '../resources/koreanAlphabetChart.js'
 
 export default {
   data () {
@@ -133,8 +134,8 @@ export default {
       currentCard: 0,
       score: 0,
       results: [],
-      acceptedModes: ['plainVowel', 'doubleVowel', 'mainConsonant', 'doubleConsonant', 'all'],
-      modes: ['plainVowel', 'doubleVowel', 'mainConsonant']
+      acceptedModes: ['plainVowel', 'doubleVowel', 'mainConsonant', 'doubleConsonant', 'syllable', 'all'],
+      modes: ['plainVowel', 'doubleVowel', 'mainConsonant', 'doubleConsonant', 'syllable']
     }
   },
   async created () {
@@ -241,7 +242,7 @@ export default {
       })
     },
     async prepareCharset () {
-      const shuffledArray = this.shuffle([...hangeul])
+      const shuffledArray = this.shuffle([...hangeul, ...syllables])
 
       this.characterSet = await new Promise((resolve, reject) => {
         const res = ([...shuffledArray].filter((v) => this.modes.includes(v.type)) || []).map((v, index) => {

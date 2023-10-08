@@ -64,6 +64,38 @@
         </v-row>
       </v-col>
     </v-row>
+    <v-row justify="center">
+      <v-col cols="6">
+        <v-btn
+          :color="selectedModes.includes('syllable')? 'primary-lighten-2' : 'primary-darken-2'"
+          :elevation="selectedModes.includes('syllable')? '8' : '1'"
+          rounded="lg"
+          @click="modifySelection([{id:'syllable'}])"
+        >
+          Syllables
+        </v-btn>
+        <v-item-group
+          v-if="syllables && syllables.length"
+          class="font-weight-bold mt-8"
+        >
+          <v-item
+            v-for="(syl,sylInd ) in [...syllables].splice(0, 20)"
+            :key="`char-${syl.id}-${sylInd}`"
+          >
+            <v-chip
+              :color="selectedModes.includes('syllable')? 'primary-lighten-1' : 'primary-desaturate-1'"
+              class="ma-2"
+              elevation="0"
+              lang="ko"
+              size="small"
+              variant="elevated"
+            >
+              {{ syl.kr }}
+            </v-chip>
+          </v-item>
+        </v-item-group>
+      </v-col>
+    </v-row>
     <v-btn
       v-if="selectedModes.length > 0"
       color="primary"
@@ -77,15 +109,17 @@
 <script>
 import hangeul from '../resources/hangeulToRoman.js'
 import transliterationsSet from '../resources/transliterationsSet.js'
+import chart from '../resources/koreanAlphabetChart.js'
 
 export default {
   data () {
     return {
       selectedModes: [],
       categories: ['vowels', 'consonants'],
-      subcategories: ['plainVowel', 'doubleVowel', 'mainConsonant', 'doubleConsontant'],
+      subcategories: ['plainVowel', 'doubleVowel', 'mainConsonant', 'doubleConsonant'],
       transliterationsSet,
-      hangeul
+      hangeul,
+      syllables: chart
     }
   },
   methods: {
@@ -98,7 +132,7 @@ export default {
     },
     startQuiz () {
       const all = this.selectedModes && this.selectedModes.length && this.selectedModes.slice().sort().toString() ===
-          ['plainVowel', 'doubleVowel', 'mainConsonant'].slice().sort().toString()
+          ['plainVowel', 'doubleVowel', 'mainConsonant', 'doubleConsonant', 'syllable'].slice().sort().toString()
       this.$router.push({ name: 'Quiz', query: { mode: all ? 'all' : this.selectedModes.join(',') } })
     }
   }

@@ -43,6 +43,20 @@
           Vowels
         </v-btn>
       </v-tab>
+      <v-tab
+        :ripple="false"
+        value="overview"
+        variant="plain"
+      >
+        <template #default>
+          <v-btn
+            :color="tab === 'overview' ? 'primary' : ''"
+            variant="tonal"
+          >
+            Overview
+          </v-btn>
+        </template>
+      </v-tab>
     </v-tabs>
 
     <v-window v-model="tab">
@@ -265,37 +279,104 @@
             <p>
               Other vowels were made by properly combining those three letters.
             </p>
-            <div>
-              <v-card
-                class="my-4 mx-auto text-center"
-                color="primary-lighten-3"
-                width="fit-content"
-              >
-                <v-card-text>
-                  <v-table
-                    density="compact"
-                    style="background-color: unset;color: #242424 !important;"
-                    theme="darkTheme"
-                  >
-                    <tbody>
-                      <tr
-                        v-for="(line,i) in combinationVowels"
-                        :key="`line-${i}`"
-                      >
-                        <td
-                          lang="ko"
-                          style="font-size: 20px;"
+            <v-row
+              align="center"
+              justify="space-evenly"
+            >
+              <v-col cols="auto">
+                <v-card
+                  class="my-4 mx-auto text-center"
+                  color="primary-lighten-3"
+                  width="fit-content"
+                >
+                  <v-card-text>
+                    <v-table
+                      density="compact"
+                      style="background-color: unset;color: #242424 !important;"
+                      theme="darkTheme"
+                    >
+                      <tbody>
+                        <tr
+                          v-for="(vowel,i) in baseVowels"
+                          :key="`line-${i}`"
                         >
-                          {{ line.components.join(' + ') }}
-                        </td>
-                        <td>&#8594;</td>
-                        <td>{{ line.result }}</td>
-                      </tr>
-                    </tbody>
-                  </v-table>
-                </v-card-text>
-              </v-card>
-            </div>
+                          <td
+                            lang="ko"
+                            style="font-size: 20px;"
+                          >
+                            {{ vowel.kr }}
+                          </td>
+                          <td>{{ vowel.ro }}</td>
+                        </tr>
+                      </tbody>
+                    </v-table>
+                  </v-card-text>
+                </v-card>
+              </v-col>
+
+              <v-col cols="auto">
+                <v-card
+                  class="my-4 mx-auto text-center"
+                  color="primary-lighten-3"
+                  width="fit-content"
+                >
+                  <v-card-text>
+                    <v-table
+                      density="compact"
+                      style="background-color: unset;color: #242424 !important;"
+                      theme="darkTheme"
+                    >
+                      <tbody>
+                        <tr
+                          v-for="(line,i) in combinationVowels"
+                          :key="`line-${i}`"
+                        >
+                          <td lang="ko">
+                            {{ line.components.join(' + ') }}
+                          </td>
+                          <td>&#8594;</td>
+                          <td lang="ko">
+                            {{ line.result }}
+                          </td>
+                          <td>{{ line.ro }}</td>
+                        </tr>
+                      </tbody>
+                    </v-table>
+                  </v-card-text>
+                </v-card>
+              </v-col>
+              <v-col cols="auto">
+                <v-card
+                  class="my-4 mx-auto text-center"
+                  color="primary-lighten-3"
+                  width="fit-content"
+                >
+                  <v-card-text>
+                    <v-table
+                      density="compact"
+                      style="background-color: unset;color: #242424 !important;"
+                      theme="darkTheme"
+                    >
+                      <tbody>
+                        <tr
+                          v-for="(line,i) in doubleCombinationVowels"
+                          :key="`line-${i}`"
+                        >
+                          <td lang="ko">
+                            {{ line.components.join(' + ') }}
+                          </td>
+                          <td>&#8594;</td>
+                          <td lang="ko">
+                            {{ line.result }}
+                          </td>
+                          <td>{{ line.ro }}</td>
+                        </tr>
+                      </tbody>
+                    </v-table>
+                  </v-card-text>
+                </v-card>
+              </v-col>
+            </v-row>
             <div
               v-for="(subtype, i) in vowelSubtype"
               :key="`subtype-${i}`"
@@ -339,6 +420,9 @@
           </v-col>
         </v-row>
       </v-window-item>
+      <v-window-item value="overview">
+        <korean-alphabet-window />
+      </v-window-item>
     </v-window>
     <v-btn
       class="mt-4"
@@ -351,8 +435,10 @@
 </template>
 <script>
 import hangeul from '../resources/hangeulToRoman.js'
+import KoreanAlphabetWindow from '../components/KoreanAlphabetWindow.vue'
 
 export default {
+  components: { KoreanAlphabetWindow },
   data () {
     return {
       tab: null,
@@ -385,12 +471,22 @@ export default {
           items: hangeul.filter(c => c.type === 'doubleVowel')
         }
       ],
+      baseVowels: [
+        { kr: '\u318D', ro: ' deleted since 1933' },
+        { kr: '\u3161', ro: 'eu' },
+        { kr: '\u3163', ro: 'i' }
+      ],
       combinationVowels: [
-        { components: ['\u318D', '\u3161'], result: '\u3157' },
-        { components: ['\u3161', '\u318D'], result: '\u315C' },
-        { components: ['\u318D', '\u3163'], result: '\u3153' },
-        { components: ['\u3163', '\u318D'], result: '\u314F' }
-
+        { components: ['\u318D', '\u3161'], result: '\u3157', ro: 'o' },
+        { components: ['\u3161', '\u318D'], result: '\u315C', ro: 'ou' },
+        { components: ['\u318D', '\u3163'], result: '\u3153', ro: 'eo' },
+        { components: ['\u3163', '\u318D'], result: '\u314F', ro: 'a' }
+      ],
+      doubleCombinationVowels: [
+        { components: ['\u3163', '\u3157'], result: '\u315b', ro: 'yo' },
+        { components: ['\u3163', '\u315C'], result: '\u3160', ro: 'you' },
+        { components: ['\u3163', '\u3153'], result: '\u3155', ro: 'yeo' },
+        { components: ['\u3163', '\u314F'], result: '\u3151', ro: 'ya' }
       ]
     }
   },

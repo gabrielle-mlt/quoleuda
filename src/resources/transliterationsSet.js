@@ -13,7 +13,8 @@ export default [
       }
     ]
 
-  }, {
+  },
+  {
     id: 'consonant',
     title: { ro: 'Consonants', transliteration: 'jungseong', kr: '중성' },
     categories: [
