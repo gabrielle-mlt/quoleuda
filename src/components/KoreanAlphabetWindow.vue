@@ -2,6 +2,10 @@
   <v-row class="text-left mb-12 mt-4 ">
     <v-col>
       <h3>Korean Alphabet Overview</h3>
+      <p>
+        Korean writing is composed of complex syllables. A syllable contains at least one consonant and one vowel.
+        Here is a first list of syllables.
+      </p>
       <v-card
         class="my-4 mx-auto text-center"
         color="primary-lighten-3"
@@ -43,7 +47,7 @@
                   lang="ko"
                   style="font-size: 20px;"
                 >
-                  <span>{{ groupByConsonant[gindex].id }}</span>
+                  <span class="font-weight-bold">{{ groupByConsonant[gindex].id }}</span>
                   <span style="font-size: 0.9rem; opacity: 0.7;">
                     ({{ hangeul.find(h => h.kr === groupByConsonant[gindex].id).ro[0] }})
                   </span>

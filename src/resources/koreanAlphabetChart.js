@@ -7,7 +7,7 @@ export default [
   { kr: '\uACE0', ro: ['go'], type: 'syllable', components: { consonant: '\u3131', vowel: '\u315f' } }, // 고
   { kr: '\uAD50', ro: ['gyo'], type: 'syllable', components: { consonant: '\u3131', vowel: '\u3163' } }, // 교
   { kr: '\uAD6C', ro: ['gu'], type: 'syllable', components: { consonant: '\u3131', vowel: '\u3161' } }, // 구
-  { kr: '\uADDC', ro: ['gyu'], type: 'syllable', components: { consonant: '\u3131', vowel: '\u3163' } }, // 규
+  { kr: '\uADDC', ro: ['gyu', 'gyou'], type: 'syllable', components: { consonant: '\u3131', vowel: '\u3163' } }, // 규
   { kr: '\uADF8', ro: ['geu'], type: 'syllable', components: { consonant: '\u3131', vowel: '\u3161' } }, // 그
   { kr: '\uAE30', ro: ['gi'], type: 'syllable', components: { consonant: '\u3131', vowel: '\u3163' } }, // 기
   /* n */
@@ -18,7 +18,7 @@ export default [
   { kr: '\uB178', ro: ['no'], type: 'syllable', components: { consonant: '\u3134', vowel: '\u315f' } }, // 노
   { kr: '\uB1E8', ro: ['nyo'], type: 'syllable', components: { consonant: '\u3134', vowel: '\u3163' } }, // 뇨
   { kr: '\uB204', ro: ['nu'], type: 'syllable', components: { consonant: '\u3134', vowel: '\u3161' } }, // 누
-  { kr: '\uB274', ro: ['nyu'], type: 'syllable', components: { consonant: '\u3134', vowel: '\u3163' } }, // 뉴
+  { kr: '\uB274', ro: ['nyu', 'nyou'], type: 'syllable', components: { consonant: '\u3134', vowel: '\u3163' } }, // 뉴
   { kr: '\uB290', ro: ['neu'], type: 'syllable', components: { consonant: '\u3134', vowel: '\u3161' } }, // 느
   { kr: '\uB2C8', ro: ['ni'], type: 'syllable', components: { consonant: '\u3134', vowel: '\u3163' } }, // 니
   /* d */
@@ -29,7 +29,7 @@ export default [
   { kr: '\uB3C4', ro: ['do'], type: 'syllable', components: { consonant: '\u3137', vowel: '\u315f' } }, // 도
   { kr: '\uB434', ro: ['dyo'], type: 'syllable', components: { consonant: '\u3137', vowel: '\u3163' } }, // 됴
   { kr: '\uB450', ro: ['du'], type: 'syllable', components: { consonant: '\u3137', vowel: '\u3161' } }, // 두
-  { kr: '\uB4C0', ro: ['dyu'], type: 'syllable', components: { consonant: '\u3137', vowel: '\u3163' } }, // 듀
+  { kr: '\uB4C0', ro: ['dyu', 'dyou'], type: 'syllable', components: { consonant: '\u3137', vowel: '\u3163' } }, // 듀
   { kr: '\uB4DC', ro: ['deu'], type: 'syllable', components: { consonant: '\u3137', vowel: '\u3161' } }, // 드
   { kr: '\uB514', ro: ['di'], type: 'syllable', components: { consonant: '\u3137', vowel: '\u3163' } }, // 디
   /* r */
@@ -40,7 +40,7 @@ export default [
   { kr: '\uB85C', ro: ['ro'], type: 'syllable', components: { consonant: '\u3139', vowel: '\u315f' } }, // 로
   { kr: '\uB8CC', ro: ['ryo'], type: 'syllable', components: { consonant: '\u3139', vowel: '\u3163' } }, // 료
   { kr: '\uB8E8', ro: ['ru'], type: 'syllable', components: { consonant: '\u3139', vowel: '\u3161' } }, // 루
-  { kr: '\uB958', ro: ['ryu'], type: 'syllable', components: { consonant: '\u3139', vowel: '\u3163' } }, // 류
+  { kr: '\uB958', ro: ['ryu', 'ryou'], type: 'syllable', components: { consonant: '\u3139', vowel: '\u3163' } }, // 류
   { kr: '\uB974', ro: ['reu'], type: 'syllable', components: { consonant: '\u3139', vowel: '\u3161' } }, // 르
   { kr: '\uB9AC', ro: ['ri'], type: 'syllable', components: { consonant: '\u3139', vowel: '\u3163' } }, // 리
   /* m */
@@ -51,7 +51,7 @@ export default [
   { kr: '\uBAA8', ro: ['mo'], type: 'syllable', components: { consonant: '\u3141', vowel: '\u315f' } }, // 모
   { kr: '\uBB18', ro: ['myo'], type: 'syllable', components: { consonant: '\u3141', vowel: '\u3163' } }, // 묘
   { kr: '\uBB34', ro: ['mu'], type: 'syllable', components: { consonant: '\u3141', vowel: '\u3161' } }, // 무
-  { kr: '\uBBA4', ro: ['myu'], type: 'syllable', components: { consonant: '\u3141', vowel: '\u3163' } }, // 뮤
+  { kr: '\uBBA4', ro: ['myu', 'myou'], type: 'syllable', components: { consonant: '\u3141', vowel: '\u3163' } }, // 뮤
   { kr: '\uBBC0', ro: ['meu'], type: 'syllable', components: { consonant: '\u3141', vowel: '\u3161' } }, // 므
   { kr: '\uBBF8', ro: ['mi'], type: 'syllable', components: { consonant: '\u3141', vowel: '\u3163' } }, // 미
   /* b */
@@ -62,7 +62,7 @@ export default [
   { kr: '\uBCF4', ro: ['bo'], type: 'syllable', components: { consonant: '\u3142', vowel: '\u315f' } }, // 보
   { kr: '\uBD64', ro: ['byo'], type: 'syllable', components: { consonant: '\u3142', vowel: '\u3163' } }, // 뵤
   { kr: '\uBD80', ro: ['bu'], type: 'syllable', components: { consonant: '\u3142', vowel: '\u3161' } }, // 부
-  { kr: '\uBDF0', ro: ['byu'], type: 'syllable', components: { consonant: '\u3142', vowel: '\u3163' } }, // 뷰
+  { kr: '\uBDF0', ro: ['byu', 'byou'], type: 'syllable', components: { consonant: '\u3142', vowel: '\u3163' } }, // 뷰
   { kr: '\uBE0C', ro: ['beu'], type: 'syllable', components: { consonant: '\u3142', vowel: '\u3161' } }, // 브
   { kr: '\uBE44', ro: ['bi'], type: 'syllable', components: { consonant: '\u3142', vowel: '\u3163' } }, // 비
   /* s */
@@ -73,7 +73,7 @@ export default [
   { kr: '\uC18C', ro: ['so'], type: 'syllable', components: { consonant: '\u3145', vowel: '\u315f' } }, // 소
   { kr: '\uC1FC', ro: ['syo'], type: 'syllable', components: { consonant: '\u3145', vowel: '\u3163' } }, // 쇼
   { kr: '\uC218', ro: ['su'], type: 'syllable', components: { consonant: '\u3145', vowel: '\u3161' } }, // 수
-  { kr: '\uC288', ro: ['syu'], type: 'syllable', components: { consonant: '\u3145', vowel: '\u3163' } }, // 슈
+  { kr: '\uC288', ro: ['syu', 'syou'], type: 'syllable', components: { consonant: '\u3145', vowel: '\u3163' } }, // 슈
   { kr: '\uC2A4', ro: ['seu'], type: 'syllable', components: { consonant: '\u3145', vowel: '\u3161' } }, // 스
   { kr: '\uC2DC', ro: ['si'], type: 'syllable', components: { consonant: '\u3145', vowel: '\u3163' } }, // 시
   /* silent */
@@ -84,7 +84,7 @@ export default [
   { kr: '\uC624', ro: ['o'], type: 'syllable', components: { consonant: '\u3147', vowel: '\u315F' } }, // 오
   { kr: '\uC694', ro: ['yo'], type: 'syllable', components: { consonant: '\u3147', vowel: '\u3163' } }, // 요
   { kr: '\uC6B0', ro: ['u'], type: 'syllable', components: { consonant: '\u3147', vowel: '\u3161' } }, // 우
-  { kr: '\uC720', ro: ['yu'], type: 'syllable', components: { consonant: '\u3147', vowel: '\u3163' } }, // 유
+  { kr: '\uC720', ro: ['yu', 'you'], type: 'syllable', components: { consonant: '\u3147', vowel: '\u3163' } }, // 유
   { kr: '\uC73C', ro: ['eu'], type: 'syllable', components: { consonant: '\u3147', vowel: '\u3161' } }, // 으
   { kr: '\uC774', ro: ['i'], type: 'syllable', components: { consonant: '\u3147', vowel: '\u3163' } }, // 이
   /* j */
@@ -95,7 +95,7 @@ export default [
   { kr: '\uC870', ro: ['jo'], type: 'syllable', components: { consonant: '\u3148', vowel: '\u315F' } }, // 조
   { kr: '\uC8E0', ro: ['jyo'], type: 'syllable', components: { consonant: '\u3148', vowel: '\u3163' } }, // 죠
   { kr: '\uC8FC', ro: ['ju'], type: 'syllable', components: { consonant: '\u3148', vowel: '\u3161' } }, // 주
-  { kr: '\uC96C', ro: ['jyu'], type: 'syllable', components: { consonant: '\u3148', vowel: '\u3163' } }, // 쥬
+  { kr: '\uC96C', ro: ['jyu', 'jyou'], type: 'syllable', components: { consonant: '\u3148', vowel: '\u3163' } }, // 쥬
   { kr: '\uC988', ro: ['jeu'], type: 'syllable', components: { consonant: '\u3148', vowel: '\u3161' } }, // 즈
   { kr: '\uC9C0', ro: ['ji'], type: 'syllable', components: { consonant: '\u3148', vowel: '\u3163' } }, // 지
   /* ch */
@@ -106,7 +106,7 @@ export default [
   { kr: '\uCD08', ro: ['cho'], type: 'syllable', components: { consonant: '\u314A', vowel: '\u315F' } }, // 초
   { kr: '\uCD78', ro: ['chyo'], type: 'syllable', components: { consonant: '\u314A', vowel: '\u3163' } }, // 쵸
   { kr: '\uCD94', ro: ['chu'], type: 'syllable', components: { consonant: '\u314A', vowel: '\u3161' } }, // 추
-  { kr: '\uCE04', ro: ['chyu'], type: 'syllable', components: { consonant: '\u314A', vowel: '\u3163' } }, // 츄
+  { kr: '\uCE04', ro: ['chyu', 'chyou'], type: 'syllable', components: { consonant: '\u314A', vowel: '\u3163' } }, // 츄
   { kr: '\uCE20', ro: ['cheu'], type: 'syllable', components: { consonant: '\u314A', vowel: '\u3161' } }, // 츠
   { kr: '\uCE58', ro: ['chi'], type: 'syllable', components: { consonant: '\u314A', vowel: '\u3163' } }, // 치
   /* k */
@@ -117,10 +117,9 @@ export default [
   { kr: '\uCF54', ro: ['ko'], type: 'syllable', components: { consonant: '\u314B', vowel: '\u315F' } }, // 코
   { kr: '\uCFC4', ro: ['kyo'], type: 'syllable', components: { consonant: '\u314B', vowel: '\u3163' } }, // 쿄
   { kr: '\uCFE0', ro: ['ku'], type: 'syllable', components: { consonant: '\u314B', vowel: '\u3161' } }, // 쿠
-  { kr: '\uD050', ro: ['kyu'], type: 'syllable', components: { consonant: '\u314B', vowel: '\u3163' } }, // 큐
+  { kr: '\uD050', ro: ['kyu', 'kyou'], type: 'syllable', components: { consonant: '\u314B', vowel: '\u3163' } }, // 큐
   { kr: '\uD06C', ro: ['keu'], type: 'syllable', components: { consonant: '\u314B', vowel: '\u3161' } }, // 크
   { kr: '\uD0A4', ro: ['ki'], type: 'syllable', components: { consonant: '\u314B', vowel: '\u3163' } }, // 키
-  // 타 탸 터 텨 토 툐 투 튜 트 티
   /* t */
   { kr: '\uD0C0', ro: ['ta'], type: 'syllable', components: { consonant: '\u314C', vowel: '\u314F' } }, // 타
   { kr: '\uD0F8', ro: ['tya'], type: 'syllable', components: { consonant: '\u314C', vowel: '\u3153' } }, // 탸
@@ -129,7 +128,7 @@ export default [
   { kr: '\uD1A0', ro: ['to'], type: 'syllable', components: { consonant: '\u314C', vowel: '\u315F' } }, // 토
   { kr: '\uD210', ro: ['tyo'], type: 'syllable', components: { consonant: '\u314C', vowel: '\u3163' } }, // 툐
   { kr: '\uD22C', ro: ['tu'], type: 'syllable', components: { consonant: '\u314C', vowel: '\u3161' } }, // 투
-  { kr: '\uD29C', ro: ['tyu'], type: 'syllable', components: { consonant: '\u314C', vowel: '\u3163' } }, // 튜
+  { kr: '\uD29C', ro: ['tyu', 'tyou'], type: 'syllable', components: { consonant: '\u314C', vowel: '\u3163' } }, // 튜
   { kr: '\uD2B8', ro: ['teu'], type: 'syllable', components: { consonant: '\u314C', vowel: '\u3161' } }, // 트
   { kr: '\uD2F0', ro: ['ti'], type: 'syllable', components: { consonant: '\u314C', vowel: '\u3163' } }, // 티
   /* p */
@@ -140,7 +139,7 @@ export default [
   { kr: '\uD3EC', ro: ['po'], type: 'syllable', components: { consonant: '\u314D', vowel: '\u315F' } }, // 포
   { kr: '\uD45C', ro: ['pyo'], type: 'syllable', components: { consonant: '\u314D', vowel: '\u3163' } }, // 표
   { kr: '\uD478', ro: ['pu'], type: 'syllable', components: { consonant: '\u314D', vowel: '\u3161' } }, // 푸
-  { kr: '\uD4E8', ro: ['pyu'], type: 'syllable', components: { consonant: '\u314D', vowel: '\u3163' } }, // 퓨
+  { kr: '\uD4E8', ro: ['pyu', 'pyou'], type: 'syllable', components: { consonant: '\u314D', vowel: '\u3163' } }, // 퓨
   { kr: '\uD504', ro: ['peu'], type: 'syllable', components: { consonant: '\u314D', vowel: '\u3161' } }, // 프
   { kr: '\uD53C', ro: ['pi'], type: 'syllable', components: { consonant: '\u314D', vowel: '\u3163' } }, // 피
   /* h */
@@ -151,7 +150,7 @@ export default [
   { kr: '\uD638', ro: ['ho'], type: 'syllable', components: { consonant: '\u314E', vowel: '\u315F' } }, // 호
   { kr: '\uD6A8', ro: ['hyo'], type: 'syllable', components: { consonant: '\u314E', vowel: '\u3163' } }, // 효
   { kr: '\uD6C4', ro: ['hu'], type: 'syllable', components: { consonant: '\u314E', vowel: '\u3161' } }, // 후
-  { kr: '\uD734', ro: ['hyu'], type: 'syllable', components: { consonant: '\u314E', vowel: '\u3163' } }, // 휴
+  { kr: '\uD734', ro: ['hyu', 'hyou'], type: 'syllable', components: { consonant: '\u314E', vowel: '\u3163' } }, // 휴
   { kr: '\uD750', ro: ['heu'], type: 'syllable', components: { consonant: '\u314E', vowel: '\u3161' } }, // 흐
   { kr: '\uD788', ro: ['hi'], type: 'syllable', components: { consonant: '\u314E', vowel: '\u3163' } } // 히
 

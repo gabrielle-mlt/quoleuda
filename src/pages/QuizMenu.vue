@@ -30,7 +30,7 @@
           <v-col
             v-for="(cat,catInd) in set.categories"
             :key="`cat-${catInd}`"
-            class="v-col-md-6"
+            class="col-md-6"
           >
             <v-btn
               :color="selectedModes.includes(cat.id)? 'primary-lighten-2' : 'primary-darken-2'"
@@ -93,16 +93,28 @@
               {{ syl.kr }}
             </v-chip>
           </v-item>
+          <v-chip
+            v-if="syllables.length - [...syllables].splice(0, 20).length > 0"
+            :color="selectedModes.includes('syllable')? 'primary-lighten-1' : 'primary-desaturate-1'"
+            class="ma-2"
+            elevation="0"
+            size="small"
+            variant="elevated"
+          >
+            + {{ syllables.length - [...syllables].splice(0, 20).length }} more
+          </v-chip>
         </v-item-group>
       </v-col>
     </v-row>
-    <v-btn
-      v-if="selectedModes.length > 0"
-      color="primary"
-      @click="startQuiz()"
-    >
-      Start Quiz
-    </v-btn>
+    <div class="mt-8">
+      <v-btn
+        v-if="selectedModes.length > 0"
+        color="primary"
+        @click="startQuiz()"
+      >
+        Start Quiz
+      </v-btn>
+    </div>
   </v-container>
 </template>
 

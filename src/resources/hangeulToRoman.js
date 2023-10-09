@@ -34,7 +34,7 @@ export default [
   { kr: '\u315c', ro: ['ou', 'u'], type: 'plainVowel', name: 'u' },            // ᅮ
   { kr: '\u3160', ro: ['you', 'yu'], type: 'plainVowel', name: 'yu' },          // ᅲ
   { kr: '\u3161', ro: ['eu'], type: 'plainVowel', name: 'eu' },                 // ᅳ
-  { kr: '\u3163', ro: ['i'], type: 'plainVowel', name: 'i' },                  // ᅵ
+  { kr: '\u3163', ro: ['i', 'e', 'ee'], type: 'plainVowel', name: 'i' },                  // ᅵ
   { kr: '\u3150', ro: ['ae', 'è'], type: 'doubleVowel' },           // ㅐ
   { kr: '\u3152', ro: ['yae', 'yè'], type: 'doubleVowel' },         // ㅒ
   { kr: '\u3154', ro: ['e', 'è'], type: 'doubleVowel' },           // ㅔ
