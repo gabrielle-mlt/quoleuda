@@ -139,7 +139,8 @@ export default {
         plainVowel: 'Single vowels',
         doubleVowel: 'Composed vowels',
         mainConsonant: 'Single Consontants',
-        doubleConsonant: 'Double consonants'
+        doubleConsonant: 'Double consonants',
+        syllable: 'Syllables'
 
       }
     }
