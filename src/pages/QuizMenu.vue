@@ -3,6 +3,10 @@
     :style="$vuetify.display.mobile ? '' : 'max-width: 1400px;'"
     fill-height
   >
+    <h1 class="mt-4">
+      Quiz Menu
+    </h1>
+    <h2>Click to select the desired letter categories and start the quiz !</h2>
     <v-row class="mt-8">
       <v-col
         v-for="(set,setInd) in transliterationsSet"
