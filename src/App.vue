@@ -78,16 +78,29 @@
           >
             <v-col
               class="text-center"
-              cols="12"
+              cols="auto"
             >
               {{ new Date().getFullYear() }} — <strong>Quoleuda</strong>
+              &nbsp;
               <a
-                class="custom-link ml-4"
                 href="https://www.paypal.me/gabzette"
                 target="_blank"
               >Donate ♡</a>
             </v-col>
-            <v-col />
+            <v-col
+              class="ma-1"
+              cols="auto"
+            >
+              <a
+                href="https://ko-fi.com/gabz655307"
+                target="_blank"
+              >
+                <v-img
+                  src="kofi_logo.png"
+                  width="55px"
+                />
+              </a>
+            </v-col>
           </v-row>
         </v-footer>
       </v-main>

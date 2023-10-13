@@ -65,17 +65,17 @@ export default [
   { kr: '\u3149', ro: ['jj'], type: 'mainConsonant', name: 'ssang-jieut', tense: true },              // ㅉ
   { kr: '\u3143', ro: ['bb', 'pp'], type: 'mainConsonant', name: 'ssang-bieup', tense: true },        // ㅃ
   { kr: '\u3146', ro: ['ss'], type: 'mainConsonant', name: 'ssang-siot', tense: true },               // ㅆ
-  { kr: '\u3133', ro: ['gs', 'ks'], type: 'doubleConsonant' },      // ㄳ
-  { kr: '\u3135', ro: ['nj'], type: 'doubleConsonant' },            // ㄵ
-  { kr: '\u3136', ro: ['nh'], type: 'doubleConsonant' },           // ㄶ
-  { kr: '\u313a', ro: ['lg', 'lk'], type: 'doubleConsonant' },      // ㄺ
-  { kr: '\u313b', ro: ['lm'], type: 'doubleConsonant' },            // ㄻ
-  { kr: '\u313c', ro: ['lb', 'lp'], type: 'doubleConsonant' },      // ㄼ
-  { kr: '\u313d', ro: ['ls'], type: 'doubleConsonant' },            // ㄽ
-  { kr: '\u313e', ro: ['lt'], type: 'doubleConsonant' },            // ㄾ
-  { kr: '\u313f', ro: ['lp'], type: 'doubleConsonant' },            // ㄿ
-  { kr: '\u3140', ro: ['lh'], type: 'doubleConsonant' },            // ㅀ
-  { kr: '\u3144', ro: ['bs', 'ps'], type: 'doubleConsonant' }      // ㅄ
+  { kr: '\u3133', ro: ['gs', 'ks'], type: 'doubleConsonant', name: 'giyeok-sios' },      // ㄳ
+  { kr: '\u3135', ro: ['nj'], type: 'doubleConsonant', name: 'nieun-cieuc' },            // ㄵ
+  { kr: '\u3136', ro: ['nh'], type: 'doubleConsonant', name: 'nieun-hieuh' },           // ㄶ
+  { kr: '\u313a', ro: ['lg', 'lk'], type: 'doubleConsonant', name: 'rieul-kiyeok' },      // ㄺ
+  { kr: '\u313b', ro: ['lm'], type: 'doubleConsonant', name: ' rieul-mieum' },            // ㄻ
+  { kr: '\u313c', ro: ['lb', 'lp'], type: 'doubleConsonant', name: 'rieul-pieup' },      // ㄼ
+  { kr: '\u313d', ro: ['ls'], type: 'doubleConsonant', name: ' rieul-sios' },            // ㄽ
+  { kr: '\u313e', ro: ['lt'], type: 'doubleConsonant', name: 'rieul-thieuth' },            // ㄾ
+  { kr: '\u313f', ro: ['lp'], type: 'doubleConsonant', name: 'rieul-phieuph' },            // ㄿ
+  { kr: '\u3140', ro: ['lh'], type: 'doubleConsonant', name: 'rieul-hieuh' },            // ㅀ
+  { kr: '\u3144', ro: ['bs', 'ps'], type: 'doubleConsonant', name: 'pieup-sios' }      // ㅄ
 
 ]
 /* eslint-enable */

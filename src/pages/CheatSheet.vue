@@ -9,55 +9,56 @@
     <p>
       This revision sheet will help you take your first steps in learning Korean.
     </p>
-    <v-tabs
+    <v-btn
+      class="mt-4"
+      color="primary"
+      @click="$router.push({ name: 'QuizMenu' })"
+    >
+      I'm ready !
+    </v-btn>
+    <v-item-group
       v-model="tab"
-      align-tabs="center"
       class="mt-12"
-      hide-slider
+      group
       @update:model-value="$router.push({ name: 'CheatSheet', query: { tab: $event } });"
     >
-      <v-tab
-        :ripple="false"
-        value="consonants"
-        variant="plain"
-      >
-        <template #default>
-          <v-btn
-            :color="tab === 'consonants' ? 'primary' : ''"
-            variant="tonal"
-          >
-            Consonants
-          </v-btn>
-        </template>
-      </v-tab>
-      <v-tab
-        :ripple="false"
-        value="vowels"
-        variant="plain"
-      >
+      <v-item v-slot="{toggle }">
         <v-btn
-          :color="tab === 'vowels' ? 'primary' : ''"
-
-          variant="tonal"
+          :ripple="false"
+          :variant="tab !== 0 ? 'outlined' : undefined"
+          class="mx-2"
+          color="primary"
+          value="consonants"
+          @click="toggle"
+        >
+          Consonants
+        </v-btn>
+      </v-item>
+      <v-item v-slot="{toggle}">
+        <v-btn
+          :ripple="false"
+          :variant="tab !== 1 ? 'outlined' : undefined"
+          class="mx-2"
+          color="primary"
+          value="vowels"
+          @click="toggle"
         >
           Vowels
         </v-btn>
-      </v-tab>
-      <v-tab
-        :ripple="false"
-        value="overview"
-        variant="plain"
-      >
-        <template #default>
-          <v-btn
-            :color="tab === 'overview' ? 'primary' : ''"
-            variant="tonal"
-          >
-            Overview
-          </v-btn>
-        </template>
-      </v-tab>
-    </v-tabs>
+      </v-item>
+      <v-item v-slot="{toggle}">
+        <v-btn
+          :ripple="false"
+          :variant="tab !== 2 ? 'outlined' : undefined"
+          class="mx-2"
+          color="primary"
+          value="overview"
+          @click="toggle"
+        >
+          Overview
+        </v-btn>
+      </v-item>
+    </v-item-group>
 
     <v-window v-model="tab">
       <v-window-item value="consonants">
@@ -424,13 +425,6 @@
         <korean-alphabet-window />
       </v-window-item>
     </v-window>
-    <v-btn
-      class="mt-4"
-      color="primary"
-      @click="$router.push({ name: 'QuizMenu' })"
-    >
-      I'm ready !
-    </v-btn>
   </v-container>
 </template>
 <script>
@@ -441,7 +435,7 @@ export default {
   components: { KoreanAlphabetWindow },
   data () {
     return {
-      tab: null,
+      tab: 0,
       consonantSubtype: [
         {
           title: 'Single final consonant',
@@ -507,8 +501,32 @@ export default {
       return hangeul.filter(c => c.type === 'doubleVowel')
     }
   },
+  watch: {
+    tab (val) {
+      this.$router.push({ query: { tab: val } })
+      // local storage
+      localStorage.setItem('quoleuda-cheat-sheet-tab', val)
+    }
+  },
   created () {
-    this.tab = this.$route.query.tab || 'consonants'
+    // if tab is not a number
+    if (isNaN(this.$route.query.tab)) {
+      this.$router.push({ query: {} })
+    }
+    // if tab is not in range
+    if (this.$route.query.tab < 0 || this.$route.query.tab > 2) {
+      this.$router.push({ query: {} })
+    }
+    // if in local storage
+    const localStorageTab = localStorage.getItem('quoleuda-cheat-sheet-tab')
+    if (localStorageTab && !isNaN(localStorageTab) && localStorageTab >= 0 && localStorageTab <= 2) {
+      this.tab = parseInt(localStorageTab)
+    }
+
+    if (this.$route.query.tab) {
+      this.tab = parseInt(this.$route.query.tab) || 0
+      localStorage.setItem('quoleuda-cheat-sheet-tab', this.tab)
+    }
   }
 }
 </script>

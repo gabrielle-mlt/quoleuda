@@ -27,5 +27,15 @@ export default [
         title: 'Double Consonants'
       }
     ]
-  }
+  }/*,
+  {
+    id: 'syllable',
+    title: { ro: 'Syllables' },
+    categories: [
+      {
+        id: '2-syllable',
+        title: 'Syllable'
+      }
+    ]
+  } */
 ]

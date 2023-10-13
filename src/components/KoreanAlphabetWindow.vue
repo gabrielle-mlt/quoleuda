@@ -9,7 +9,7 @@
       <v-card
         class="my-4 mx-auto text-center"
         color="primary-lighten-3"
-        width="fit-content"
+        width="100%"
       >
         <v-card-text>
           <v-table
@@ -57,12 +57,41 @@
                   :key="`char-${cindex}`"
                   lang="ko"
                 >
-                  {{ item.kr }}
+                  <span
+                    v-if="!chartRo"
+                    lang="ko"
+                  >
+                    {{ item.kr }}
+                  </span>
+                  <span v-else>
+                    {{ item.ro[0] }}
+                  </span>
                 </td>
               </tr>
             </tbody>
           </v-table>
-          ©Modern Seoul Magazine (2012)
+          <v-row no-gutters>
+            <v-col cols="12">
+              <v-switch
+                v-model="chartRo"
+                :flat="false"
+                :ripple="false"
+                class="float-right"
+                density="compact"
+                hide-details
+              >
+                <template #prepend>
+                  <span>Hangeul</span>
+                </template>
+                <template #append>
+                  <span>Romanized</span>
+                </template>
+              </v-switch>
+            </v-col>
+            <v-col>
+              ©Modern Seoul Magazine (2012)
+            </v-col>
+          </v-row>
         </v-card-text>
       </v-card>
     </v-col>
@@ -88,7 +117,8 @@ export default {
         { kr: '\u3160', ro: 'yu' },
         { kr: '\u3161', ro: 'eu' },
         { kr: '\u3163', ro: 'i' }
-      ]
+      ],
+      chartRo: false
     }
   },
   computed: {
