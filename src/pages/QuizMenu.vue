@@ -7,6 +7,78 @@
       Quiz Menu
     </h1>
     <h2>Click to select the desired letter categories and start the quiz !</h2>
+    <v-row class="justify-center">
+      <v-col cols="12">
+        <v-switch
+          v-model="reverseMode"
+          class="mx-auto"
+          color="secondary"
+          hide-details
+          label="Reverse Mode"
+          style="width: fit-content;"
+        >
+          <template #append>
+            <v-menu
+              :close-on-content-click="false"
+              location="end"
+            >
+              <template #activator="{ props }">
+                <v-btn
+                  color="secondary"
+                  fab
+                  icon
+                  size="xx-small"
+                  v-bind="props"
+                >
+                  <v-icon size="small">
+                    mdi-information-symbol
+                  </v-icon>
+                </v-btn>
+              </template>
+              <v-card width="350">
+                <v-card-text>
+                  <p>
+                    In <span class="font-weight-bold">normal mode</span>, you will be given the korean letter and you
+                    will have to find the
+                    <span
+                      class="font-weight-bold"
+                      style="color: #ff7081;"
+                    >
+                      corresponding roman letter
+                    </span>.
+                  </p>
+                  <p>
+                    {{ '\u314F' }}
+                    <v-icon size="x-small">
+                      mdi-arrow-right
+                    </v-icon>
+                    ? (roman letter)
+                  </p>
+                  <v-divider class="my-4" />
+                  <p>
+                    In <span class="font-weight-bold">reverse mode</span>, you will be given the roman letter and you
+                    will have to find the
+                    <span
+                      class="font-weight-bold"
+                      style="color: #ff7081;"
+                    >
+                      corresponding korean letter
+                    </span>.
+                  </p>
+                  <p>
+                    a
+                    <v-icon size="x-small">
+                      mdi-arrow-right
+                    </v-icon>
+                    ? (korean letter)
+                  </p>
+                </v-card-text>
+              </v-card>
+            </v-menu>
+          </template>
+        </v-switch>
+      </v-col>
+    </v-row>
     <v-row class="mt-8">
       <v-col
         v-for="(set,setInd) in transliterationsSet"
@@ -60,7 +132,7 @@
                   size="small"
                   variant="elevated"
                 >
-                  {{ char.kr }}
+                  {{ reverseMode ? char.ro[0] : char.kr }}
                 </v-chip>
               </v-item>
             </v-item-group>
@@ -94,7 +166,7 @@
               size="small"
               variant="elevated"
             >
-              {{ syl.kr }}
+              {{ reverseMode ? syl.ro[0] : syl.kr }}
             </v-chip>
           </v-item>
           <v-chip
@@ -130,6 +202,7 @@ import chart from '../resources/koreanAlphabetChart.js'
 export default {
   data () {
     return {
+      reverseMode: false,
       selectedModes: [],
       categories: ['vowels', 'consonants'],
       subcategories: ['plainVowel', 'doubleVowel', 'mainConsonant', 'doubleConsonant'],
@@ -149,7 +222,9 @@ export default {
     startQuiz () {
       const all = this.selectedModes && this.selectedModes.length && this.selectedModes.slice().sort().toString() ===
           ['plainVowel', 'doubleVowel', 'mainConsonant', 'doubleConsonant', 'syllable'].slice().sort().toString()
-      this.$router.push({ name: 'Quiz', query: { mode: all ? 'all' : this.selectedModes.join(',') } })
+      const queryParams = { mode: all ? 'all' : this.selectedModes.join(',') }
+      if (this.reverseMode) queryParams.reverseMode = true
+      this.$router.push({ name: 'Quiz', query: queryParams })
     }
   }
 }

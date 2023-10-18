@@ -42,7 +42,7 @@
               lang="ko"
               style="font-size: 2.5rem"
             >
-              {{ character.kr }}
+              {{ reverseMode ? character.ro[0] : character.kr }}
             </v-card-title>
             <v-card-text>
               <v-text-field
@@ -127,6 +127,7 @@ import syllables from '../resources/koreanAlphabetChart.js'
 export default {
   data () {
     return {
+      reverseMode: false,
       printResults: false,
       finished: false,
       dialog: false,
@@ -148,6 +149,10 @@ export default {
       this.modes = this.$route.query.mode.split(',')
     }
 
+    if (this.$route.query.reverseMode && this.$route.query.reverseMode === 'true') {
+      this.reverseMode = true
+    }
+
     await this.resetGame()
   },
   unmounted () {
@@ -164,7 +169,10 @@ export default {
       character.tries = character.tries + 1 || 1
 
       // reset event target value
-      if (character.ro.includes(event.target.value.toLowerCase())) {
+      const guess = this.reverseMode
+        ? character.kr === event.target.value.toLowerCase()
+        : character.ro.includes(event.target.value.toLowerCase())
+      if (guess) {
         character.placeholder = event.target.value.length ? event.target.value : character.placeholder
         character.color = 'success-lighten-1'
         character.done = true
