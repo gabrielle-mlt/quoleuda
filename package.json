@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@ctrl/tinycolor": "^3.6.0",
-    "pinia": "^2.1.6",
     "vue": "^3.2.47",
     "vue-router": "^4.2.4",
     "vuetify": "^3.3.2"
