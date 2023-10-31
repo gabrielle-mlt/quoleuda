@@ -16,28 +16,17 @@ const lightThemeColor = new TinyColor('#ff7081')
 const darkThemeColor = new TinyColor('#ff7081')
 // pastel success color
 const successColor = new TinyColor('#a5daa5')
+const incorrectColor = new TinyColor('#ff8f81')
+// const incorrectColor = new TinyColor('#0000ff')
 
 const lightTheme = {
   dark: false,
   colors: {
     background: '#fff3f8',
     primary: lightThemeColor.toString(),
-    'primary-lighten-1': lightThemeColor.clone().lighten(30).toString(),
-    'primary-lighten-2': lightThemeColor.clone().lighten(60).toString(),
-    'primary-lighten-3': lightThemeColor.clone().lighten(80).toString(),
-    'primary-darken-1': lightThemeColor.clone().darken(30).toString(),
-    'primary-darken-2': lightThemeColor.clone().darken(60).toString(),
-    'primary-darken-3': lightThemeColor.clone().darken(65).toString(),
-    'primary-desaturate-1': lightThemeColor.clone().darken(40).desaturate(55).toString(),
     secondary: lightThemeColor.clone().complement(),
-    'secondary-lighten-1': lightThemeColor.clone().complement().lighten(30),
-    'secondary-lighten-2': lightThemeColor.clone().complement().lighten(60),
-    'secondary-lighten-3': lightThemeColor.clone().complement().lighten(80),
-    'secondary-darken-1': lightThemeColor.clone().complement().darken(30),
-    'secondary-darken-2': lightThemeColor.clone().complement().darken(60),
-    'secondary-darken-3': lightThemeColor.clone().complement().darken(65),
     success: successColor.toString(),
-    'success-lighten-1': successColor.clone().lighten(30).toString()
+    incorrect: incorrectColor.toString()
 
   }
 }
@@ -47,36 +36,23 @@ const darkTheme = {
   colors: {
     background: '#151514',
     primary: darkThemeColor.toString(),
-    'primary-lighten-1': darkThemeColor.clone().lighten(30).toString(),
-    'primary-lighten-2': darkThemeColor.clone().lighten(60).toString(),
-    'primary-lighten-3': darkThemeColor.clone().lighten(80).toString(),
-    'primary-darken-1': darkThemeColor.clone().darken(30).toString(),
-    'primary-darken-2': darkThemeColor.clone().darken(60).toString(),
-    'primary-darken-3': darkThemeColor.clone().darken(65).toString(),
-    'primary-desaturate-1': darkThemeColor.clone().darken(40).desaturate(55).toString(),
     secondary: darkThemeColor.clone().complement(),
-    'secondary-lighten-1': darkThemeColor.clone().complement().lighten(30),
-    'secondary-lighten-2': darkThemeColor.clone().complement().lighten(60),
-    'secondary-lighten-3': darkThemeColor.clone().complement().lighten(90),
-    'secondary-darken-1': darkThemeColor.clone().complement().darken(30),
-    'secondary-darken-2': darkThemeColor.clone().complement().darken(60),
-    'secondary-darken-3': darkThemeColor.clone().complement().darken(65),
     success: successColor.toString(),
-    'success-lighten-1': successColor.clone().lighten(30).toString()
+    incorrect: incorrectColor.toString()
   }
 }
 
 const vuetify = createVuetify({
   theme: {
     defaultTheme: 'darkTheme',
+    variations: {
+      colors: ['primary', 'secondary', 'success', 'incorrect'],
+      lighten: 3,
+      darken: 5
+    },
     themes: {
       lightTheme,
       darkTheme
-    },
-    variations: {
-      colors: ['primary', 'secondary'],
-      lighten: 5,
-      darken: 2
     }
   },
   components,

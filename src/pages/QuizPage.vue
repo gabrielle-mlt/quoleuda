@@ -30,8 +30,10 @@
           cols="auto"
         >
           <v-card
-            :class="i === currentCard ? 'growing-card':''"
-            :color="character.done ? 'success' : 'primary-lighten-2'"
+            :class="`${i === currentCard ? 'growing-card':''} ${!character.done && i !== currentCard &&
+              character.incorrect ?
+                'incorrect':''}`"
+            :color="character.done ? 'success' : (character.incorrect ? 'incorrect':'primary-lighten-2')"
             class="transition-card"
             elevation="0"
             rounded="xl"
@@ -50,7 +52,7 @@
                 :id="`input-${i}`"
                 :ref="`input-${i}`"
                 v-model.trim="character.answer"
-                :bg-color="character.color || 'primary-lighten-3'"
+                :bg-color="(character.color || 'primary') + '-lighten-3'"
                 :placeholder="character.placeholder"
                 :readonly="character.done"
                 class="mt-6 mx-3 elevation-0 font-weight-bold centered-input"
@@ -59,7 +61,8 @@
                 oninput="this.value?.length > 4 ? this.value = this.value.slice(0,4) : this.value"
                 rounded="circle"
                 variant="solo"
-                @keydown.enter.prevent="checkCorrespondence($event, character, i)"
+                @keydown.enter.prevent="!$vuetify.display.mobile && $event.target.value !== undefined &&
+                  $event.target.value !== ''?checkCorrespondence($event, character, i):goToNextInput(i);"
                 @keydown.tab.prevent="$vuetify.display.mobile && $event.target.value !== undefined && $event.target.value !== ''?
                   checkCorrespondence($event, character, i):goToNextInput(i);"
                 @update:focused="currentCard = i"
@@ -192,11 +195,13 @@ export default {
         : character.ro.includes(event.target.value.toLowerCase())
       if (guess) {
         character.placeholder = event.target.value.length ? event.target.value : character.placeholder
-        character.color = 'success-lighten-1'
+        character.color = 'success'
         character.done = true
         character.score = character.tries > 1 ? 1 / (character.tries * 0.6) : 1
 
         this.results.push(character)
+      } else {
+        character.incorrect = true
       }
 
       this.goToNextInput(i)

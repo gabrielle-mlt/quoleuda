@@ -73,3 +73,49 @@ h1 {
 }
 
 
+.incorrect {
+    animation: wrong 1s linear 1;
+}
+
+@keyframes wrong {
+    0% {
+        background-color: rgb(var(--v-theme-incorrect));
+        border-color: rgb(var(--v-theme-incorrect));
+        transform: translateX(0) scale(1.1);
+
+    }
+
+    10% {
+        background-color: rgb(var(--v-theme-incorrect));
+        border-color: rgb(var(--v-theme-incorrect));
+        transform: translateX(3px) scale(1.06);
+    }
+
+    20% {
+        background-color: rgb(var(--v-theme-incorrect));
+        border-color: rgb(var(--v-theme-incorrect));
+        transform: translateX(-3px);
+    }
+
+    30% {
+        transform: translateX(3px);
+    }
+
+    40% {
+        transform: translateX(-3px);
+    }
+
+    50% {
+        transform: translateX(3px);
+    }
+
+    60% {
+        transform: translateX(-3px);
+    }
+
+    70% {
+        transform: translateX(0) scale(1);
+    }
+    
+}
+

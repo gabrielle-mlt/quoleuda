@@ -154,7 +154,7 @@
             class="col-md-6"
           >
             <v-btn
-              :color="selectedModes.includes(cat.id)? 'primary-lighten-2' : 'primary-darken-2'"
+              :color="selectedModes.includes(cat.id)? 'primary-lighten-2' : 'primary-darken-1'"
               :elevation="selectedModes.includes(cat.id)? '8' : '1'"
               rounded="lg"
               @click="modifySelection([cat])"
@@ -171,7 +171,7 @@
               >
                 <v-chip
                   :class="fontClass"
-                  :color="selectedModes.includes(cat.id)? 'primary-lighten-1' : 'primary-desaturate-1'"
+                  :color="selectedModes.includes(cat.id)? 'primary-lighten-1' : 'primary-darken-4'"
                   :style="{ 'font-size': (!reverseMode && fontMode === 'nanum-pen-script' ? '1.6rem' : '') }"
                   class="ma-2"
                   elevation="0"
@@ -184,7 +184,7 @@
               <v-chip
                 v-if="[...hangeul.filter(a => a.type === cat.id)].length - 10 === 1"
                 :class="fontClass"
-                :color="selectedModes.includes(cat.id)? 'primary-lighten-1' : 'primary-desaturate-1'"
+                :color="selectedModes.includes(cat.id)? 'primary-lighten-1' : 'primary-darken-4'"
                 :style="{ 'font-size': (!reverseMode && fontMode === 'nanum-pen-script' ? '1.6rem' : '') }"
                 class="ma-2"
                 elevation="0"
@@ -197,7 +197,7 @@
               </v-chip>
               <v-chip
                 v-else-if="[...hangeul.filter(a => a.type === cat.id)].length - 10 > 1"
-                :color="selectedModes.includes('syllable')? 'primary-lighten-1' : 'primary-desaturate-1'"
+                :color="selectedModes.includes(cat.id)? 'primary-lighten-1' : 'primary-darken-4'"
                 class="ma-2"
                 elevation="0"
                 variant="elevated"
@@ -212,7 +212,7 @@
     <v-row justify="center">
       <v-col cols="6">
         <v-btn
-          :color="selectedModes.includes('syllable')? 'primary-lighten-2' : 'primary-darken-2'"
+          :color="selectedModes.includes('syllable')? 'primary-lighten-2' : 'primary-darken-1'"
           :elevation="selectedModes.includes('syllable')? '8' : '1'"
           rounded="lg"
           @click="modifySelection([{id:'syllable'}])"
@@ -229,7 +229,7 @@
           >
             <v-chip
               :class="fontClass"
-              :color="selectedModes.includes('syllable')? 'primary-lighten-1' : 'primary-desaturate-1'"
+              :color="selectedModes.includes('syllable')? 'primary-lighten-1' : 'primary-darken-4'"
               :style="{ 'font-size': (!reverseMode && fontMode === 'nanum-pen-script' ? '1.6rem' : '') }"
               class="ma-2"
               elevation="0"
@@ -241,7 +241,7 @@
           </v-item>
           <v-chip
             v-if="syllables.length - 20 > 0"
-            :color="selectedModes.includes('syllable')? 'primary-lighten-1' : 'primary-desaturate-1'"
+            :color="selectedModes.includes('syllable')? 'primary-lighten-1' : 'primary-darken-4'"
             class="ma-2"
             elevation="0"
             variant="elevated"

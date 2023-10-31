@@ -70,7 +70,7 @@
         <router-view style="top: 63px;" />
         <v-footer
           :app="true"
-          color="primary-desaturate-1"
+          color="primary-darken-5"
         >
           <v-row
             justify="center"
