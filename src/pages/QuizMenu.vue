@@ -40,7 +40,7 @@
                 will have to find the
                 <span
                   class="font-weight-bold"
-                  style="color: #ff7081;"
+                  style="color: rgb(var(--v-theme-primary));"
                 >
                   corresponding roman letter
                 </span>.
@@ -58,7 +58,7 @@
                 will have to find the
                 <span
                   class="font-weight-bold"
-                  style="color: #ff7081;"
+                  style="color: rgb(var(--v-theme-primary));"
                 >
                   corresponding korean letter
                 </span>.

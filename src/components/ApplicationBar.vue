@@ -22,7 +22,7 @@
       />
     </router-link>
     <v-app-bar-title
-      style="color: #ff7081;font-weight: bold; font-size: 32px;"
+      style="color: rgb(var(--v-theme-primary));font-weight: bold; font-size: 32px;"
     >
       Quoleuda
     </v-app-bar-title>

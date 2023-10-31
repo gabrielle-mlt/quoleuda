@@ -544,7 +544,7 @@ export default {
 }
 
 .v-col > p > span {
-  color: #ff7081;
+  color: rgb(var(--v-theme-primary));
   font-weight: bold;
 }
 </style>
