@@ -1,8 +1,9 @@
 <template>
   <v-app-bar
+    :scroll-threshold="63"
     class="pt-1"
     color="background"
-    elevation="0"
+    scroll-behavior="elevate"
     style="position: fixed;"
   >
     <template

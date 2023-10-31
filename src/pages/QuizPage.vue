@@ -38,9 +38,10 @@
           >
             <v-spacer />
             <v-card-title
+              :class="fontClass"
+              :style="{ 'font-size': (fontMode === 'nanum-pen-script' ? '3.2rem' : '2.3rem') }"
               class="font-weight-bold mt-3"
               lang="ko"
-              style="font-size: 2.5rem"
             >
               {{ reverseMode ? character.ro[0] : character.kr }}
             </v-card-title>
@@ -136,7 +137,20 @@ export default {
       score: 0,
       results: [],
       acceptedModes: ['plainVowel', 'doubleVowel', 'mainConsonant', 'doubleConsonant', 'syllable', 'all'],
-      modes: ['plainVowel', 'doubleVowel', 'mainConsonant', 'doubleConsonant', 'syllable']
+      modes: ['plainVowel', 'doubleVowel', 'mainConsonant', 'doubleConsonant'],
+      fontMode: 'normal',
+      fontOptions: [
+        { value: 'normal', title: 'Normal', class: '' },
+        { value: 'nanum-pen-script', title: 'Nanum Pen Script', class: 'nanum-pen-script-font' },
+        { value: 'nanum-myeongjo-font', title: 'Nanum Myeongjo', class: 'nanum-myeongjo-font' },
+        { value: 'black-han-sans-font', title: 'Black Han Sans', class: 'black-han-sans-font' }
+      ]
+    }
+  },
+  computed: {
+    fontClass () {
+      if (this.reverseMode) return ''
+      return this.fontOptions.find(f => f.value === this.fontMode).class || ''
     }
   },
   async created () {
@@ -151,6 +165,10 @@ export default {
 
     if (this.$route.query.reverseMode && this.$route.query.reverseMode === 'true') {
       this.reverseMode = true
+    }
+
+    if (this.$route.query.fontMode) {
+      this.fontMode = this.$route.query.fontMode
     }
 
     await this.resetGame()

@@ -11,7 +11,7 @@
         <v-btn
           class="mt-4"
           color="primary"
-          @click="$router.push({ name: 'QuizMenu' })"
+          @click="$router.push({ name: 'Quiz' })"
         >
           Start Quiz
         </v-btn>

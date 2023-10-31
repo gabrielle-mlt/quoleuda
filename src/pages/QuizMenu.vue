@@ -7,78 +7,123 @@
       Quiz Menu
     </h1>
     <h2>Click to select the desired letter categories and start the quiz !</h2>
-    <v-row class="justify-center">
-      <v-col cols="12">
-        <v-switch
-          v-model="reverseMode"
-          class="mx-auto"
-          color="secondary"
-          hide-details
-          label="Reverse Mode"
-          style="width: fit-content;"
+    <v-switch
+      v-model="reverseMode"
+      class="mx-auto"
+      color="primary"
+      hide-details
+      label="Reverse Mode"
+      style="width: fit-content;"
+    >
+      <template #append>
+        <v-menu
+          :close-on-content-click="false"
+          location="end"
         >
-          <template #append>
-            <v-menu
-              :close-on-content-click="false"
-              location="end"
+          <template #activator="{ props }">
+            <v-btn
+              color="secondary"
+              fab
+              icon
+              size="xx-small"
+              v-bind="props"
             >
-              <template #activator="{ props }">
-                <v-btn
-                  color="secondary"
-                  fab
-                  icon
-                  size="xx-small"
-                  v-bind="props"
-                >
-                  <v-icon size="small">
-                    mdi-information-symbol
-                  </v-icon>
-                </v-btn>
-              </template>
-              <v-card width="350">
-                <v-card-text>
-                  <p>
-                    In <span class="font-weight-bold">normal mode</span>, you will be given the korean letter and you
-                    will have to find the
-                    <span
-                      class="font-weight-bold"
-                      style="color: #ff7081;"
-                    >
-                      corresponding roman letter
-                    </span>.
-                  </p>
-                  <p>
-                    {{ '\u314F' }}
-                    <v-icon size="x-small">
-                      mdi-arrow-right
-                    </v-icon>
-                    ? (roman letter)
-                  </p>
-                  <v-divider class="my-4" />
-                  <p>
-                    In <span class="font-weight-bold">reverse mode</span>, you will be given the roman letter and you
-                    will have to find the
-                    <span
-                      class="font-weight-bold"
-                      style="color: #ff7081;"
-                    >
-                      corresponding korean letter
-                    </span>.
-                  </p>
-                  <p>
-                    a
-                    <v-icon size="x-small">
-                      mdi-arrow-right
-                    </v-icon>
-                    ? (korean letter)
-                  </p>
-                </v-card-text>
-              </v-card>
-            </v-menu>
+              <v-icon size="small">
+                mdi-information-symbol
+              </v-icon>
+            </v-btn>
           </template>
-        </v-switch>
-      </v-col>
-    </v-row>
+          <v-card width="350">
+            <v-card-text>
+              <p>
+                In <span class="font-weight-bold">normal mode</span>, you will be given the korean letter and you
+                will have to find the
+                <span
+                  class="font-weight-bold"
+                  style="color: #ff7081;"
+                >
+                  corresponding roman letter
+                </span>.
+              </p>
+              <p>
+                {{ '\u314F' }}
+                <v-icon size="x-small">
+                  mdi-arrow-right
+                </v-icon>
+                ? (roman letter)
+              </p>
+              <v-divider class="my-4" />
+              <p>
+                In <span class="font-weight-bold">reverse mode</span>, you will be given the roman letter and you
+                will have to find the
+                <span
+                  class="font-weight-bold"
+                  style="color: #ff7081;"
+                >
+                  corresponding korean letter
+                </span>.
+              </p>
+              <p>
+                a
+                <v-icon size="x-small">
+                  mdi-arrow-right
+                </v-icon>
+                ? (korean letter)
+              </p>
+            </v-card-text>
+          </v-card>
+        </v-menu>
+      </template>
+    </v-switch>
+    <v-select
+      v-model="fontMode"
+      :disabled="reverseMode"
+      :items="fontOptions"
+      class="mx-auto"
+      color="primary"
+      hide-details
+      style="width: 250px;"
+      variant="outlined"
+    >
+      <template #selection="{item}">
+        <span
+          class="align-self-center"
+          style="font-size: 0.9rem;"
+        >{{ item.title }}</span>
+        <span
+          v-if="item.value !== 'normal'"
+          :class="item.raw.class"
+          class="ml-2 my-0"
+          lang="ko"
+        >
+          {{ '\ud55c\uae00' }}
+        </span>
+      </template>
+      <template #prepend-inner>
+        <v-icon color="primary">
+          mdi-format-font
+        </v-icon>
+      </template>
+      <template #item="{ props, item }">
+        <v-list-item
+          :title="false"
+          v-bind="props"
+        >
+          <v-list-item-content class="d-inline-flex">
+            <v-list-item-subtitle>
+              <span
+                :class="item.raw.class"
+                :style="item.value === 'nanum-pen-script' ? 'font-size: 1.6rem;' : ''"
+                lang="ko"
+              >
+                {{ '\ud55c\uae00' }}
+              </span>
+            </v-list-item-subtitle>
+          </v-list-item-content>
+        </v-list-item>
+      </template>
+    </v-select>
+
     <v-row class="mt-8">
       <v-col
         v-for="(set,setInd) in transliterationsSet"
@@ -121,20 +166,44 @@
               class="font-weight-bold mt-8"
             >
               <v-item
-                v-for="(char,charInd ) in [...hangeul.filter(a => a.type === cat.id)]/*.splice(0, 15)*/"
+                v-for="(char,charInd ) in [...hangeul.filter(a => a.type === cat.id)].splice(0, 10)"
                 :key="`char-${cat.id}-${charInd}`"
               >
                 <v-chip
+                  :class="fontClass"
                   :color="selectedModes.includes(cat.id)? 'primary-lighten-1' : 'primary-desaturate-1'"
+                  :style="{ 'font-size': (!reverseMode && fontMode === 'nanum-pen-script' ? '1.6rem' : '') }"
                   class="ma-2"
                   elevation="0"
                   lang="ko"
-                  size="small"
                   variant="elevated"
                 >
                   {{ reverseMode ? char.ro[0] : char.kr }}
                 </v-chip>
               </v-item>
+              <v-chip
+                v-if="[...hangeul.filter(a => a.type === cat.id)].length - 10 === 1"
+                :class="fontClass"
+                :color="selectedModes.includes(cat.id)? 'primary-lighten-1' : 'primary-desaturate-1'"
+                :style="{ 'font-size': (!reverseMode && fontMode === 'nanum-pen-script' ? '1.6rem' : '') }"
+                class="ma-2"
+                elevation="0"
+                lang="ko"
+                variant="elevated"
+              >
+                {{
+                  reverseMode ? [...hangeul.filter(a => a.type === cat.id)][10].ro[0] : [...hangeul.filter(a => a.type === cat.id)][10].kr
+                }}
+              </v-chip>
+              <v-chip
+                v-else-if="[...hangeul.filter(a => a.type === cat.id)].length - 10 > 1"
+                :color="selectedModes.includes('syllable')? 'primary-lighten-1' : 'primary-desaturate-1'"
+                class="ma-2"
+                elevation="0"
+                variant="elevated"
+              >
+                + {{ [...hangeul.filter(a => a.type === cat.id)].length - 10 }} more
+              </v-chip>
             </v-item-group>
           </v-col>
         </v-row>
@@ -159,22 +228,22 @@
             :key="`char-${syl.id}-${sylInd}`"
           >
             <v-chip
+              :class="fontClass"
               :color="selectedModes.includes('syllable')? 'primary-lighten-1' : 'primary-desaturate-1'"
+              :style="{ 'font-size': (!reverseMode && fontMode === 'nanum-pen-script' ? '1.6rem' : '') }"
               class="ma-2"
               elevation="0"
               lang="ko"
-              size="small"
               variant="elevated"
             >
               {{ reverseMode ? syl.ro[0] : syl.kr }}
             </v-chip>
           </v-item>
           <v-chip
-            v-if="syllables.length - [...syllables].splice(0, 20).length > 0"
+            v-if="syllables.length - 20 > 0"
             :color="selectedModes.includes('syllable')? 'primary-lighten-1' : 'primary-desaturate-1'"
             class="ma-2"
             elevation="0"
-            size="small"
             variant="elevated"
           >
             + {{ syllables.length - [...syllables].splice(0, 20).length }} more
@@ -183,13 +252,23 @@
       </v-col>
     </v-row>
     <div class="mt-8">
-      <v-btn
-        v-if="selectedModes.length > 0"
-        color="primary"
-        @click="startQuiz()"
-      >
-        Start Quiz
-      </v-btn>
+      <v-tooltip :text="selectedModes.length <= 0 ? 'Select at least one mode' : 'Click to start the quiz'">
+        <template #activator="{ props }">
+          <div
+            class="mx-auto"
+            style="width: fit-content;"
+            v-bind="props"
+          >
+            <v-btn
+              :disabled="selectedModes.length <= 0"
+              color="primary"
+              @click="startQuiz()"
+            >
+              Start Quiz
+            </v-btn>
+          </div>
+        </template>
+      </v-tooltip>
     </div>
   </v-container>
 </template>
@@ -203,12 +282,25 @@ export default {
   data () {
     return {
       reverseMode: false,
+      fontMode: 'normal',
       selectedModes: [],
       categories: ['vowels', 'consonants'],
       subcategories: ['plainVowel', 'doubleVowel', 'mainConsonant', 'doubleConsonant'],
       transliterationsSet,
       hangeul,
-      syllables: chart
+      syllables: chart,
+      fontOptions: [
+        { value: 'normal', title: 'Normal', class: '' },
+        { value: 'nanum-pen-script', title: 'Nanum Pen Script', class: 'nanum-pen-script-font' },
+        { value: 'nanum-myeongjo-font', title: 'Nanum Myeongjo', class: 'nanum-myeongjo-font' },
+        { value: 'black-han-sans-font', title: 'Black Han Sans', class: 'black-han-sans-font' }
+      ]
+    }
+  },
+  computed: {
+    fontClass () {
+      if (this.reverseMode) return ''
+      return this.fontOptions.find(f => f.value === this.fontMode).class || ''
     }
   },
   methods: {
@@ -224,6 +316,7 @@ export default {
           ['plainVowel', 'doubleVowel', 'mainConsonant', 'doubleConsonant', 'syllable'].slice().sort().toString()
       const queryParams = { mode: all ? 'all' : this.selectedModes.join(',') }
       if (this.reverseMode) queryParams.reverseMode = true
+      if (this.fontMode) queryParams.fontMode = this.fontMode
       this.$router.push({ name: 'Quiz', query: queryParams })
     }
   }

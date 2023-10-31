@@ -43,7 +43,6 @@
                     2
                   </div>
                 </v-sheet>
-
                 The rest of letters were made based on the several basic letters to enhance its systematic feature
               </v-col>
             </v-row>
