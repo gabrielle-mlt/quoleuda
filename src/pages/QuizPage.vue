@@ -29,46 +29,15 @@
           :key="`character-${i}`"
           cols="auto"
         >
-          <v-card
-            :class="`${i === currentCard ? 'growing-card':''} ${!character.done && i !== currentCard &&
-              character.incorrect ?
-                'incorrect':''}`"
-            :color="character.done ? 'success' : (character.incorrect ? 'incorrect':'primary-lighten-2')"
-            class="transition-card"
-            elevation="0"
-            rounded="xl"
-          >
-            <v-spacer />
-            <v-card-title
-              :class="fontClass"
-              :style="{ 'font-size': (fontMode === 'nanum-pen-script' ? '3.2rem' : '2.3rem') }"
-              class="font-weight-bold mt-3"
-              lang="ko"
-            >
-              {{ reverseMode ? character.ro[0] : character.kr }}
-            </v-card-title>
-            <v-card-text>
-              <v-text-field
-                :id="`input-${i}`"
-                :ref="`input-${i}`"
-                v-model.trim="character.answer"
-                :bg-color="(character.color || 'primary') + '-lighten-3'"
-                :placeholder="character.placeholder"
-                :readonly="character.done"
-                class="mt-6 mx-3 elevation-0 font-weight-bold centered-input"
-                hide-details
-                inputmode="search"
-                oninput="this.value?.length > 4 ? this.value = this.value.slice(0,4) : this.value"
-                rounded="circle"
-                variant="solo"
-                @keydown.enter.prevent="!$vuetify.display.mobile && $event.target.value !== undefined &&
-                  $event.target.value !== ''?checkCorrespondence($event, character, i):goToNextInput(i);"
-                @keydown.tab.prevent="$vuetify.display.mobile && $event.target.value !== undefined && $event.target.value !== ''?
-                  checkCorrespondence($event, character, i):goToNextInput(i);"
-                @update:focused="currentCard = i"
-              />
-            </v-card-text>
-          </v-card>
+          <QuizCard
+            :character="character"
+            :current-card="currentCard"
+            :font-class="fontClass"
+            :i="i"
+            :reverse-mode="reverseMode"
+            @update:current-card="currentCard = $event"
+            @update:next-input="goToNextInput($event)"
+          />
         </v-col>
       </v-row>
     </v-expand-transition>
@@ -122,6 +91,7 @@
 </template>
 <script setup>
 import ResultsOverview from '../components/ResultsOverview.vue'
+import QuizCard from '../components/QuizCard.vue'
 </script>
 
 <script>
@@ -138,22 +108,16 @@ export default {
       characterSet: [],
       currentCard: 0,
       score: 0,
-      results: [],
       acceptedModes: ['plainVowel', 'doubleVowel', 'mainConsonant', 'doubleConsonant', 'syllable', 'all'],
       modes: ['plainVowel', 'doubleVowel', 'mainConsonant', 'doubleConsonant'],
       fontMode: 'normal',
       fontOptions: [
         { value: 'normal', title: 'Normal', class: '' },
-        { value: 'nanum-pen-script', title: 'Nanum Pen Script', class: 'nanum-pen-script-font' },
+        { value: 'nanum-pen-script-font', title: 'Nanum Pen Script', class: 'nanum-pen-script-font' },
         { value: 'nanum-myeongjo-font', title: 'Nanum Myeongjo', class: 'nanum-myeongjo-font' },
         { value: 'black-han-sans-font', title: 'Black Han Sans', class: 'black-han-sans-font' }
-      ]
-    }
-  },
-  computed: {
-    fontClass () {
-      if (this.reverseMode) return ''
-      return this.fontOptions.find(f => f.value === this.fontMode).class || ''
+      ],
+      fontClass: ''
     }
   },
   async created () {
@@ -172,6 +136,10 @@ export default {
 
     if (this.$route.query.fontMode) {
       this.fontMode = this.$route.query.fontMode
+    }
+
+    if (!this.reverseMode) {
+      this.fontClass = this.fontOptions.find(f => f.value === this.fontMode).class || ''
     }
 
     await this.resetGame()
@@ -198,8 +166,6 @@ export default {
         character.color = 'success'
         character.done = true
         character.score = character.tries > 1 ? 1 / (character.tries * 0.6) : 1
-
-        this.results.push(character)
       } else {
         character.incorrect = true
       }
@@ -261,7 +227,6 @@ export default {
 
       this.printResults = false
       this.finished = false
-      this.results = []
       this.score = undefined
       this.currentCard = 0
 
