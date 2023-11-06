@@ -130,9 +130,7 @@
         :key="`set-${setInd}`"
       >
         <v-btn
-          :color="set.categories.map(i => i.id).every(m => selectedModes.includes(m))? 'primary-lighten-2' :
-            'primary-darken-4'"
-
+          :color="set.categories.map(i => i.id).every(m => selectedModes.includes(m))? 'primary-lighten-2' :'primary-darken-4'"
           class="mb-2"
           elevation="0"
           rounded="lg"
@@ -157,7 +155,6 @@
           >
             <v-btn
               :color="selectedModes.includes(cat.id)? 'primary-lighten-2' : 'primary-darken-4'"
-
               elevation="0"
               rounded="lg"
             >
@@ -173,7 +170,7 @@
               >
                 <v-chip
                   :class="`${fontClass} ${selectedModes.includes(cat.id) ? 'fantom-border' : ''}`"
-                  :color="selectedModes.includes(cat.id)? 'primary-lighten-2' : 'primary-darken-4'"
+                  :color="selectedModes.includes(cat.id)? 'primary-lighten-2' : ($vuetify.theme.name === 'lightTheme' ?'primary-darken-4' : 'primary-darken-1')"
                   :style="{ 'font-size': (!reverseMode && fontMode === 'nanum-pen-script' ? '1.6rem' : '') }"
                   :variant="selectedModes.includes(cat.id) ? 'flat' : 'outlined'"
                   class="ma-2"
@@ -186,7 +183,7 @@
               <v-chip
                 v-if="[...hangeul.filter(a => a.type === cat.id)].length - deleteCount === 1"
                 :class="`${fontClass} ${selectedModes.includes(cat.id) ? 'fantom-border' : ''}`"
-                :color="selectedModes.includes(cat.id)? 'primary-lighten-2' : 'primary-darken-4'"
+                :color="selectedModes.includes(cat.id)? 'primary-lighten-2' : ($vuetify.theme.name === 'lightTheme' ?'primary-darken-4' : 'primary-darken-1')"
                 :style="{ 'font-size': (!reverseMode && fontMode === 'nanum-pen-script' ? '1.6rem' : '') }"
                 :variant="selectedModes.includes(cat.id) ? 'flat' : 'outlined'"
                 class="ma-2"
@@ -201,7 +198,7 @@
               <v-chip
                 v-else-if="[...hangeul.filter(a => a.type === cat.id)].length - deleteCount > 1"
                 :class="selectedModes.includes(cat.id) ? 'fantom-border' : ''"
-                :color="selectedModes.includes(cat.id)? 'primary-lighten-2' : 'primary-darken-4'"
+                :color="selectedModes.includes(cat.id)? 'primary-lighten-2' : ($vuetify.theme.name === 'lightTheme' ?'primary-darken-4' : 'primary-darken-1')"
                 :variant="selectedModes.includes(cat.id) ? 'flat' : 'outlined'"
                 class="ma-2"
                 elevation="0"
@@ -235,7 +232,7 @@
           >
             <v-chip
               :class="`${fontClass} ${selectedModes.includes('syllable') ? 'fantom-border' : ''}`"
-              :color="selectedModes.includes('syllable')? 'primary-lighten-2' : 'primary-darken-4'"
+              :color="selectedModes.includes('syllable')? 'primary-lighten-2' : ($vuetify.theme.name === 'lightTheme' ?'primary-darken-4' : 'primary-darken-1')"
               :style="{ 'font-size': (!reverseMode && fontMode === 'nanum-pen-script' ? '1.6rem' : '') }"
               :variant="selectedModes.includes('syllable') ? 'flat' : 'outlined'"
               class="ma-2"
@@ -248,7 +245,7 @@
           <v-chip
             v-if="syllables.length - 20 > 0"
             :class="selectedModes.includes('syllable') ? 'fantom-border' : ''"
-            :color="selectedModes.includes('syllable')? 'primary-lighten-2' : 'primary-darken-4'"
+            :color="selectedModes.includes('syllable')? 'primary-lighten-2' : ($vuetify.theme.name === 'lightTheme' ?'primary-darken-4' : 'primary-darken-1')"
             :variant="selectedModes.includes('syllable') ? 'flat' : 'outlined'"
             class="ma-2"
             elevation="0"
@@ -267,8 +264,8 @@
             v-bind="props"
           >
             <v-btn
+              :color="selectedModes.length > 0 ? 'primary' : ''"
               :disabled="selectedModes.length <= 0"
-              color="primary"
               @click="startQuiz()"
             >
               Start Quiz
