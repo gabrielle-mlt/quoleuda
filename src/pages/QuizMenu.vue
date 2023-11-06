@@ -131,9 +131,10 @@
       >
         <v-btn
           :color="set.categories.map(i => i.id).every(m => selectedModes.includes(m))? 'primary-lighten-2' :
-            'primary-darken-2'"
-          :elevation="set.categories.map(i => i.id).every(m => selectedModes.includes(m))? '8' : '1'"
+            'primary-darken-4'"
+
           class="mb-2"
+          elevation="0"
           rounded="lg"
           size="x-large"
           @click="modifySelection(set.categories)"
@@ -152,12 +153,13 @@
             v-for="(cat,catInd) in set.categories"
             :key="`cat-${catInd}`"
             class="col-md-6"
+            @click="modifySelection([cat])"
           >
             <v-btn
-              :color="selectedModes.includes(cat.id)? 'primary-lighten-2' : 'primary-darken-1'"
-              :elevation="selectedModes.includes(cat.id)? '8' : '1'"
+              :color="selectedModes.includes(cat.id)? 'primary-lighten-2' : 'primary-darken-4'"
+
+              elevation="0"
               rounded="lg"
-              @click="modifySelection([cat])"
             >
               {{ cat.title }}
             </v-btn>
@@ -166,43 +168,45 @@
               class="font-weight-bold mt-8"
             >
               <v-item
-                v-for="(char,charInd ) in [...hangeul.filter(a => a.type === cat.id)].splice(0, 10)"
+                v-for="(char,charInd ) in [...hangeul.filter(a => a.type === cat.id)].splice(0, deleteCount)"
                 :key="`char-${cat.id}-${charInd}`"
               >
                 <v-chip
-                  :class="fontClass"
-                  :color="selectedModes.includes(cat.id)? 'primary-lighten-1' : 'primary-darken-4'"
+                  :class="`${fontClass} ${selectedModes.includes(cat.id) ? 'fantom-border' : ''}`"
+                  :color="selectedModes.includes(cat.id)? 'primary-lighten-2' : 'primary-darken-4'"
                   :style="{ 'font-size': (!reverseMode && fontMode === 'nanum-pen-script' ? '1.6rem' : '') }"
+                  :variant="selectedModes.includes(cat.id) ? 'flat' : 'outlined'"
                   class="ma-2"
                   elevation="0"
                   lang="ko"
-                  variant="elevated"
                 >
                   {{ reverseMode ? char.ro[0] : char.kr }}
                 </v-chip>
               </v-item>
               <v-chip
-                v-if="[...hangeul.filter(a => a.type === cat.id)].length - 10 === 1"
-                :class="fontClass"
-                :color="selectedModes.includes(cat.id)? 'primary-lighten-1' : 'primary-darken-4'"
+                v-if="[...hangeul.filter(a => a.type === cat.id)].length - deleteCount === 1"
+                :class="`${fontClass} ${selectedModes.includes(cat.id) ? 'fantom-border' : ''}`"
+                :color="selectedModes.includes(cat.id)? 'primary-lighten-2' : 'primary-darken-4'"
                 :style="{ 'font-size': (!reverseMode && fontMode === 'nanum-pen-script' ? '1.6rem' : '') }"
+                :variant="selectedModes.includes(cat.id) ? 'flat' : 'outlined'"
                 class="ma-2"
                 elevation="0"
                 lang="ko"
-                variant="elevated"
               >
                 {{
-                  reverseMode ? [...hangeul.filter(a => a.type === cat.id)][10].ro[0] : [...hangeul.filter(a => a.type === cat.id)][10].kr
+                  reverseMode ? [...hangeul.filter(a => a.type === cat.id)][deleteCount].ro[0] : [...hangeul.filter(a => a.type
+                    === cat.id)][deleteCount].kr
                 }}
               </v-chip>
               <v-chip
-                v-else-if="[...hangeul.filter(a => a.type === cat.id)].length - 10 > 1"
-                :color="selectedModes.includes(cat.id)? 'primary-lighten-1' : 'primary-darken-4'"
+                v-else-if="[...hangeul.filter(a => a.type === cat.id)].length - deleteCount > 1"
+                :class="selectedModes.includes(cat.id) ? 'fantom-border' : ''"
+                :color="selectedModes.includes(cat.id)? 'primary-lighten-2' : 'primary-darken-4'"
+                :variant="selectedModes.includes(cat.id) ? 'flat' : 'outlined'"
                 class="ma-2"
                 elevation="0"
-                variant="elevated"
               >
-                + {{ [...hangeul.filter(a => a.type === cat.id)].length - 10 }} more
+                + {{ [...hangeul.filter(a => a.type === cat.id)].length - deleteCount }} more
               </v-chip>
             </v-item-group>
           </v-col>
@@ -210,12 +214,14 @@
       </v-col>
     </v-row>
     <v-row justify="center">
-      <v-col cols="6">
+      <v-col
+        cols="6"
+        @click="modifySelection([{id:'syllable'}])"
+      >
         <v-btn
-          :color="selectedModes.includes('syllable')? 'primary-lighten-2' : 'primary-darken-1'"
-          :elevation="selectedModes.includes('syllable')? '8' : '1'"
+          :color="selectedModes.includes('syllable')? 'primary-lighten-2' : 'primary-darken-4'"
+          elevation="0"
           rounded="lg"
-          @click="modifySelection([{id:'syllable'}])"
         >
           Syllables
         </v-btn>
@@ -228,23 +234,24 @@
             :key="`char-${syl.id}-${sylInd}`"
           >
             <v-chip
-              :class="fontClass"
-              :color="selectedModes.includes('syllable')? 'primary-lighten-1' : 'primary-darken-4'"
+              :class="`${fontClass} ${selectedModes.includes('syllable') ? 'fantom-border' : ''}`"
+              :color="selectedModes.includes('syllable')? 'primary-lighten-2' : 'primary-darken-4'"
               :style="{ 'font-size': (!reverseMode && fontMode === 'nanum-pen-script' ? '1.6rem' : '') }"
+              :variant="selectedModes.includes('syllable') ? 'flat' : 'outlined'"
               class="ma-2"
               elevation="0"
               lang="ko"
-              variant="elevated"
             >
               {{ reverseMode ? syl.ro[0] : syl.kr }}
             </v-chip>
           </v-item>
           <v-chip
             v-if="syllables.length - 20 > 0"
-            :color="selectedModes.includes('syllable')? 'primary-lighten-1' : 'primary-darken-4'"
+            :class="selectedModes.includes('syllable') ? 'fantom-border' : ''"
+            :color="selectedModes.includes('syllable')? 'primary-lighten-2' : 'primary-darken-4'"
+            :variant="selectedModes.includes('syllable') ? 'flat' : 'outlined'"
             class="ma-2"
             elevation="0"
-            variant="elevated"
           >
             + {{ syllables.length - [...syllables].splice(0, 20).length }} more
           </v-chip>
@@ -294,7 +301,8 @@ export default {
         { value: 'nanum-pen-script-font', title: 'Nanum Pen Script', class: 'nanum-pen-script-font' },
         { value: 'nanum-myeongjo-font', title: 'Nanum Myeongjo', class: 'nanum-myeongjo-font' },
         { value: 'black-han-sans-font', title: 'Black Han Sans', class: 'black-han-sans-font' }
-      ]
+      ],
+      deleteCount: 9
     }
   },
   computed: {
@@ -323,3 +331,9 @@ export default {
 }
 
 </script>
+
+<style scoped>
+.fantom-border {
+  border: thin solid transparent;
+}
+</style>
