@@ -169,26 +169,26 @@
                 :key="`char-${cat.id}-${charInd}`"
               >
                 <v-chip
-                  :class="`${fontClass} ${selectedModes.includes(cat.id) ? 'fantom-border' : ''}`"
                   :color="selectedModes.includes(cat.id)? 'primary-lighten-2' : ($vuetify.theme.name === 'lightTheme' ?'primary-darken-4' : 'primary-darken-1')"
+                  :disabled="!selectedModes.includes(cat.id)"
                   :style="{ 'font-size': (!reverseMode && fontMode === 'nanum-pen-script' ? '1.6rem' : '') }"
-                  :variant="selectedModes.includes(cat.id) ? 'flat' : 'outlined'"
-                  class="ma-2"
+                  class="fantom-border ma-2"
                   elevation="0"
                   lang="ko"
+                  variant="flat"
                 >
                   {{ reverseMode ? char.ro[0] : char.kr }}
                 </v-chip>
               </v-item>
               <v-chip
                 v-if="[...hangeul.filter(a => a.type === cat.id)].length - deleteCount === 1"
-                :class="`${fontClass} ${selectedModes.includes(cat.id) ? 'fantom-border' : ''}`"
                 :color="selectedModes.includes(cat.id)? 'primary-lighten-2' : ($vuetify.theme.name === 'lightTheme' ?'primary-darken-4' : 'primary-darken-1')"
+                :disabled="!selectedModes.includes(cat.id)"
                 :style="{ 'font-size': (!reverseMode && fontMode === 'nanum-pen-script' ? '1.6rem' : '') }"
-                :variant="selectedModes.includes(cat.id) ? 'flat' : 'outlined'"
-                class="ma-2"
+                class="fantom-border ma-2"
                 elevation="0"
                 lang="ko"
+                variant="flat"
               >
                 {{
                   reverseMode ? [...hangeul.filter(a => a.type === cat.id)][deleteCount].ro[0] : [...hangeul.filter(a => a.type
@@ -197,11 +197,11 @@
               </v-chip>
               <v-chip
                 v-else-if="[...hangeul.filter(a => a.type === cat.id)].length - deleteCount > 1"
-                :class="selectedModes.includes(cat.id) ? 'fantom-border' : ''"
                 :color="selectedModes.includes(cat.id)? 'primary-lighten-2' : ($vuetify.theme.name === 'lightTheme' ?'primary-darken-4' : 'primary-darken-1')"
-                :variant="selectedModes.includes(cat.id) ? 'flat' : 'outlined'"
-                class="ma-2"
+                :disabled="!selectedModes.includes(cat.id)"
+                class="fantom-border ma-2"
                 elevation="0"
+                variant="flat"
               >
                 + {{ [...hangeul.filter(a => a.type === cat.id)].length - deleteCount }} more
               </v-chip>
@@ -231,24 +231,24 @@
             :key="`char-${syl.id}-${sylInd}`"
           >
             <v-chip
-              :class="`${fontClass} ${selectedModes.includes('syllable') ? 'fantom-border' : ''}`"
               :color="selectedModes.includes('syllable')? 'primary-lighten-2' : ($vuetify.theme.name === 'lightTheme' ?'primary-darken-4' : 'primary-darken-1')"
+              :disabled="!selectedModes.includes('syllable')"
               :style="{ 'font-size': (!reverseMode && fontMode === 'nanum-pen-script' ? '1.6rem' : '') }"
-              :variant="selectedModes.includes('syllable') ? 'flat' : 'outlined'"
-              class="ma-2"
+              class="fantom-border ma-2"
               elevation="0"
               lang="ko"
+              variant="flat"
             >
               {{ reverseMode ? syl.ro[0] : syl.kr }}
             </v-chip>
           </v-item>
           <v-chip
             v-if="syllables.length - 20 > 0"
-            :class="selectedModes.includes('syllable') ? 'fantom-border' : ''"
             :color="selectedModes.includes('syllable')? 'primary-lighten-2' : ($vuetify.theme.name === 'lightTheme' ?'primary-darken-4' : 'primary-darken-1')"
-            :variant="selectedModes.includes('syllable') ? 'flat' : 'outlined'"
-            class="ma-2"
+            :disabled="!selectedModes.includes('syllable')"
+            class="fantom-border ma-2"
             elevation="0"
+            variant="flat"
           >
             + {{ syllables.length - [...syllables].splice(0, 20).length }} more
           </v-chip>

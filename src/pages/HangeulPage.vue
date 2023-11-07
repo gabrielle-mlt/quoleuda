@@ -12,7 +12,7 @@
           <p>
             At the origin, Hangeul was created following 2 principles:
 
-            <v-row class="text-center justify-space-evenly align-center d-flex">
+            <v-row class="text-center justify-space-evenly align-start d-flex">
               <v-col cols="6">
                 <v-sheet
                   class="d-flex align-center justify-center flex-wrap text-center font-weight-bold mx-auto my-6"
@@ -93,8 +93,8 @@
             symbol for each letter.
           </p>
           <p>
-            (<span lang="ko">{{ '\u314F' }}</span> = A ) +
-            (<span lang="ko">{{ '\u3142' }}</span> = B ) =
+            (<span lang="ko">{{ '\u3142' }}</span> = B ) +
+            (<span lang="ko">{{ '\u314F' }}</span> = A ) =
             (<span lang="ko">{{ '\uBC14' }}</span> = BA) simple, right ?
           </p>
         </div>

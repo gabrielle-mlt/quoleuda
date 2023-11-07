@@ -5,6 +5,27 @@
     >
       <v-col cols="12">
         <h1>Welcome to Quoleuda</h1>
+        <div class="d-inline-flex">
+          <p>
+            <v-chip @click="welcomeKr = !welcomeKr">
+              Quoleuda
+              <span
+                v-if="welcomeKr"
+                class="ml-1"
+                lang="ko"
+              >에오신 것을</span>
+              <span v-else>e-osin geos-eul</span>
+            </v-chip>
+          </p>
+          <v-img
+            alt="Korean flag emoji"
+            class="mx-2"
+            height="30"
+            src="/flag-south-korea_apple_emoji.png"
+            width="30"
+          />
+        </div>
+
         <h2>Learn Hangeul / <span lang="ko">{{ '\ud55c\uae00' }}</span></h2>
         <div class="mt-4">
           <p>
@@ -50,11 +71,19 @@
           </video>
         </v-card>
       </v-col>
+      <v-col>
+        <p>You've always wanted to learn Korean but you don't know where to start ?</p>
+        <p>Or maybe you're just curious about the Korean alphabet ?</p>
+        <p>Quoleuda is the perfect app for you !</p>
+      </v-col>
     </v-row>
   </v-container>
 </template>
 
 <script setup>
+import { ref } from 'vue'
+
+const welcomeKr = ref(true)
 </script>
 <style scoped>
 .video-container {
