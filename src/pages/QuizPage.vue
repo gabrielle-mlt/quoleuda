@@ -27,7 +27,11 @@
         <v-col
           v-for="(character,i) in characterSet"
           :key="`character-${i}`"
-          cols="auto"
+          cols="6"
+          lg="auto"
+          md="auto"
+          sm="6"
+          xl="auto"
         >
           <QuizCard
             :character="character"
