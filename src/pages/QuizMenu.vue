@@ -3,7 +3,7 @@
     :style="$vuetify.display.mobile ? '' : 'max-width: 1400px;'"
     fill-height
   >
-    <h1 class="mt-4">
+    <h1 class="mt-md-4 mt-lg-4 mt-xl-4 mt-sm-1">
       Quiz Menu
     </h1>
     <h2>Click to select the desired letter categories and start the quiz !</h2>
@@ -77,6 +77,7 @@
     </v-switch>
     <v-select
       v-model="fontMode"
+      :density="$vuetify.display.mobile ? 'compact' : undefined"
       :disabled="reverseMode"
       :items="fontOptions"
       class="mx-auto"
@@ -124,17 +125,21 @@
       </template>
     </v-select>
 
-    <v-row class="mt-8">
+    <v-row class="mt-md-6 mt-lg-6 mt-xl-6 mt-2">
       <v-col
         v-for="(set,setInd) in transliterationsSet"
         :key="`set-${setInd}`"
+        cols="12"
+        lg="6"
+        md="6"
+        sm="12"
+        xl="6"
       >
         <v-btn
-          :color="set.categories.map(i => i.id).every(m => selectedModes.includes(m))? 'primary-lighten-2' :'primary-darken-4'"
+          :color="set.categories.map(i => i.id).every(m => selectedModes.includes(m))? 'primary-lighten-2' :'grey'"
+          :size="$vuetify.display.mobile ? undefined : 'x-large'"
           class="mb-2"
-          elevation="0"
           rounded="lg"
-          size="x-large"
           @click="modifySelection(set.categories)"
         >
           <template #default>
@@ -154,41 +159,43 @@
             @click="modifySelection([cat])"
           >
             <v-btn
-              :color="selectedModes.includes(cat.id)? 'primary-lighten-2' : 'primary-darken-4'"
-              elevation="0"
+              :color="selectedModes.includes(cat.id)? 'primary-lighten-2' : 'grey'"
+              :size="$vuetify.display.mobile ? 'small' : undefined"
               rounded="lg"
             >
               {{ cat.title }}
             </v-btn>
             <v-item-group
               v-if="hangeul.filter(a => a.type === cat.id).length"
-              class="font-weight-bold mt-8"
+              class="font-weight-bold mt-2 mt-xl-6 mt-lg-6 mt-md-6"
             >
               <v-item
                 v-for="(char,charInd ) in [...hangeul.filter(a => a.type === cat.id)].splice(0, deleteCount)"
                 :key="`char-${cat.id}-${charInd}`"
               >
                 <v-chip
-                  :color="selectedModes.includes(cat.id)? 'primary-lighten-2' : ($vuetify.theme.name === 'lightTheme' ?'primary-darken-4' : 'primary-darken-1')"
-                  :disabled="!selectedModes.includes(cat.id)"
+                  :class="fontClass"
+                  :color="selectedModes.includes(cat.id)? 'primary-lighten-2' : ($vuetify.theme.name === 'lightTheme'
+                    ?'darkgrey' : 'lightgrey')"
                   :style="{ 'font-size': (!reverseMode && fontMode === 'nanum-pen-script' ? '1.6rem' : '') }"
+                  :variant="selectedModes.includes(cat.id) ? 'flat' : undefined"
                   class="fantom-border ma-2"
                   elevation="0"
                   lang="ko"
-                  variant="flat"
                 >
                   {{ reverseMode ? char.ro[0] : char.kr }}
                 </v-chip>
               </v-item>
               <v-chip
                 v-if="[...hangeul.filter(a => a.type === cat.id)].length - deleteCount === 1"
-                :color="selectedModes.includes(cat.id)? 'primary-lighten-2' : ($vuetify.theme.name === 'lightTheme' ?'primary-darken-4' : 'primary-darken-1')"
-                :disabled="!selectedModes.includes(cat.id)"
+                :class="fontClass"
+                :color="selectedModes.includes(cat.id)? 'primary-lighten-2' : ($vuetify.theme.name === 'lightTheme'
+                  ?'darkgrey' : 'lightgrey')"
                 :style="{ 'font-size': (!reverseMode && fontMode === 'nanum-pen-script' ? '1.6rem' : '') }"
+                :variant="selectedModes.includes(cat.id) ? 'flat' : undefined"
                 class="fantom-border ma-2"
                 elevation="0"
                 lang="ko"
-                variant="flat"
               >
                 {{
                   reverseMode ? [...hangeul.filter(a => a.type === cat.id)][deleteCount].ro[0] : [...hangeul.filter(a => a.type
@@ -197,11 +204,11 @@
               </v-chip>
               <v-chip
                 v-else-if="[...hangeul.filter(a => a.type === cat.id)].length - deleteCount > 1"
-                :color="selectedModes.includes(cat.id)? 'primary-lighten-2' : ($vuetify.theme.name === 'lightTheme' ?'primary-darken-4' : 'primary-darken-1')"
-                :disabled="!selectedModes.includes(cat.id)"
+                :color="selectedModes.includes(cat.id)? 'primary-lighten-2' : ($vuetify.theme.name === 'lightTheme'
+                  ?'darkgrey' : 'lightgrey')"
+                :variant="selectedModes.includes(cat.id) ? 'flat' : undefined"
                 class="fantom-border ma-2"
                 elevation="0"
-                variant="flat"
               >
                 + {{ [...hangeul.filter(a => a.type === cat.id)].length - deleteCount }} more
               </v-chip>
@@ -212,11 +219,14 @@
     </v-row>
     <v-row justify="center">
       <v-col
-        cols="6"
+        lg="4"
+        md="4"
+        sm="12"
+        xl="4"
         @click="modifySelection([{id:'syllable'}])"
       >
         <v-btn
-          :color="selectedModes.includes('syllable')? 'primary-lighten-2' : 'primary-darken-4'"
+          :color="selectedModes.includes('syllable')? 'primary-lighten-2' : 'grey'"
           elevation="0"
           rounded="lg"
         >
@@ -224,33 +234,34 @@
         </v-btn>
         <v-item-group
           v-if="syllables && syllables.length"
-          class="font-weight-bold mt-8"
+          class="font-weight-bold mt-2 mt-xl-6 mt-lg-6 mt-md-6"
         >
           <v-item
-            v-for="(syl,sylInd ) in [...syllables].splice(0, 20)"
+            v-for="(syl,sylInd ) in [...syllables].splice(0, deleteCount)"
             :key="`char-${syl.id}-${sylInd}`"
           >
             <v-chip
-              :color="selectedModes.includes('syllable')? 'primary-lighten-2' : ($vuetify.theme.name === 'lightTheme' ?'primary-darken-4' : 'primary-darken-1')"
-              :disabled="!selectedModes.includes('syllable')"
+              :class="fontClass"
+              :color="selectedModes.includes('syllable')? 'primary-lighten-2' : ($vuetify.theme.name === 'lightTheme'
+                ?'darkgrey' : 'lightgrey')"
               :style="{ 'font-size': (!reverseMode && fontMode === 'nanum-pen-script' ? '1.6rem' : '') }"
+              :variant="selectedModes.includes('syllable') ? 'flat' : undefined"
               class="fantom-border ma-2"
               elevation="0"
               lang="ko"
-              variant="flat"
             >
               {{ reverseMode ? syl.ro[0] : syl.kr }}
             </v-chip>
           </v-item>
           <v-chip
-            v-if="syllables.length - 20 > 0"
-            :color="selectedModes.includes('syllable')? 'primary-lighten-2' : ($vuetify.theme.name === 'lightTheme' ?'primary-darken-4' : 'primary-darken-1')"
-            :disabled="!selectedModes.includes('syllable')"
+            v-if="syllables.length - deleteCount > 0"
+            :color="selectedModes.includes('syllable')? 'primary-lighten-2' : ($vuetify.theme.name === 'lightTheme'
+              ?'darkgrey' : 'lightgrey')"
+            :variant="selectedModes.includes('syllable') ? 'flat' : undefined"
             class="fantom-border ma-2"
             elevation="0"
-            variant="flat"
           >
-            + {{ syllables.length - [...syllables].splice(0, 20).length }} more
+            + {{ syllables.length - [...syllables].splice(0, deleteCount).length }} more
           </v-chip>
         </v-item-group>
       </v-col>
@@ -307,6 +318,9 @@ export default {
       if (this.reverseMode) return ''
       return this.fontOptions.find(f => f.value === this.fontMode).class || ''
     }
+  },
+  mounted () {
+    if (this.$vuetify.display.mobile) this.deleteCount = 4
   },
   methods: {
     modifySelection (items) {

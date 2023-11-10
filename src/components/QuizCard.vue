@@ -6,6 +6,7 @@
     :color="character.done ? 'success' : (character.incorrect ? 'incorrect':'primary-lighten-2')"
     class="transition-card"
     elevation="0"
+    min-width="80px"
     rounded="xl"
   >
     <v-spacer />
