@@ -48,10 +48,9 @@
         />
         <v-chip
           id="fantom-timer-chip"
-          class="mt-6"
+          class="mt-6 not-selectable"
           color="transparent"
           size="x-large"
-          style="color: transparent;"
         >
           <v-icon
             color="transparent"
@@ -353,4 +352,17 @@ export default {
 .centered-input input {
   text-align: center
 }
+
+#fantom-timer-chip {
+  color: transparent;
+  pointer-events: none;
+}
+
+.not-selectable {
+  pointer-events: none;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
+}
+
 </style>

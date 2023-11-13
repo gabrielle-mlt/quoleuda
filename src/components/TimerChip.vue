@@ -6,6 +6,7 @@
   >
     <v-chip
       ref="timer-chip"
+      class="not-selectable"
       size="x-large"
       style="z-index: 9999;"
       variant="flat"
@@ -32,3 +33,12 @@ const { style } = useDraggable(el, {
   initialValue: { x: props.position.x, y: props.position.y }
 })
 </script>
+
+<style>
+.not-selectable {
+  pointer-events: none;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
+}
+</style>
