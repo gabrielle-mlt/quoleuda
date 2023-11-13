@@ -62,6 +62,7 @@
             loop
             muted
             playsinline
+            poster
             title="Quiz demo"
           >
             <source

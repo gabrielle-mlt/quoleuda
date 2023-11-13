@@ -1,24 +1,69 @@
 <template>
   <v-container>
-    <v-card
-      v-if="!finished"
-      class="ma-auto"
-      color="secondary-darken-1"
-      elevation="0"
-      max-width="450"
-      rounded="xl"
-    >
-      <v-card-title>
-        How to play ?
-      </v-card-title>
-      <v-card-text class="text-left">
-        Type your answer in roman alphabet in the card's text field<br>
-        Press ENTER to submit<br>
-        Repeat for as many cards as you can<br>
-        You can try as many times as you want<br>
-        When you're done press the "Finish Quiz" button at the bottom<br>
-      </v-card-text>
-    </v-card>
+    <v-row class="d-flex justify-center align-top">
+      <v-col
+        cols="auto"
+        ordeer-xs="last"
+        order="last"
+        order-lg="first"
+        order-md="first"
+        order-sm="last"
+        order-xl="first"
+        order-xxl="first"
+      >
+        <v-card
+          v-if="!finished"
+          class="ma-auto"
+          color="secondary-darken-1"
+          elevation="0"
+          max-width="450"
+          rounded="xl"
+        >
+          <v-card-title>
+            How to play ?
+          </v-card-title>
+          <v-card-text class="text-left">
+            Type your answer in roman alphabet in the card's text field<br>
+            Press ENTER to submit<br>
+            Repeat for as many cards as you can<br>
+            You can try as many times as you want<br>
+            When you're done press the "Finish Quiz" button at the bottom<br>
+          </v-card-text>
+        </v-card>
+      </v-col>
+      <v-col
+        cols="auto"
+        ordeer-xs="first"
+        order="first"
+        order-lg="last"
+        order-md="last"
+        order-sm="first"
+        order-xl="last"
+        order-xxl="last"
+      >
+        <timer-chip
+          v-if="!finished && showTimer"
+          :position="getFantomTimerXY()"
+          :timer="timerDisplay"
+        />
+        <v-chip
+          id="fantom-timer-chip"
+          class="mt-6"
+          color="transparent"
+          size="x-large"
+          style="color: transparent;"
+        >
+          <v-icon
+            color="transparent"
+            left
+          >
+            mdi-clock-time-four-outline
+          </v-icon>
+          00:00
+        </v-chip>
+      </v-col>
+    </v-row>
+
     <v-expand-transition>
       <v-row
         v-if="!finished"
@@ -96,6 +141,7 @@
 <script setup>
 import ResultsOverview from '../components/ResultsOverview.vue'
 import QuizCard from '../components/QuizCard.vue'
+import TimerChip from '../components/TimerChip.vue'
 </script>
 
 <script>
@@ -121,7 +167,21 @@ export default {
         { value: 'nanum-myeongjo-font', title: 'Nanum Myeongjo', class: 'nanum-myeongjo-font' },
         { value: 'black-han-sans-font', title: 'Black Han Sans', class: 'black-han-sans-font' }
       ],
-      fontClass: ''
+      fontClass: '',
+      chrono: null,
+      time: 0,
+      showTimer: false
+    }
+  },
+  computed: {
+    timerDisplay () {
+      if (this.time >= 3600) {
+        this.stopChrono()
+        return '+1 hour'
+      }
+      const minutes = Math.floor(this.time / 60)
+      const seconds = this.time - minutes * 60
+      return `${minutes}:${seconds < 10 ? '0' + seconds : seconds}`
     }
   },
   async created () {
@@ -221,12 +281,15 @@ export default {
       this.score = Math.round((scores / this.characterSet.length) * 100) || 0
     },
     finishQuiz () {
+      this.stopChrono()
       // calculate score
       this.calculateScore()
       if (this.score === 0) this.printResults = true
       this.finished = true
     },
     async resetGame () {
+      this.stopChrono()
+      this.time = 0
       await this.prepareCharset()
 
       this.printResults = false
@@ -239,6 +302,7 @@ export default {
         if (firstInput) {
           this.setCaretPosition(firstInput, 10)
         }
+        this.startChrono()
       })
     },
     async prepareCharset () {
@@ -250,6 +314,24 @@ export default {
         })
         resolve(res)
       })
+    },
+    startChrono () {
+      this.showTimer = true
+      // time now
+      this.time = 0
+      // start the chrono
+      this.chrono = setInterval(() => {
+        this.time++
+      }, 1000)
+    },
+    stopChrono () {
+      clearInterval(this.chrono)
+    },
+    getFantomTimerXY () {
+      const el = document.getElementById('fantom-timer-chip')
+      if (!el) return { x: 0, y: 0 }
+      const rect = el.getBoundingClientRect()
+      return { x: rect.x, y: rect.y }
     }
   }
 }

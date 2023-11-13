@@ -65,8 +65,8 @@
         </template>
       </v-navigation-drawer>
 
+      <ApplicationBar @handle-drawer="drawer = !drawer;" />
       <v-main>
-        <ApplicationBar @handle-drawer="drawer = !drawer;" />
         <router-view style="top: 63px;" />
         <v-footer
           :app="true"
