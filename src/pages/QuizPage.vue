@@ -32,6 +32,7 @@
         </v-card>
       </v-col>
       <v-col
+        v-if="!$vuetify.display.mobile"
         cols="auto"
         ordeer-xs="first"
         order="first"
@@ -62,20 +63,43 @@
         </v-chip>
       </v-col>
     </v-row>
+    <VLayoutItem
+      v-if="$vuetify.display.mobile"
+      class="ma-12"
+      position="right"
+      size="88"
+      style="position: fixed;right: 90px;"
+    >
+      <v-sheet
+        :color="$vuetify.theme.current.dark ? 'primary-darken-1' : 'primary-darken-3'"
+        class="not-selectable rounded-b-circle rounded-t-circle align-center justify-center align-content-center"
+        elevation="6"
+        height="90"
+        style="display: grid;justify-items: center;"
+        variant="tonal"
+        width="90"
+      >
+        <v-icon
+          left
+          size="x-large"
+        >
+          mdi-timer-outline
+        </v-icon>
+        <span style="font-size: 20px">
+          {{ timerDisplay }}
+        </span>
+      </v-sheet>
+    </VLayoutItem>
 
     <v-expand-transition>
       <v-row
         v-if="!finished"
-        class="d-flex justify-lg-space-evenly justify-center mx-2 my-3 mb-5"
+        class="d-flex justify-center mx-5 my-3 mb-5 "
       >
         <v-col
           v-for="(character,i) in characterSet"
           :key="`character-${i}`"
-          cols="6"
-          lg="auto"
-          md="auto"
-          sm="6"
-          xl="auto"
+          cols="auto"
         >
           <QuizCard
             :character="character"
@@ -158,7 +182,7 @@ export default {
       currentCard: 0,
       score: 0,
       acceptedModes: ['plainVowel', 'doubleVowel', 'mainConsonant', 'doubleConsonant', 'syllable', 'all'],
-      modes: ['plainVowel', 'doubleVowel', 'mainConsonant', 'doubleConsonant'],
+      modes: ['plainVowel', 'doubleVowel', 'mainConsonant'],
       fontMode: 'normal',
       fontOptions: [
         { value: 'normal', title: 'Normal', class: '' },

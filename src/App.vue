@@ -68,42 +68,42 @@
       <ApplicationBar @handle-drawer="drawer = !drawer;" />
       <v-main>
         <router-view style="top: 63px;" />
-        <v-footer
-          :app="true"
-          color="primary-darken-5"
-        >
-          <v-row
-            justify="center"
-            no-gutters
-          >
-            <v-col
-              class="text-center"
-              cols="auto"
-            >
-              {{ new Date().getFullYear() }} — <strong>Quoleuda</strong>
-              &nbsp;
-              <a
-                href="https://www.paypal.me/gabzette"
-                target="_blank"
-              >Donate ♡</a>
-            </v-col>
-            <v-col
-              class="ma-1"
-              cols="auto"
-            >
-              <a
-                href="https://ko-fi.com/gabz655307"
-                target="_blank"
-              >
-                <v-img
-                  src="kofi_logo.png"
-                  width="55px"
-                />
-              </a>
-            </v-col>
-          </v-row>
-        </v-footer>
       </v-main>
+      <v-footer
+        :app="true"
+        color="primary-darken-5"
+      >
+        <v-row
+          justify="center"
+          no-gutters
+        >
+          <v-col
+            class="text-center"
+            cols="auto"
+          >
+            {{ new Date().getFullYear() }} — <strong>Quoleuda</strong>
+            &nbsp;
+            <a
+              href="https://www.paypal.me/gabzette"
+              target="_blank"
+            >Donate ♡</a>
+          </v-col>
+          <v-col
+            class="ma-1"
+            cols="auto"
+          >
+            <a
+              href="https://ko-fi.com/gabz655307"
+              target="_blank"
+            >
+              <v-img
+                src="kofi_logo.png"
+                width="55px"
+              />
+            </a>
+          </v-col>
+        </v-row>
+      </v-footer>
     </v-layout>
   </v-app>
 </template>

@@ -6,7 +6,8 @@
     :color="character.done ? 'success' : (character.incorrect ? 'incorrect':'primary-lighten-2')"
     class="transition-card"
     elevation="0"
-    min-width="80px"
+    max-width="150px"
+    min-width="120px"
     rounded="xl"
   >
     <v-spacer />
@@ -32,8 +33,8 @@
         oninput="this.value?.length > 4 ? this.value = this.value.slice(0,4) : this.value"
         rounded="circle"
         variant="solo"
-        @keydown.enter.prevent="computerDisplayEvent($event)"
-        @keydown.tab.prevent="mobileDisplayEvent($event)"
+        @keydown.enter.prevent="handleEnter($event)"
+        @keydown.tab.prevent="handleTab($event)"
         @update:focused="$emit('update:currentCard', i)"
       />
     </v-card-text>
@@ -93,16 +94,15 @@ export default {
 
       character.answer = ''
     },
-    computerDisplayEvent (event) {
-      if (!this.$vuetify.display.mobile && event.target.value !== undefined && event.target.value !== '') {
-        this.checkCorrespondence(event, this.character, this.i)
-        console.log('test')
-      } else {
+    handleEnter (event) {
+      if (this.$vuetify.display.mobile || event.target.value !== undefined || event.target.value !== '') {
         this.$emit('update:nextInput', this.i)
+      } else {
+        this.checkCorrespondence(event, this.character, this.i)
       }
     },
-    mobileDisplayEvent (event) {
-      if (this.$vuetify.display.mobile && event.target.value !== undefined && event.target.value !== '') {
+    handleTab (event) {
+      if (this.$vuetify.display.mobile || event.target.value !== undefined || event.target.value !== '') {
         this.checkCorrespondence(event, this.character, this.i)
       } else {
         this.$emit('update:nextInput', this.i)
