@@ -95,17 +95,19 @@ export default {
       character.answer = ''
     },
     handleEnter (event) {
-      if (this.$vuetify.display.mobile || event.target.value !== undefined || event.target.value !== '') {
+      if (event.target.value === undefined || event.target.value === '') {
         this.$emit('update:nextInput', this.i)
       } else {
         this.checkCorrespondence(event, this.character, this.i)
       }
     },
     handleTab (event) {
-      if (this.$vuetify.display.mobile || event.target.value !== undefined || event.target.value !== '') {
+      if (event.target.value === undefined || event.target.value === '') {
+        this.$emit('update:nextInput', this.i)
+      } else if (this.$vuetify.display.mobile) {
         this.checkCorrespondence(event, this.character, this.i)
       } else {
-        this.$emit('update:nextInput', this.i)
+        this.$emit('update:currentCard', this.i + 1)
       }
     }
   }
