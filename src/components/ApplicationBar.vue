@@ -29,7 +29,7 @@
     <v-tabs
       v-if="!$vuetify.display.mobile"
       :mandatory="false"
-      :model-value="$route.name || '/'"
+      :model-value="$route.name ? ($route.name === 'Quiz' ? 'QuizMenu' : $route.name): '/'"
       align-tabs="center"
       bg-color="transparent"
       color="primary"
@@ -54,6 +54,7 @@
         </template>
       </v-tab>
       <v-tab
+        :class="{'text-primary':$route.name === 'Quiz' || $route.name === 'QuizMenu'}"
         size="x-large"
         to="/quiz-menu"
         value="QuizMenu"
@@ -76,7 +77,6 @@
       </v-tab>
       <v-tab
         size="x-large"
-
         to="/about"
         value="About"
       >

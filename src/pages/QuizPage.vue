@@ -1,6 +1,42 @@
 <template>
   <v-container>
-    <v-row class="d-flex justify-center align-top">
+    <h1
+      v-if="finished"
+      class="mt-4"
+    >
+      Results
+    </h1>
+    <VLayoutItem
+      v-if="$vuetify.display.mobile && !finished"
+      class="mt-3 mx-12"
+      position="right"
+      size="55"
+      style="position: fixed;right: 30px;"
+    >
+      <v-sheet
+        :color="$vuetify.theme.current.dark ? 'primary-darken-1' : 'primary-darken-3'"
+        class="not-selectable rounded-b-circle rounded-t-circle align-center justify-center align-content-center"
+        elevation="6"
+        height="55"
+        style="display: grid;justify-items: center;"
+        variant="tonal"
+        width="55"
+      >
+        <v-icon
+          left
+          size="small"
+        >
+          mdi-timer-outline
+        </v-icon>
+        <span style="font-size: 14px">
+          {{ timerDisplay }}
+        </span>
+      </v-sheet>
+    </VLayoutItem>
+
+    <v-row
+      class="d-flex justify-center align-top"
+    >
       <v-col
         cols="auto"
         ordeer-xs="last"
@@ -11,28 +47,30 @@
         order-xl="first"
         order-xxl="first"
       >
-        <v-card
-          v-if="!finished"
-          class="ma-auto"
-          color="secondary-darken-1"
-          elevation="0"
-          max-width="450"
-          rounded="xl"
-        >
-          <v-card-title>
-            How to play ?
-          </v-card-title>
-          <v-card-text class="text-left">
-            Type your answer in roman alphabet in the card's text field<br>
-            Press ENTER to submit<br>
-            Repeat for as many cards as you can<br>
-            You can try as many times as you want<br>
-            When you're done press the "Finish Quiz" button at the bottom<br>
-          </v-card-text>
-        </v-card>
+        <v-expand-transition>
+          <v-card
+            v-if="!finished"
+            class="ma-auto"
+            color="secondary-darken-1"
+            elevation="0"
+            max-width="450"
+            rounded="xl"
+          >
+            <v-card-title>
+              How to play ?
+            </v-card-title>
+            <v-card-text class="text-left">
+              Type your answer in roman alphabet in the card's text field<br>
+              Press ENTER to submit<br>
+              Repeat for as many cards as you can<br>
+              You can try as many times as you want<br>
+              When you're done press the "Finish Quiz" button at the bottom<br>
+            </v-card-text>
+          </v-card>
+        </v-expand-transition>
       </v-col>
       <v-col
-        v-if="!$vuetify.display.mobile"
+        v-if="!$vuetify.display.mobile && !finished"
         cols="auto"
         ordeer-xs="first"
         order="first"
@@ -43,7 +81,7 @@
         order-xxl="last"
       >
         <timer-chip
-          v-if="!finished && showTimer"
+          v-if="showTimer"
           :position="getFantomTimerXY()"
           :timer="timerDisplay"
         />
@@ -57,39 +95,12 @@
             color="transparent"
             left
           >
-            mdi-clock-time-four-outline
+            mdi-timer-outline
           </v-icon>
           00:00
         </v-chip>
       </v-col>
     </v-row>
-    <VLayoutItem
-      v-if="$vuetify.display.mobile"
-      class="ma-12"
-      position="right"
-      size="88"
-      style="position: fixed;right: 90px;"
-    >
-      <v-sheet
-        :color="$vuetify.theme.current.dark ? 'primary-darken-1' : 'primary-darken-3'"
-        class="not-selectable rounded-b-circle rounded-t-circle align-center justify-center align-content-center"
-        elevation="6"
-        height="90"
-        style="display: grid;justify-items: center;"
-        variant="tonal"
-        width="90"
-      >
-        <v-icon
-          left
-          size="x-large"
-        >
-          mdi-timer-outline
-        </v-icon>
-        <span style="font-size: 20px">
-          {{ timerDisplay }}
-        </span>
-      </v-sheet>
-    </VLayoutItem>
 
     <v-expand-transition>
       <v-row
@@ -120,45 +131,90 @@
     >
       Finish Quiz
     </v-btn>
-    <v-card
-      v-if="finished"
-      color="transparent"
-      elevation="0"
-    >
-      <v-card-title>
-        <h2>Score</h2>
-      </v-card-title>
-      <v-card-text
-        class="mt-4"
-        style="font-weight: bold; font-size: 42px;"
+    <v-expand-transition>
+      <v-row
+        v-if="finished"
+        align="center"
+        justify="center"
       >
-        {{ score }} %
-      </v-card-text>
-      <v-card-actions class="justify-center">
-        <v-btn
-          class="mt-3 mx-2"
-          color="primary"
-          fab
-          icon="mdi-replay"
-          title="Play Again!"
-          variant="tonal"
-          @click="startQuiz()"
+        <v-col cols="auto">
+          <v-sheet
+            class="pa-4 text-center mx-auto"
+            color="primary-lighten-3"
+            elevation="0"
+            height="200"
+            rounded="xl"
+            width="250"
+          >
+            <h2 class="text-h4 mb-6 font-weight-bold text-primary-darken-1 mt-5">
+              Score
+            </h2>
+
+            <p class="text-h3 font-weight-bold text-primary-darken-1">
+              {{ score }} %
+            </p>
+          </v-sheet>
+        </v-col>
+        <v-col cols="auto">
+          <v-sheet
+            class="pa-4 text-center mx-auto"
+            color="primary-lighten-3"
+            elevation="0"
+            height="200"
+            rounded="xl"
+            width="250"
+          >
+            <div class="d-inline-flex align-center justify-center">
+              <v-icon
+                class="mx-2 mb-1"
+                color="primary-darken-1"
+                icon="mdi-timer-outline"
+                size="50"
+              />
+              <h2 class="text-h4 mb-6 font-weight-bold text-primary-darken-1 mt-5">
+                Timer
+              </h2>
+            </div>
+
+            <p class="text-h3 font-weight-bold text-primary-darken-1">
+              {{ timerDisplay }}
+            </p>
+          </v-sheet>
+        </v-col>
+        <v-col
+          class="justify-center"
+          cols="12"
+        >
+          <v-btn
+            class="mt-3 mx-2"
+            color="primary"
+            fab
+            icon="mdi-replay"
+            title="Play Again!"
+            variant="tonal"
+            @click="startQuiz()"
+          />
+          <v-btn
+            class="mt-3 mx-2"
+            color="info"
+            fab
+            icon="mdi-eye"
+            title="Show Results"
+            variant="tonal"
+            @click="printResults = !printResults"
+          />
+        </v-col>
+      </v-row>
+    </v-expand-transition>
+
+    <v-expand-transition>
+      <v-expand-transition>
+        <results-overview
+          v-if="printResults && score !=null"
+          :results="characterSet"
         />
-        <v-btn
-          class="mt-3 mx-2"
-          color="info"
-          fab
-          icon="mdi-eye"
-          title="Show Results"
-          variant="tonal"
-          @click="printResults = !printResults"
-        />
-      </v-card-actions>
-    </v-card>
-    <results-overview
-      v-if="printResults && score !=null"
-      :results="characterSet"
-    />
+      </v-expand-transition>
+    </v-expand-transition>
   </v-container>
 </template>
 <script setup>
@@ -304,6 +360,7 @@ export default {
       this.score = Math.round((scores / this.characterSet.length) * 100) || 0
     },
     finishQuiz () {
+      this.showTimer = false
       this.stopChrono()
       // calculate score
       this.calculateScore()
@@ -388,5 +445,4 @@ export default {
   -ms-user-select: none; /* IE 10 and IE 11 */
   user-select: none; /* Standard syntax */
 }
-
 </style>

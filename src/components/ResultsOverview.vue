@@ -14,7 +14,7 @@
         cols="auto"
       >
         <v-card
-          :color="$vuetify.theme.global.name === 'darkTheme' ? 'primary-lighten-2' : 'primary-lighten-3'"
+          color="primary-lighten-3"
           elevation="0"
           height="auto"
           rounded="lg"
@@ -58,7 +58,7 @@
                 </thead>
                 <tbody>
                   <tr
-                    v-for="(res,i) in sortedResults"
+                    v-for="(res,i) in [...sortedResults].slice(0, toPrint)"
                     :key="`char-${i}`"
                   >
                     <td
@@ -73,6 +73,18 @@
                   </tr>
                 </tbody>
               </v-table>
+              <div
+                v-if="toPrint < sortedResults.length"
+                class="mt-3"
+              >
+                <v-btn
+                  color="primary-darken-2"
+                  rounded="pill"
+                  @click="toPrint = toPrint+ 10"
+                >
+                  Show more
+                </v-btn>
+              </div>
             </v-sheet>
           </v-card-text>
         </v-card>
@@ -87,7 +99,7 @@
         xs="12"
       >
         <v-card
-          :color="$vuetify.theme.global.name === 'darkTheme' ? 'primary-lighten-2' : 'primary-lighten-3'"
+          color="primary-lighten-3"
           elevation="0"
           height="auto"
           rounded="lg"
@@ -142,7 +154,8 @@ export default {
         doubleConsonant: 'Double consonants',
         syllable: 'Syllables'
 
-      }
+      },
+      toPrint: 6
     }
   },
   computed: {

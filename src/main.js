@@ -46,9 +46,10 @@ const vuetify = createVuetify({
   theme: {
     defaultTheme: 'darkTheme',
     variations: {
-      colors: ['primary', 'secondary', 'success', 'incorrect'],
-      lighten: 3,
-      darken: 5
+      colors: ['primary', 'secondary', 'success', 'incorrect', 'background'],
+      lighten: 5,
+      darken: 5,
+      accent: 5
     },
     themes: {
       lightTheme,

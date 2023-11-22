@@ -70,6 +70,14 @@ h1 {
     }
 }
 
+.text-primary {
+    color: rgb(var(--v-theme-primary));
+}
+
+.text-primary-darken-1 {
+    color: rgb(var(--v-theme-primary-darken-1));
+}
+
 .nanum-pen-script-font {
     font-family: 'Nanum Pen Script', cursive;
 }
