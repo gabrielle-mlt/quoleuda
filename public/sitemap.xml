@@ -5,41 +5,28 @@
         <loc>https://quoleuda.com/</loc>
     </url>
     <url>
-        <loc>
-            https://www.quoleuda.com/quiz
-        </loc>
+        <loc>https://www.quoleuda.com/quiz</loc>
     </url>
     <url>
-        <loc>
-            https://www.quoleuda.com/quiz-menu
-        </loc>
+        <loc>https://www.quoleuda.com/quiz-menu</loc>
     </url>
     <url>
-        <loc>
-            https://www.quoleuda.com/quiz-menu/beginner
-        </loc>
+        <loc>https://www.quoleuda.com/quiz-menu/beginner</loc>
     </url>
     <url>
-        <loc>
-            https://www.quoleuda.com/quiz-menu/advanced
-        </loc>
+        <loc>https://www.quoleuda.com/quiz-menu/advanced</loc>
     </url>
     <url>
-        <loc>
-            https://www.quoleuda.com/hangeul
-        </loc>
+        <loc>https://www.quoleuda.com/hangeul</loc>
     </url>
     <url>
-        <loc>
-            https://www.quoleuda.com/cheat-sheet
-        </loc>
+        <loc>https://www.quoleuda.com/cheat-sheet</loc>
     </url>
     <url>
-        <loc>
-            https://www.quoleuda.com/about
-        </loc>
+        <loc>https://www.quoleuda.com/about</loc>
     </url>
     <url>
+        <loc>https://www.quoleuda.com/quiz_demo.mp4</loc>
         <video:video>
             <video:thumbnail_loc>https://www.quoleuda.com/quiz_demo.jpg</video:thumbnail_loc>
             <video:title>Quiz Demo</video:title>
