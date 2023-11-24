@@ -6,345 +6,143 @@
     <h1 class="mt-md-4 mt-lg-4 mt-xl-4 mt-sm-1">
       Quiz Menu
     </h1>
-    <h2>Click to select the desired letter categories and start the quiz !</h2>
-    <v-switch
-      v-model="reverseMode"
-      class="mx-auto"
-      color="primary"
-      hide-details
-      label="Reverse Mode"
-      style="width: fit-content;"
-    >
-      <template #append>
-        <v-menu
-          :close-on-content-click="false"
-          location="end"
-        >
-          <template #activator="{ props }">
-            <v-btn
-              color="secondary"
-              fab
-              icon
-              size="xx-small"
-              v-bind="props"
-            >
-              <v-icon size="small">
-                mdi-information-symbol
-              </v-icon>
-            </v-btn>
-          </template>
-          <v-card width="350">
-            <v-card-text>
-              <p>
-                In <span class="font-weight-bold">normal mode</span>, you will be given the korean letter and you
-                will have to find the
-                <span
-                  class="font-weight-bold"
-                  style="color: rgb(var(--v-theme-primary));"
-                >
-                  corresponding roman letter
-                </span>.
-              </p>
-              <p>
-                {{ '\u314F' }}
-                <v-icon size="x-small">
-                  mdi-arrow-right
-                </v-icon>
-                ? (roman letter)
-              </p>
-              <v-divider class="my-4" />
-              <p>
-                In <span class="font-weight-bold">reverse mode</span>, you will be given the roman letter and you
-                will have to find the
-                <span
-                  class="font-weight-bold"
-                  style="color: rgb(var(--v-theme-primary));"
-                >
-                  corresponding korean letter
-                </span>.
-              </p>
-              <p>
-                a
-                <v-icon size="x-small">
-                  mdi-arrow-right
-                </v-icon>
-                ? (korean letter)
-              </p>
-            </v-card-text>
-          </v-card>
-        </v-menu>
-      </template>
-    </v-switch>
-    <v-select
-      v-model="fontMode"
-      :density="$vuetify.display.mobile ? 'compact' : undefined"
-      :disabled="reverseMode"
-      :items="fontOptions"
-      class="mx-auto"
-      color="primary"
-      hide-details
-      style="width: 250px;"
-      variant="outlined"
-    >
-      <template #selection="{item}">
-        <span
-          class="align-self-center"
-          style="font-size: 0.9rem;"
-        >{{ item.title }}</span>
-        <span
-          v-if="item.value !== 'normal'"
-          :class="item.raw.class"
-          class="ml-2 my-0"
-          lang="ko"
-        >
-          {{ '\ud55c\uae00' }}
-        </span>
-      </template>
-      <template #prepend-inner>
-        <v-icon color="primary">
-          mdi-format-font
-        </v-icon>
-      </template>
-      <template #item="{ props, item }">
-        <v-list-item
-          :title="false"
-          v-bind="props"
-        >
-          <v-list-item-content class="d-inline-flex">
-            <v-list-item-subtitle>
-              <span
-                :class="item.raw.class"
-                :style="item.value === 'nanum-pen-script' ? 'font-size: 1.6rem;' : ''"
-                lang="ko"
-              >
-                {{ '\ud55c\uae00' }}
-              </span>
-            </v-list-item-subtitle>
-          </v-list-item-content>
-        </v-list-item>
-      </template>
-    </v-select>
-
-    <v-row class="mt-md-6 mt-lg-6 mt-xl-6 mt-2">
-      <v-col
-        v-for="(set,setInd) in transliterationsSet"
-        :key="`set-${setInd}`"
-        cols="12"
-        lg="6"
-        md="6"
-        sm="12"
-        xl="6"
+    <h2>Choose your quiz !</h2>
+    <v-row class="mt-5">
+      <template
+        v-for="(level, levelIndex) in levels"
+        :key="level.title"
       >
-        <v-btn
-          :color="set.categories.map(i => i.id).every(m => selectedModes.includes(m))? 'primary-lighten-2' :'grey'"
-          :size="$vuetify.display.mobile ? undefined : 'x-large'"
-          class="mb-2"
-          rounded="lg"
-          @click="modifySelection(set.categories)"
-        >
-          <template #default>
-            <div class="d-inline">
-              <span>{{ set.title.ro }} - </span><span lang="ko">{{ set.title.kr }}</span><br>
-              <span style="font-weight: normal; font-size: xx-small;">
-                ({{ set.title.transliteration }})
-              </span>
-            </div>
-          </template>
-        </v-btn>
-        <v-row class="justify-space-evenly">
-          <v-col
-            v-for="(cat,catInd) in set.categories"
-            :key="`cat-${catInd}`"
-            class="col-md-6"
-            @click="modifySelection([cat])"
+        <v-col>
+          <quiz-level-card
+            :button="level.button"
+            :color="level.color"
+            :description="level.description"
+            :slogan="level.slogan"
+            :stars="level.stars"
+            :title="level.title"
           >
-            <v-btn
-              :color="selectedModes.includes(cat.id)? 'primary-lighten-2' : 'grey'"
-              :size="$vuetify.display.mobile ? 'small' : undefined"
-              rounded="lg"
-            >
-              {{ cat.title }}
-            </v-btn>
-            <v-item-group
-              v-if="hangeul.filter(a => a.type === cat.id).length"
-              class="font-weight-bold mt-2 mt-xl-6 mt-lg-6 mt-md-6"
-            >
-              <v-item
-                v-for="(char,charInd ) in [...hangeul.filter(a => a.type === cat.id)].splice(0, deleteCount)"
-                :key="`char-${cat.id}-${charInd}`"
+            <template #description>
+              <v-list
+                :class="$vuetify.theme.current.dark ? 'text-white' : 'text-black'"
+                bg-color="transparent"
               >
-                <v-chip
-                  :class="fontClass"
-                  :color="selectedModes.includes(cat.id)? 'primary-lighten-2' : ($vuetify.theme.name === 'lightTheme'
-                    ?'darkgrey' : 'lightgrey')"
-                  :style="{ 'font-size': (!reverseMode && fontMode === 'nanum-pen-script' ? '1.6rem' : '') }"
-                  :variant="selectedModes.includes(cat.id) ? 'flat' : undefined"
-                  class="fantom-border ma-2"
-                  elevation="0"
-                  lang="ko"
+                <v-list-item
+                  v-for="(line, index) in level.description"
+                  :key="`${level.title}-desc-line-${index}`"
+                  :class="line.class || ''"
                 >
-                  {{ reverseMode ? char.ro[0] : char.kr }}
-                </v-chip>
-              </v-item>
-              <v-chip
-                v-if="[...hangeul.filter(a => a.type === cat.id)].length - deleteCount === 1"
-                :class="fontClass"
-                :color="selectedModes.includes(cat.id)? 'primary-lighten-2' : ($vuetify.theme.name === 'lightTheme'
-                  ?'darkgrey' : 'lightgrey')"
-                :style="{ 'font-size': (!reverseMode && fontMode === 'nanum-pen-script' ? '1.6rem' : '') }"
-                :variant="selectedModes.includes(cat.id) ? 'flat' : undefined"
-                class="fantom-border ma-2"
-                elevation="0"
-                lang="ko"
+                  <translate-korean-icon
+                    v-if="line.prependIcon === 'translate-korean'"
+                    :color="$vuetify.theme.current.colors.primary"
+                  />
+                  <v-icon
+                    v-else-if="line.prependIcon"
+                    :color="level.color"
+                    :icon="line.prependIcon"
+                    :size="$vuetify.display.mobile ? 'small' : 'default'"
+                    :style="$vuetify.display.mobile ? 'margin-top: 0.2rem;' : ''"
+                  />
+                  {{ line.text }}
+                </v-list-item>
+              </v-list>
+            </template>
+            <template #action-button>
+              <v-btn
+                :disabled="!level.active"
+                :to="level.button.to"
+                class="mt-3"
+                color="primary"
               >
-                {{
-                  reverseMode ? [...hangeul.filter(a => a.type === cat.id)][deleteCount].ro[0] : [...hangeul.filter(a => a.type
-                    === cat.id)][deleteCount].kr
-                }}
-              </v-chip>
-              <v-chip
-                v-else-if="[...hangeul.filter(a => a.type === cat.id)].length - deleteCount > 1"
-                :color="selectedModes.includes(cat.id)? 'primary-lighten-2' : ($vuetify.theme.name === 'lightTheme'
-                  ?'darkgrey' : 'lightgrey')"
-                :variant="selectedModes.includes(cat.id) ? 'flat' : undefined"
-                class="fantom-border ma-2"
-                elevation="0"
-              >
-                + {{ [...hangeul.filter(a => a.type === cat.id)].length - deleteCount }} more
-              </v-chip>
-            </v-item-group>
-          </v-col>
-        </v-row>
-      </v-col>
+                {{ level.button.text }}
+              </v-btn>
+            </template>
+          </quiz-level-card>
+        </v-col>
+        <v-spacer v-if="levelIndex < levels.length - 1" />
+      </template>
     </v-row>
-    <v-row justify="center">
-      <v-col
-        lg="4"
-        md="4"
-        sm="12"
-        xl="4"
-        @click="modifySelection([{id:'syllable'}])"
-      >
-        <v-btn
-          :color="selectedModes.includes('syllable')? 'primary-lighten-2' : 'grey'"
-          elevation="0"
-          rounded="lg"
-        >
-          Syllables
-        </v-btn>
-        <v-item-group
-          v-if="syllables && syllables.length"
-          class="font-weight-bold mt-2 mt-xl-6 mt-lg-6 mt-md-6"
-        >
-          <v-item
-            v-for="(syl,sylInd ) in [...syllables].splice(0, deleteCount)"
-            :key="`char-${syl.id}-${sylInd}`"
-          >
-            <v-chip
-              :class="fontClass"
-              :color="selectedModes.includes('syllable')? 'primary-lighten-2' : ($vuetify.theme.name === 'lightTheme'
-                ?'darkgrey' : 'lightgrey')"
-              :style="{ 'font-size': (!reverseMode && fontMode === 'nanum-pen-script' ? '1.6rem' : '') }"
-              :variant="selectedModes.includes('syllable') ? 'flat' : undefined"
-              class="fantom-border ma-2"
-              elevation="0"
-              lang="ko"
-            >
-              {{ reverseMode ? syl.ro[0] : syl.kr }}
-            </v-chip>
-          </v-item>
-          <v-chip
-            v-if="syllables.length - deleteCount > 0"
-            :color="selectedModes.includes('syllable')? 'primary-lighten-2' : ($vuetify.theme.name === 'lightTheme'
-              ?'darkgrey' : 'lightgrey')"
-            :variant="selectedModes.includes('syllable') ? 'flat' : undefined"
-            class="fantom-border ma-2"
-            elevation="0"
-          >
-            + {{ syllables.length - [...syllables].splice(0, deleteCount).length }} more
-          </v-chip>
-        </v-item-group>
-      </v-col>
-    </v-row>
-    <div class="mt-8">
-      <v-tooltip :text="selectedModes.length <= 0 ? 'Select at least one mode' : 'Click to start the quiz'">
-        <template #activator="{ props }">
-          <div
-            class="mx-auto"
-            style="width: fit-content;"
-            v-bind="props"
-          >
-            <v-btn
-              :color="selectedModes.length > 0 ? 'primary' : ''"
-              :disabled="selectedModes.length <= 0"
-              @click="startQuiz()"
-            >
-              Start Quiz
-            </v-btn>
-          </div>
-        </template>
-      </v-tooltip>
-    </div>
   </v-container>
 </template>
 
 <script>
-import hangeul from '../resources/hangeulToRoman.js'
-import transliterationsSet from '../resources/transliterationsSet.js'
-import chart from '../resources/koreanAlphabetChart.js'
+import QuizLevelCard from '@components/QuizLevelCard.vue'
+import TranslateKoreanIcon from '@components/icons/translate-korean-icon.vue'
 
 export default {
+  components: { TranslateKoreanIcon, QuizLevelCard },
   data () {
     return {
-      reverseMode: false,
-      fontMode: 'normal',
-      selectedModes: [],
-      categories: ['vowels', 'consonants'],
-      subcategories: ['plainVowel', 'doubleVowel', 'mainConsonant', 'doubleConsonant'],
-      transliterationsSet,
-      hangeul,
-      syllables: chart,
-      fontOptions: [
-        { value: 'normal', title: 'Normal', class: '' },
-        { value: 'nanum-pen-script-font', title: 'Nanum Pen Script', class: 'nanum-pen-script-font' },
-        { value: 'nanum-myeongjo-font', title: 'Nanum Myeongjo', class: 'nanum-myeongjo-font' },
-        { value: 'black-han-sans-font', title: 'Black Han Sans', class: 'black-han-sans-font' }
-      ],
-      deleteCount: 9
-    }
-  },
-  computed: {
-    fontClass () {
-      if (this.reverseMode) return ''
-      return this.fontOptions.find(f => f.value === this.fontMode).class || ''
-    }
-  },
-  mounted () {
-    if (this.$vuetify.display.mobile) this.deleteCount = 4
-  },
-  methods: {
-    modifySelection (items) {
-      if (this.selectedModes.includes(...items.map(m => m.id))) {
-        this.selectedModes = this.selectedModes.filter(m => !items.map(m => m.id).includes(m))
-      } else {
-        this.selectedModes.push(...items.map(m => m.id))
-      }
-    },
-    startQuiz () {
-      const all = this.selectedModes && this.selectedModes.length && this.selectedModes.slice().sort().toString() ===
-          ['plainVowel', 'doubleVowel', 'mainConsonant', 'doubleConsonant', 'syllable'].slice().sort().toString()
-      const queryParams = { mode: all ? 'all' : this.selectedModes.join(',') }
-      if (this.reverseMode) queryParams.reverseMode = true
-      if (this.fontMode) queryParams.fontMode = this.fontMode
-      this.$router.push({ name: 'Quiz', query: queryParams })
+      levels: [
+        {
+          title: 'Hangeul',
+          slogan: 'This mode is the best for beginners !',
+          stars: 1,
+          color: 'primary-darken-1',
+          active: true,
+          description: [
+            { text: 'This quiz will test your knowledge of the Korean alphabet.' },
+            { text: 'You will be shown a hangeul letter/syllable and you will have to guess the corresponding romanized letter/syllable.' },
+            {
+              prependIcon: 'translate-korean',
+              text:
+                  ' Try it in reverse mode so you learn the Korean keyboard layout !'
+            },
+            {
+              prependIcon: 'mdi-timer-outline',
+              text: 'Improve your score and try to get 100% in the minimum time possible !'
+            },
+            {
+              text: 'Challenge your friends and see who can get the best score !',
+              class: 'font-weight-bold text-primary'
+            }
+
+          ],
+          button: {
+            text: 'Start Hangeul',
+            to: '/quiz-menu/beginner'
+          }
+        },
+        {
+          title: 'Korean words',
+          slogan: 'This mode is the best for advanced learners !',
+          stars: 2,
+          color: 'grey',
+          active: false,
+          description: [
+            { text: 'This quiz will test your knowledge of Korean words.' },
+            { text: 'You will be shown a Korean word and you will have to guess the corresponding translation.' },
+            {
+              text: 'Arriving soon !',
+              class: 'font-weight-bold'
+            }
+          ],
+          button: {
+            text: 'Start Words',
+            to: ''
+          }
+        },
+        {
+          title: 'Expert Mode',
+          slogan: 'This mode is the best for experts !',
+          stars: 3,
+          color: 'grey',
+          active: false,
+          description: [
+            { text: 'This quiz will test your ability to read and understand basic Korean sentences.' },
+            {
+              text: 'Arriving, not that soon, but one day for sure !',
+              class: 'font-weight-bold'
+            }
+          ],
+          button: {
+            text: 'Start Expert',
+            to: ''
+          }
+        }
+      ]
+
     }
   }
 }
 
 </script>
-
-<style scoped>
-.fantom-border {
-  border: thin solid transparent;
-}
-</style>

@@ -6,7 +6,6 @@
           :character="char1"
           :current-card="currentCard"
           :i="0"
-          @update:next-input="currentCard = $event; console.log('test2');"
           @update:current-card="currentCard = $event"
         />
       </v-col>
@@ -27,7 +26,6 @@
 import QuizCard from './QuizCard.vue'
 
 const goToNextInput = (i) => {
-  console.log('test')
   const nextInput = document.getElementById(`input-${i + 1}`)
   if (nextInput) {
     nextInput.focus()
@@ -56,11 +54,6 @@ export default {
         id: 'input-1'
       }
     }
-  },
-  created () {
-    console.log('test')
-
-    /**/
   },
   methods: {
     goToNextInput

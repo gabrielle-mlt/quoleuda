@@ -218,19 +218,20 @@
   </v-container>
 </template>
 <script setup>
-import ResultsOverview from '../components/ResultsOverview.vue'
-import QuizCard from '../components/QuizCard.vue'
-import TimerChip from '../components/TimerChip.vue'
+import QuizCard from '@components/QuizCard.vue'
+import ResultsOverview from '@components/ResultsOverview.vue'
+import TimerChip from '@components/TimerChip.vue'
 </script>
 
 <script>
-import hangeul from '../resources/hangeulToRoman.js'
-import syllables from '../resources/koreanAlphabetChart.js'
+import hangeul from '@resources/hangeulToRoman.js'
+import syllables from '@resources/koreanAlphabetChart.js'
+import { mapState } from 'pinia'
+import { useQuizSettingsStore } from '@stores/quizSettings.js'
 
 export default {
   data () {
     return {
-      reverseMode: false,
       printResults: false,
       finished: false,
       dialog: false,
@@ -239,20 +240,13 @@ export default {
       score: 0,
       acceptedModes: ['plainVowel', 'doubleVowel', 'mainConsonant', 'doubleConsonant', 'syllable', 'all'],
       modes: ['plainVowel', 'doubleVowel', 'mainConsonant'],
-      fontMode: 'normal',
-      fontOptions: [
-        { value: 'normal', title: 'Normal', class: '' },
-        { value: 'nanum-pen-script-font', title: 'Nanum Pen Script', class: 'nanum-pen-script-font' },
-        { value: 'nanum-myeongjo-font', title: 'Nanum Myeongjo', class: 'nanum-myeongjo-font' },
-        { value: 'black-han-sans-font', title: 'Black Han Sans', class: 'black-han-sans-font' }
-      ],
-      fontClass: '',
       chrono: null,
       time: 0,
       showTimer: false
     }
   },
   computed: {
+    ...mapState(useQuizSettingsStore, ['reverseMode', 'fontMode', 'fontOptions']),
     timerDisplay () {
       if (this.time >= 3600) {
         this.stopChrono()
@@ -261,6 +255,10 @@ export default {
       const minutes = Math.floor(this.time / 60)
       const seconds = this.time - minutes * 60
       return `${minutes}:${seconds < 10 ? '0' + seconds : seconds}`
+    },
+    fontClass () {
+      if (this.reverseMode) return ''
+      return this.fontMode.class || ''
     }
   },
   async created () {
@@ -271,18 +269,6 @@ export default {
 
     if (this.$route.query.mode && this.$route.query.mode !== 'all') {
       this.modes = this.$route.query.mode.split(',')
-    }
-
-    if (this.$route.query.reverseMode && this.$route.query.reverseMode === 'true') {
-      this.reverseMode = true
-    }
-
-    if (this.$route.query.fontMode) {
-      this.fontMode = this.$route.query.fontMode
-    }
-
-    if (!this.reverseMode) {
-      this.fontClass = this.fontOptions.find(f => f.value === this.fontMode).class || ''
     }
 
     await this.resetGame()

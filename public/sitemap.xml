@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns:video="http://www.google.com/schemas/sitemap-video/1.1"
+        xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
         <loc>https://quoleuda.com/</loc>
     </url>
@@ -11,6 +12,16 @@
     <url>
         <loc>
             https://www.quoleuda.com/quiz-menu
+        </loc>
+    </url>
+    <url>
+        <loc>
+            https://www.quoleuda.com/quiz-menu/beginner
+        </loc>
+    </url>
+    <url>
+        <loc>
+            https://www.quoleuda.com/quiz-menu/advanced
         </loc>
     </url>
     <url>
@@ -27,5 +38,17 @@
         <loc>
             https://www.quoleuda.com/about
         </loc>
+    </url>
+    <url>
+        <video:video>
+            <video:thumbnail_loc>https://www.quoleuda.com/quiz_demo.jpg</video:thumbnail_loc>
+            <video:title>Quiz Demo</video:title>
+            <video:description>
+                Demonstration of how play.
+            </video:description>
+            <video:content_loc>
+                https://www.quoleuda.com/quiz_demo.mp4
+            </video:content_loc>
+        </video:video>
     </url>
 </urlset>

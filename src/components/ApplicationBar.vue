@@ -54,12 +54,44 @@
         </template>
       </v-tab>
       <v-tab
-        :class="{'text-primary':$route.name === 'Quiz' || $route.name === 'QuizMenu'}"
+        :class="{'text-primary':$route.name === 'Quiz' || $route.name === 'QuizMenu' || $route.name === 'BeginnerMenu'}"
         size="x-large"
         to="/quiz-menu"
         value="QuizMenu"
       >
-        Quiz
+        <template #default>
+          <span
+            class="mr-2"
+          >
+            Quiz
+          </span>
+          <v-menu open-on-hover>
+            <template #activator="{ props }">
+              <v-icon
+                color="primary"
+                size="large"
+                v-bind="props"
+                @click.prevent=""
+              >
+                mdi-arrow-down-drop-circle
+              </v-icon>
+            </template>
+            <v-list>
+              <v-list-item
+                to="/quiz-menu/beginner"
+                value="beginner"
+              >
+                <v-list-item-title>Beginner</v-list-item-title>
+              </v-list-item>
+              <!--              <v-list-item
+                              to="/quiz-menu/advanced"
+                              value="advanced"
+                            >
+                              <v-list-item-title>Advanced</v-list-item-title>
+                            </v-list-item>-->
+            </v-list>
+          </v-menu>
+        </template>
       </v-tab>
       <v-tab
         size="x-large"
@@ -93,14 +125,34 @@
         size="x-large"
         @click="toggleTheme()"
       />
+      <v-menu
+        v-model="settingsMenu"
+        :close-on-content-click="false"
+        location="bottom left"
+      >
+        <template #activator="{ props }">
+          <v-btn
+            color="primary"
+            hide-details
+            icon="mdi-cog"
+            size="x-large"
+            v-bind="props"
+          />
+        </template>
+        <settings-card-form class="mt-2" />
+      </v-menu>
     </template>
   </v-app-bar>
 </template>
 
 <script setup>
 import { useTheme } from 'vuetify'
+import { ref } from 'vue'
+import SettingsCardForm from './SettingsCardForm.vue'
 
 const theme = useTheme()
+
+const settingsMenu = ref(false)
 
 defineEmits(['handleDrawer'])
 const toggleTheme = () => {

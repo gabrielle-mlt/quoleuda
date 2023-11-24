@@ -1,4 +1,4 @@
-import { createApp } from 'vue'
+import { createApp, watch } from 'vue'
 import './style.css'
 import App from './App.vue'
 import { createRouter, createWebHistory } from 'vue-router'
@@ -8,9 +8,12 @@ import '@mdi/font/css/materialdesignicons.css'
 // Vuetify
 import 'vuetify/styles'
 import { createVuetify/*, ThemeDefinition */ } from 'vuetify'
+import { createPinia } from 'pinia'
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
 import { TinyColor } from '@ctrl/tinycolor'
+import { customIcons } from '@iconsets/custom.ts'
+import { aliases, mdi } from 'vuetify/iconsets/mdi'
 
 const lightThemeColor = new TinyColor('#ff7081')
 const darkThemeColor = new TinyColor('#ff7081')
@@ -43,6 +46,14 @@ const darkTheme = {
 }
 
 const vuetify = createVuetify({
+  icons: {
+    defaultSet: 'mdi',
+    aliases,
+    sets: {
+      mdi,
+      ci: customIcons
+    }
+  },
   theme: {
     defaultTheme: 'darkTheme',
     variations: {
@@ -63,10 +74,22 @@ const vuetify = createVuetify({
 const routes = [
   { path: '/', name: 'Home', component: () => import('./pages/HomePage.vue') },
   { path: '/quiz-menu', name: 'QuizMenu', component: () => import('./pages/QuizMenu.vue') },
-  { path: '/quiz', name: 'Quiz', component: () => import('./pages/QuizPage.vue') },
+  {
+    path: '/quiz-menu/beginner',
+    name: 'BeginnerMenu',
+    component: () => import('./pages/quiz/menus/BeginnerMenu.vue')
+  },
+  {
+    path: '/quiz-menu/advanced',
+    name: 'AdvancedMenu',
+    component: () => import('./pages/quiz/menus/AdvancedMenu.vue')
+  },
+
+  { path: '/quiz', name: 'Quiz', component: () => import('./pages/quiz/BeginnerQuiz.vue') },
   { path: '/hangeul', name: 'Hangeul', component: () => import('./pages/HangeulPage.vue') },
   { path: '/cheat-sheet', name: 'CheatSheet', component: () => import('./pages/CheatSheet.vue') },
-  { path: '/about', name: 'About', component: () => import('./pages/AboutPage.vue') }
+  { path: '/about', name: 'About', component: () => import('./pages/AboutPage.vue') },
+  { path: '/:pathMatch(.*)*', name: 'NotFound', component: () => import('./pages/NotFoundPage.vue') }
 ]
 
 const router = createRouter({
@@ -75,7 +98,17 @@ const router = createRouter({
 })
 
 const app = createApp(App)
+const pinia = createPinia()
+
+if (localStorage.getItem('quoleuda-quiz-settings')) {
+  pinia.state.value = JSON.parse(localStorage.getItem('quoleuda-quiz-settings'))
+}
+
+watch(pinia.state, (state) => {
+  localStorage.setItem('quoleuda-quiz-settings', JSON.stringify(state))
+}, { deep: true })
 
 app.use(vuetify)
 app.use(router)
+app.use(pinia)
 app.mount('#app')
