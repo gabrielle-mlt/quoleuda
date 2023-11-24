@@ -7,59 +7,57 @@
       Quiz Menu
     </h1>
     <h2>Choose your quiz !</h2>
-    <v-row class="mt-5">
-      <template
+    <v-row class="mt-5 justify-space-evenly">
+      <v-col
         v-for="(level, levelIndex) in levels"
         :key="level.title"
+        cols="auto"
       >
-        <v-col>
-          <quiz-level-card
-            :button="level.button"
-            :color="level.color"
-            :description="level.description"
-            :slogan="level.slogan"
-            :stars="level.stars"
-            :title="level.title"
-          >
-            <template #description>
-              <v-list
-                :class="$vuetify.theme.current.dark ? 'text-white' : 'text-black'"
-                bg-color="transparent"
+        <quiz-level-card
+          :button="level.button"
+          :color="level.color"
+          :description="level.description"
+          :slogan="level.slogan"
+          :stars="level.stars"
+          :title="level.title"
+        >
+          <template #description>
+            <v-list
+              :class="$vuetify.theme.current.dark ? 'text-white' : 'text-black'"
+              bg-color="transparent"
+            >
+              <v-list-item
+                v-for="(line, index) in level.description"
+                :key="`${level.title}-desc-line-${index}`"
+                :class="line.class || ''"
               >
-                <v-list-item
-                  v-for="(line, index) in level.description"
-                  :key="`${level.title}-desc-line-${index}`"
-                  :class="line.class || ''"
-                >
-                  <translate-korean-icon
-                    v-if="line.prependIcon === 'translate-korean'"
-                    :color="$vuetify.theme.current.colors.primary"
-                  />
-                  <v-icon
-                    v-else-if="line.prependIcon"
-                    :color="level.color"
-                    :icon="line.prependIcon"
-                    :size="$vuetify.display.mobile ? 'small' : 'default'"
-                    :style="$vuetify.display.mobile ? 'margin-top: 0.2rem;' : ''"
-                  />
-                  {{ line.text }}
-                </v-list-item>
-              </v-list>
-            </template>
-            <template #action-button>
-              <v-btn
-                :disabled="!level.active"
-                :to="level.button.to"
-                class="mt-3"
-                color="primary"
-              >
-                {{ level.button.text }}
-              </v-btn>
-            </template>
-          </quiz-level-card>
-        </v-col>
-        <v-spacer v-if="!$vuetify.display.mobile && levelIndex < levels.length - 1" />
-      </template>
+                <translate-korean-icon
+                  v-if="line.prependIcon === 'translate-korean'"
+                  :color="$vuetify.theme.current.colors.primary"
+                />
+                <v-icon
+                  v-else-if="line.prependIcon"
+                  :color="level.color"
+                  :icon="line.prependIcon"
+                  :size="$vuetify.display.mobile ? 'small' : 'default'"
+                  :style="$vuetify.display.mobile ? 'margin-top: 0.2rem;' : ''"
+                />
+                {{ line.text }}
+              </v-list-item>
+            </v-list>
+          </template>
+          <template #action-button>
+            <v-btn
+              :disabled="!level.active"
+              :to="level.button.to"
+              class="mt-3"
+              color="primary"
+            >
+              {{ level.button.text }}
+            </v-btn>
+          </template>
+        </quiz-level-card>
+      </v-col>
     </v-row>
   </v-container>
 </template>
