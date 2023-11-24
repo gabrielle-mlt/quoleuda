@@ -33,9 +33,9 @@ defineProps({
 <template>
   <v-card
     :color="color"
+    max-width="400"
     rounded="lg"
     variant="tonal"
-    width="400"
   >
     <v-card-title>
       <v-icon

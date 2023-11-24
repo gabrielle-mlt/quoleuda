@@ -58,7 +58,7 @@
             </template>
           </quiz-level-card>
         </v-col>
-        <v-spacer v-if="levelIndex < levels.length - 1" />
+        <v-spacer v-if="!$vuetify.display.mobile && levelIndex < levels.length - 1" />
       </template>
     </v-row>
   </v-container>
