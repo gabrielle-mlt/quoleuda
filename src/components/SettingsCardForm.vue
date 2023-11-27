@@ -1,10 +1,23 @@
 <script setup>
 import { useQuizSettingsStore } from '@stores/quizSettings.js'
 import { ref } from 'vue'
+import { useTheme } from 'vuetify'
+import { useThemeStore } from '@stores/themes.js'
 
 const settings = useQuizSettingsStore()
 const modelReverseMode = ref(settings.reverseMode)
 const modelFontMode = ref(settings.fontMode)
+
+const theme = useTheme()
+const themeStore = useThemeStore()
+
+const toggleTheme = (value) => {
+  themeStore.toggleTheme(value)
+}
+
+const toggleDarkMode = () => {
+  themeStore.toggleDarkMode(!theme.global.current.value.dark)
+}
 
 </script>
 
@@ -136,6 +149,33 @@ const modelFontMode = ref(settings.fontMode)
           </v-list-item>
         </template>
       </v-select>
+
+      <div
+        v-if="$vuetify.display.mobile"
+        class="d-flex mt-3"
+      >
+        <div
+          v-for="themeItem in themeStore.computedThemes"
+          :key="`theme_${themeItem.id}`"
+          class="mr-2"
+          @click="toggleTheme(themeItem.id)"
+        >
+          <v-btn
+            :color="themeItem.colors.primary"
+            icon
+            size="small"
+          />
+        </div>
+        <v-spacer />
+
+        <v-btn
+          color="primary"
+          hide-details
+          icon="mdi-theme-light-dark"
+          size="small"
+          @click="toggleDarkMode()"
+        />
+      </div>
     </v-card-text>
   </v-card>
 </template>

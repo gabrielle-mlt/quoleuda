@@ -87,6 +87,7 @@ export default {
         character.score = character.tries > 1 ? 1 / (character.tries * 0.6) : 1
       } else {
         character.incorrect = true
+        character.color = 'incorrect'
         this.answer = ''
       }
 

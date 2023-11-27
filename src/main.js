@@ -1,4 +1,4 @@
-import { createApp, watch } from 'vue'
+import { createApp } from 'vue'
 import './style.css'
 import App from './App.vue'
 import { createRouter, createWebHistory } from 'vue-router'
@@ -11,38 +11,19 @@ import { createVuetify/*, ThemeDefinition */ } from 'vuetify'
 import { createPinia } from 'pinia'
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
-import { TinyColor } from '@ctrl/tinycolor'
 import { customIcons } from '@iconsets/custom.ts'
 import { aliases, mdi } from 'vuetify/iconsets/mdi'
+import { sakuraDark, sakuraLight } from '@assets/themes/sakura.js'
+import { deepOceanLight, deepOceanDark } from '@assets/themes/deepOcean.js'
+import { pureForestDark, pureForestLight } from '@assets/themes/pureForest.js'
 
-const lightThemeColor = new TinyColor('#ff7081')
-const darkThemeColor = new TinyColor('#ff7081')
-// pastel success color
-const successColor = new TinyColor('#a5daa5')
-const incorrectColor = new TinyColor('#ff8f81')
-// const incorrectColor = new TinyColor('#0000ff')
+let defaultTheme = 'sakuraDark'
+const localStorageTheme = localStorage.getItem('quoleuda_theme')
 
-const lightTheme = {
-  dark: false,
-  colors: {
-    background: '#fff3f8',
-    primary: lightThemeColor.toString(),
-    secondary: lightThemeColor.clone().complement(),
-    success: successColor.toString(),
-    incorrect: incorrectColor.toString()
-
-  }
-}
-
-const darkTheme = {
-  dark: true,
-  colors: {
-    background: '#151514',
-    primary: darkThemeColor.toString(),
-    secondary: darkThemeColor.clone().complement(),
-    success: successColor.toString(),
-    incorrect: incorrectColor.toString()
-  }
+if (localStorageTheme != null && ['sakuraDark', 'sakuraLight', 'deepOceanLight', 'deepOceanDark', 'pureForestDark', 'pureForestLight'].includes(localStorageTheme)) {
+  defaultTheme = localStorage.getItem('quoleuda_theme')
+} else {
+  localStorage.removeItem('quoleuda_theme')
 }
 
 const vuetify = createVuetify({
@@ -55,7 +36,7 @@ const vuetify = createVuetify({
     }
   },
   theme: {
-    defaultTheme: 'darkTheme',
+    defaultTheme,
     variations: {
       colors: ['primary', 'secondary', 'success', 'incorrect', 'background'],
       lighten: 5,
@@ -63,8 +44,12 @@ const vuetify = createVuetify({
       accent: 5
     },
     themes: {
-      lightTheme,
-      darkTheme
+      sakuraDark,
+      sakuraLight,
+      deepOceanLight,
+      deepOceanDark,
+      pureForestDark,
+      pureForestLight
     }
   },
   components,
@@ -99,14 +84,6 @@ const router = createRouter({
 
 const app = createApp(App)
 const pinia = createPinia()
-
-if (localStorage.getItem('quoleuda-quiz-settings')) {
-  pinia.state.value = JSON.parse(localStorage.getItem('quoleuda-quiz-settings'))
-}
-
-watch(pinia.state, (state) => {
-  localStorage.setItem('quoleuda-quiz-settings', JSON.stringify(state))
-}, { deep: true })
 
 app.use(vuetify)
 app.use(router)

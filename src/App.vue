@@ -121,7 +121,7 @@ export default {
     }
   },
   created () {
-    this.$vuetify.theme.global.name = localStorage.getItem('quoleuda_theme') || 'darkTheme'
+    // this.$vuetify.theme.global.name = localStorage.getItem('quoleuda_theme') || 'darkTheme'
   }
 }
 </script>

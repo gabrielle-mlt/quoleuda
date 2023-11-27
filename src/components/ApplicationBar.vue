@@ -14,17 +14,23 @@
     </template>
     <v-spacer v-if="!$vuetify.display.mobile" />
     <router-link to="/">
-      <v-img
-        alt="Quoleuda"
-        contain
-        max-width="60"
-        src="/quoleuda.svg"
-      />
+      <!--      <v-img
+              alt="Quoleuda"
+              contain
+              max-width="60"
+              src="/quoleuda.svg"
+            />-->
+      <quoleuda-logo-icon size="50" />
     </router-link>
     <v-app-bar-title
       style="color: rgb(var(--v-theme-primary));font-weight: bold; font-size: 32px;"
     >
-      Quoleuda
+      <router-link
+        style="text-decoration: none; color: inherit;"
+        to="/"
+      >
+        Quoleuda
+      </router-link>
     </v-app-bar-title>
     <v-tabs
       v-if="!$vuetify.display.mobile"
@@ -118,12 +124,39 @@
     <v-spacer v-if="!$vuetify.display.mobile" />
 
     <template #append>
+      <v-menu
+        v-if="!$vuetify.display.mobile"
+        transition="slide-y-transition"
+      >
+        <template #activator="{ props }">
+          <v-btn
+            color="primary"
+            hide-details
+            icon="mdi-palette"
+            size="x-large"
+            v-bind="props"
+          />
+        </template>
+        <div
+          v-for="themeItem in themeStore.computedThemes"
+          :key="`theme_${themeItem.id}`"
+          class="ml-3 my-1"
+          @click="toggleTheme(themeItem.id)"
+        >
+          <v-btn
+            :color="themeItem.colors.primary"
+            icon
+            size="small"
+          />
+        </div>
+      </v-menu>
       <v-btn
+        v-if="!$vuetify.display.mobile"
         color="primary"
         hide-details
         icon="mdi-theme-light-dark"
         size="x-large"
-        @click="toggleTheme()"
+        @click="toggleDarkMode()"
       />
       <v-menu
         v-model="settingsMenu"
@@ -149,17 +182,21 @@
 import { useTheme } from 'vuetify'
 import { ref } from 'vue'
 import SettingsCardForm from './SettingsCardForm.vue'
+import { useThemeStore } from '@stores/themes.js'
+import QuoleudaLogoIcon from '@components/icons/quoleuda-logo-icon.vue'
 
 const theme = useTheme()
 
 const settingsMenu = ref(false)
 
+const themeStore = useThemeStore()
 defineEmits(['handleDrawer'])
-const toggleTheme = () => {
-  theme.global.name.value = theme.global.current.value.dark ? 'lightTheme' : 'darkTheme'
 
-  // Save theme to localStorage
-  localStorage.setItem('quoleuda_theme', theme.global.name.value)
+const toggleTheme = (value) => {
+  themeStore.toggleTheme(value)
 }
 
+const toggleDarkMode = () => {
+  themeStore.toggleDarkMode(!theme.global.current.value.dark)
+}
 </script>

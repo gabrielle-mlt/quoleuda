@@ -188,7 +188,6 @@
           <v-btn
             class="mt-3 mx-2"
             color="primary"
-            fab
             icon="mdi-replay"
             title="Play Again!"
             variant="tonal"
@@ -196,8 +195,7 @@
           />
           <v-btn
             class="mt-3 mx-2"
-            color="info"
-            fab
+            color="primary"
             icon="mdi-eye"
             title="Show Results"
             variant="tonal"
