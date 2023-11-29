@@ -73,7 +73,7 @@ const routes = [
   { path: '/quiz', name: 'Quiz', component: () => import('./pages/quiz/BeginnerQuiz.vue') },
   { path: '/hangeul', name: 'Hangeul', component: () => import('./pages/HangeulPage.vue') },
   { path: '/cheat-sheet', name: 'CheatSheet', component: () => import('./pages/CheatSheet.vue') },
-  { path: '/about-south-korea', name: 'AboutSouthKorea', component: () => import('./pages/SouthKoreaPage.vue') },
+  { path: '/about-south-korea', name: 'AboutSouthKorea', component: () => import('./pages/SouthKoreaPageTS.vue') },
   { path: '/about', name: 'About', component: () => import('./pages/AboutPage.vue') },
   { path: '/:pathMatch(.*)*', name: 'NotFound', component: () => import('./pages/NotFoundPage.vue') }
 ]
