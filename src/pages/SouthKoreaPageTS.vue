@@ -1,6 +1,7 @@
 <template>
   <v-container :style="$vuetify.display.lgAndDown ? '' : 'max-width: 1500px;'">
     <h1>South Korea</h1>
+
     <v-row class="text-left mt-6 mb-12">
       <v-col>
         <v-card
@@ -39,13 +40,22 @@
                   style="cursor: pointer;"
                   @mouseover="selectSection(item.id);"
               >
-                <h3
-                    :href="`#${item.id}`"
-                >
+                <h3 :href="`#${item.id}`">
                   # {{ item.name }}
                 </h3>
                 <p>
                   {{ item.properties.TYPE }}
+                </p>
+                <p v-if="item.additionnalData && item.additionnalData.population">
+                  <v-icon color="primary" icon="mdi-account-group"/>
+                  {{ new Intl.NumberFormat('en-US').format(item.additionnalData.population) }} inhabitants
+                </p>
+                <p v-if="item.additionnalData && item.additionnalData.area">
+                  <v-icon color="primary">mdi-map</v-icon>
+                  {{ new Intl.NumberFormat('en-US').format(item.additionnalData.area) }} km²
+                </p>
+                <p v-if="item.additionnalData && item.additionnalData.description" class="text-caption">
+                  {{ item.additionnalData.description }}
                 </p>
                 <p style="min-height: 200px;"/>
               </div>
@@ -60,6 +70,7 @@
 import * as am5 from '@amcharts/amcharts5'
 import * as am5map from '@amcharts/amcharts5/map'
 import am5geodata_southKoreaLow from '@amcharts/amcharts5-geodata/southKoreaLow.js'
+import southKorea_geo from '@/resources/southKoreaGeo.js'
 import {onMounted, ref, watch} from 'vue'
 import {useTheme} from 'vuetify'
 
@@ -138,6 +149,22 @@ const setMap = async () => {
       const id = dataItem.get('id')
 
 
+      /*if (selectedPolyId === id) {
+        southKoreaSeries.mapPolygons.template.setAll({interactive: true,})
+
+        southKoreaSeries.mapPolygons.each(function (polygon) {
+          polygon.set('interactive', true)
+        })
+      } else southKoreaSeries.mapPolygons.each(function (polygon) {
+
+        const polygonDataItem = polygon.dataItem
+        const polygonId = polygonDataItem.get('id')
+
+        if (polygonId !== id) {
+          polygon.set('interactive', false)
+        }
+      })*/
+
       selectSection(id)
       const index = sections.value.findIndex((section) => section.id === id)
       if (scrollableSections.value) scrollableSections.value.scrollToIndex(index)
@@ -153,7 +180,12 @@ const setMap = async () => {
       selectedPolygon?.get("mapPolygon").unhover()
       selectedPolygon?.get('mapPolygon').hideTooltip()
     });
+
   }
+
+  console.log(JSON.stringify(am5geodata_southKoreaLow.features.map((feature) => {
+    return {id: feature.id, name: feature.properties.name}
+  })))
 
 }
 const selectSection = (id) => {
@@ -174,7 +206,8 @@ const getSections = () => {
     return {
       id: feature.id,
       name: feature.properties.name,
-      properties: feature.properties
+      properties: feature.properties,
+      additionnalData: southKorea_geo.find((geo) => geo.id === feature.id)
     }
   })
 }
