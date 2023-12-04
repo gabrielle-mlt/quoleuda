@@ -7,27 +7,27 @@
     class="transition-card"
     elevation="0"
     max-width="150px"
-    min-width="120px"
     rounded="xl"
   >
-    <v-spacer />
     <v-card-title
       :class="fontClass"
-      :style="{ 'font-size': (fontClass === 'nanum-pen-script' ? '3.2rem' : '2.3rem') }"
-      class="font-weight-bold mt-3"
+      :style="{ 'font-size': (fontClass === 'nanum-pen-script' ? '3.2rem' : '') }"
+      class="font-weight-bold mt-3 quiz-card-title"
       lang="ko"
     >
       {{ reverseMode ? character.ro[0] : character.kr }}
     </v-card-title>
+    <v-spacer />
     <v-card-text>
       <v-text-field
         :id="`input-${i}`"
         :ref="`input-${i}`"
         v-model.trim="answer"
         :bg-color="(character.color || 'primary') + '-lighten-3'"
+        :class="$vuetify.display.mobile ? '':'mx-3'"
         :placeholder="character.placeholder"
         :readonly="character.done"
-        class="mt-6 mx-3 elevation-0 font-weight-bold centered-input"
+        class="elevation-0 font-weight-bold centered-input quiz-card-text"
         hide-details
         inputmode="search"
         oninput="this.value?.length > 4 ? this.value = this.value.slice(0,4) : this.value"
@@ -117,5 +117,23 @@ export default {
 </script>
 
 <style scoped>
+@media (min-width: 600px) {
+  .quiz-card-title {
+    font-size: 2.8rem;
+  }
 
+  .quiz-card-text {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .quiz-card-title {
+    font-size: 1.5rem;
+  }
+
+  .quiz-card-text {
+    font-size: 0.8rem;
+  }
+}
 </style>

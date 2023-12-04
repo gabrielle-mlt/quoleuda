@@ -105,12 +105,17 @@
     <v-expand-transition>
       <v-row
         v-if="!finished"
-        class="d-flex justify-center mx-5 my-3 mb-5 "
+        class="d-flex justify-center mb-5 "
       >
         <v-col
           v-for="(character,i) in characterSet"
           :key="`character-${i}`"
-          cols="auto"
+          cols="4"
+          lg="auto"
+          md="auto"
+          sm="auto"
+          xl="auto"
+          xs="4"
         >
           <QuizCard
             :character="character"
