@@ -133,6 +133,6 @@ export default {
 }
 
 .custom-link:hover {
-  color: #ff7081;
+  color: rgb(var(--v-primary-base));
 }
 </style>

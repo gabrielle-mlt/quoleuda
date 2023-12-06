@@ -15,8 +15,7 @@
           <v-table
             class="mb-4"
             density="compact"
-            style="background-color: unset;color: #242424 !important;"
-            theme="darkTheme"
+            style="background-color: unset;"
           >
             <thead
               :style="$vuetify.display.mobile ?

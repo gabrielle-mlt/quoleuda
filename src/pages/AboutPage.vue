@@ -68,7 +68,7 @@
         stands for the Japanese alphabet.
       </p>
       <p>
-        The source code is available on <a
+        Quoleuda is an open source project. The source code is available on <a
           class="custom-link"
           href="https://github.com/gabrielle-mlt/quoleuda"
           target="_blank"
@@ -95,7 +95,119 @@
         All the settings are saved in your browser. If you want to reset them, you can clear your browser data.
       </v-card-text>
     </v-card>
+
+    <v-card
+      class="mx-auto text-left mt-2"
+      color="warning"
+      max-width="700"
+      rounded="lg"
+      variant="tonal"
+    >
+      <v-card-title>
+        <translate-korean-icon
+          :color="$vuetify.theme.current.colors.warning"
+          style="vertical-align: bottom;"
+        />
+      </v-card-title>
+      <v-card-text>
+        <p>
+          {{ t('contactText', 1, {locale: 'en'}) }}
+          <a
+            :href="`mailto:${mail}`"
+            class="custom-link"
+          >
+            {{ mail }}
+          </a>
+
+          <v-tooltip
+            :text="t('copyToClipboard', 1, {locale: 'en'})"
+            color="primary"
+            open-on-hover
+          >
+            <template #activator="{ props : tooltipProps }">
+              <v-icon
+                class="ml-1"
+                size="small"
+                v-bind="tooltipProps"
+                @click="copyToClipboard(mail);"
+              >
+                mdi-content-copy
+              </v-icon>
+            </template>
+          </v-tooltip>
+          <v-snackbar
+            v-model="snackbar"
+            :timeout="2000"
+            color="blue-grey"
+            max-width="fit-content"
+            min-width="auto"
+            rounded="pill"
+            transition="fade-transition"
+            width="fit-content"
+          >
+            {{ t('copied') }}{{ '\u2705' }}
+          </v-snackbar>
+        </p>
+        <p
+          class="mt-2"
+          lang="ko"
+        >
+          {{ t('contactText', 1, {locale: 'ko'}) }}
+          <a
+            :href="`mailto:${mail}`"
+            class="custom-link"
+          >
+            {{ mail }}</a>
+          <v-tooltip
+            :text="t('copyToClipboard', 1, {locale: 'ko'})"
+            color="primary"
+          >
+            <template #activator="{ props }">
+              <v-icon
+                class="ml-1"
+                size="small"
+                v-bind="props"
+                @click="copyToClipboard(mail);"
+              >
+                mdi-content-copy
+              </v-icon>
+            </template>
+          </v-tooltip>
+          {{ t('contactTextEnd', 1, {locale: 'ko'}) }}
+        </p>
+      </v-card-text>
+    </v-card>
   </v-container>
 </template>
+
 <script setup>
+import { useI18n } from 'vue-i18n'
+import TranslateKoreanIcon from '@components/icons/translate-korean-icon.vue'
+import { ref } from 'vue'
+
+const { t } = useI18n()
+
+const mail = contactEmail
+const snackbar = ref(false)
+
+const copyToClipboard = (text) => {
+  navigator.clipboard.writeText(text)
+
+  snackbar.value = true
+}
+
 </script>
+
+<i18n lang="yaml">
+en:
+  contactText: "We are currently translating the app in Korean. If you want to help, please contact us at"
+  contactTextEnd: ""
+  copyToClipboard: "Copy to clipboard"
+  copied: "Copied"
+ko:
+  contactText: "현재 앱을 한국어로 번역하고 있습니다. 도움을 주시려면"
+  contactTextEnd: "에 문의하십시오"
+  copyToClipboard: "클립 보드에 복사"
+  copied: "복사됨"
+
+</i18n>

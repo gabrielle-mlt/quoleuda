@@ -17,6 +17,19 @@ import { sakuraDark, sakuraLight } from '@assets/themes/sakura.js'
 import { deepOceanLight, deepOceanDark } from '@assets/themes/deepOcean.js'
 import { pureForestDark, pureForestLight } from '@assets/themes/pureForest.js'
 
+import { createI18n, useI18n } from 'vue-i18n'
+import { createVueI18nAdapter } from 'vuetify/locale/adapters/vue-i18n'
+
+const i18n = createI18n({
+  allowComposition: true,
+  legacy: true,
+  locale: 'en',
+  fallbackLocale: 'en',
+  messages: {
+    en: {}
+  }
+})
+
 let defaultTheme = 'sakuraDark'
 const localStorageTheme = localStorage.getItem('quoleuda_theme')
 
@@ -27,6 +40,11 @@ if (localStorageTheme != null && ['sakuraDark', 'sakuraLight', 'deepOceanLight',
 }
 
 const vuetify = createVuetify({
+  locale: {
+    adapter: createVueI18nAdapter({ i18n, useI18n }),
+    locale: 'en',
+    fallback: 'en'
+  },
   icons: {
     defaultSet: 'mdi',
     aliases,
@@ -86,6 +104,7 @@ const router = createRouter({
 const app = createApp(App)
 const pinia = createPinia()
 
+app.use(i18n)
 app.use(vuetify)
 app.use(router)
 app.use(pinia)

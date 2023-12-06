@@ -183,10 +183,6 @@ const setMap = async () => {
 
   }
 
-  console.log(JSON.stringify(am5geodata_southKoreaLow.features.map((feature) => {
-    return {id: feature.id, name: feature.properties.name}
-  })))
-
 }
 const selectSection = (id) => {
   if (selectedPolygon) {
