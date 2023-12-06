@@ -120,6 +120,13 @@
       >
         About
       </v-tab>
+      <v-tab
+        size="x-large"
+        to="/about-south-korea"
+        value="AboutSouthKorea"
+      >
+        South Korea
+      </v-tab>
     </v-tabs>
     <v-spacer v-if="!$vuetify.display.mobile" />
 

@@ -72,7 +72,7 @@ import * as am5map from '@amcharts/amcharts5/map'
 import am5geodata_southKoreaLow from '@amcharts/amcharts5-geodata/southKoreaLow.js'
 import southKorea_geo from '@/resources/southKoreaGeo.js'
 import {onMounted, ref, watch} from 'vue'
-import {useTheme} from 'vuetify'
+import {useTheme,} from 'vuetify'
 
 const sections = ref([]);
 const scrollableSections = ref(null);
@@ -82,6 +82,7 @@ let clicked = false
 
 const chartdiv = ref<HTMLElement | null>();
 let selectedPolygon: am5map.MapPolygon | undefined;
+let currentActive: undefined | am5map.MapPolygon;
 let selectedPolyId: string | undefined;
 
 // vuetify theme
@@ -141,45 +142,17 @@ const setMap = async () => {
       shadowBlur: 12,
     })
 
-    southKoreaSeries.set('fill', am5.color(theme.current.value.colors['primary-lighten-3']))
+    southKoreaSeries.set('fill', am5.color(theme.global.current.value.colors['primary-lighten-2']))
     if (theme.current.value.dark) southKoreaSeries.set('stroke', am5.color(theme.current.value.colors.primary))
 
     southKoreaSeries.mapPolygons.template.events.on('click', async (ev) => {
       const dataItem = ev.target.dataItem
       const id = dataItem.get('id')
 
-
-      /*if (selectedPolyId === id) {
-        southKoreaSeries.mapPolygons.template.setAll({interactive: true,})
-
-        southKoreaSeries.mapPolygons.each(function (polygon) {
-          polygon.set('interactive', true)
-        })
-      } else southKoreaSeries.mapPolygons.each(function (polygon) {
-
-        const polygonDataItem = polygon.dataItem
-        const polygonId = polygonDataItem.get('id')
-
-        if (polygonId !== id) {
-          polygon.set('interactive', false)
-        }
-      })*/
-
       selectSection(id)
       const index = sections.value.findIndex((section) => section.id === id)
       if (scrollableSections.value) scrollableSections.value.scrollToIndex(index)
-
-
     })
-
-    southKoreaSeries.mapPolygons.template.events.on("pointerover", function (ev) {
-      // reset polygon interaction
-      if (selectedPolygon) {
-        selectedPolygon.get("mapPolygon").set("interactive", true)
-      }
-      selectedPolygon?.get("mapPolygon").unhover()
-      selectedPolygon?.get('mapPolygon').hideTooltip()
-    });
 
   }
 
@@ -188,10 +161,13 @@ const selectSection = (id) => {
   if (selectedPolygon) {
     selectedPolygon.get("mapPolygon").unhover()
     selectedPolygon.get('mapPolygon').hideTooltip()
+
   }
 
   selectedPolygon = southKoreaSeries.getDataItemById(id);
   selectedPolygon?.get("mapPolygon").hover()
+  selectedPolygon?.get('mapPolygon').showTooltip()
+
 
   selectedPolyId = id
 }
