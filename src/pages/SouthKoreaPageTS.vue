@@ -78,11 +78,9 @@ const sections = ref([]);
 const scrollableSections = ref(null);
 
 let southKoreaSeries
-let clicked = false
 
 const chartdiv = ref<HTMLElement | null>();
 let selectedPolygon: am5map.MapPolygon | undefined;
-let currentActive: undefined | am5map.MapPolygon;
 let selectedPolyId: string | undefined;
 
 // vuetify theme
@@ -153,6 +151,15 @@ const setMap = async () => {
       const index = sections.value.findIndex((section) => section.id === id)
       if (scrollableSections.value) scrollableSections.value.scrollToIndex(index)
     })
+
+    southKoreaSeries.mapPolygons.template.events.on("pointerover", function (ev) {
+      // reset polygon interaction
+      if (selectedPolygon) {
+        selectedPolygon.get("mapPolygon").set("interactive", true)
+      }
+      selectedPolygon?.get("mapPolygon").unhover()
+      selectedPolygon?.get('mapPolygon').hideTooltip()
+    });
 
   }
 
