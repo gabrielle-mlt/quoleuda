@@ -1,6 +1,8 @@
 <template>
   <v-container :style="$vuetify.display.lgAndDown ? '' : 'max-width: 1500px;'">
     <h1>South Korea</h1>
+    <h2>Republic of Korea</h2>
+    <h3>Administrative Division</h3>
 
     <v-row class="text-left mt-6 mb-12">
       <v-col>
@@ -30,35 +32,40 @@
               class="virtualScroller"
               item-height="250"
               key-field="id"
-
           >
             <template #default="{ item }">
-              <div
+              <v-card
                   :id="item.id"
                   :key="item.id"
                   :ref="item.id"
-                  style="cursor: pointer;"
+                  :style="selectedPolyId === item.id ? 'background: rgb(var(--v-theme-primary), 0.12)' : ''"
+                  :variant="selectedPolyId === item.id ? 'flat' : ''"
+                  class="mb-4 mr-4"
+                  style="cursor: pointer;height: 250px;"
                   @mouseover="selectSection(item.id);"
               >
-                <h3 :href="`#${item.id}`">
-                  # {{ item.name }}
-                </h3>
-                <p>
-                  {{ item.properties.TYPE }}
-                </p>
-                <p v-if="item.additionnalData && item.additionnalData.population">
-                  <v-icon color="primary" icon="mdi-account-group"/>
-                  {{ new Intl.NumberFormat('en-US').format(item.additionnalData.population) }} inhabitants
-                </p>
-                <p v-if="item.additionnalData && item.additionnalData.area">
-                  <v-icon color="primary">mdi-map</v-icon>
-                  {{ new Intl.NumberFormat('en-US').format(item.additionnalData.area) }} km²
-                </p>
-                <p v-if="item.additionnalData && item.additionnalData.description" class="text-caption">
-                  {{ item.additionnalData.description }}
-                </p>
-                <p style="min-height: 200px;"/>
-              </div>
+                <v-card-title>
+                  <h3 :href="`#${item.id}`">
+                    # {{ item.name }}
+                  </h3>
+                </v-card-title>
+                <v-card-text>
+                  <p>
+                    {{ item.properties.TYPE }}
+                  </p>
+                  <p v-if="item.additionalData && item.additionalData.population">
+                    <v-icon color="primary" icon="mdi-account-group"/>
+                    {{ populationNumFormatter(item.additionalData.population) }} inhabitants
+                  </p>
+                  <p v-if="item.additionalData && item.additionalData.area">
+                    <v-icon color="primary">mdi-map</v-icon>
+                    {{ new Intl.NumberFormat('en-US').format(item.additionalData.area) }} km²
+                  </p>
+                  <p v-if="item.additionalData && item.additionalData.description" class="text-caption">
+                    {{ item.additionalData.description }}
+                  </p>
+                </v-card-text>
+              </v-card>
             </template>
           </v-virtual-scroll>
         </div>
@@ -81,7 +88,7 @@ let southKoreaSeries
 
 const chartdiv = ref<HTMLElement | null>();
 let selectedPolygon: am5map.MapPolygon | undefined;
-let selectedPolyId: string | undefined;
+let selectedPolyId = ref(null);
 
 // vuetify theme
 const theme = useTheme()
@@ -175,8 +182,7 @@ const selectSection = (id) => {
   selectedPolygon?.get("mapPolygon").hover()
   selectedPolygon?.get('mapPolygon').showTooltip()
 
-
-  selectedPolyId = id
+  selectedPolyId.value = id
 }
 
 const getSections = () => {
@@ -186,9 +192,16 @@ const getSections = () => {
       id: feature.id,
       name: feature.properties.name,
       properties: feature.properties,
-      additionnalData: southKorea_geo.find((geo) => geo.id === feature.id)
+      additionalData: southKorea_geo.find((geo) => geo.id === feature.id)
     }
   })
+}
+
+const populationNumFormatter = (num) => {
+
+  if (num < 1000) return 'less than 1000'
+  else return new Intl.NumberFormat('en-US').format(Math.round(num / 1000) * 1000)
+
 }
 </script>
 
@@ -196,11 +209,11 @@ const getSections = () => {
 @media screen and (min-width: 600px) {
   .southKoreaMap {
     width: 100%;
-    height: calc(100vh - 380px);
+    height: calc(100vh - 400px);
   }
 
   .virtualScroller {
-    height: calc(100vh - 380px);
+    height: calc(100vh - 400px);
   }
 }
 
