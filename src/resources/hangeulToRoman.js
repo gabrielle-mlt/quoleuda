@@ -3,6 +3,7 @@ export default [
   // TODO - add a description and a name to each character
   {
     kr: '\u314f', // ㅏ
+    inSentence: '\u110b\u1161', // 아
     ro: ['a'],
     type: 'plainVowel',
     name: 'a',
@@ -10,42 +11,136 @@ export default [
   },
   {
     kr: '\u3151', // ㅑ
+    inSentence: '\u110b\u1163', // 야
     ro: ['ya'],
     type: 'plainVowel',
     name: 'ya',
     description: 'is pronounced like "yah!". It sounds like <u>ya</u> in "<u>Ya</u>rd" or "<u>Ya</u>le"'
   },
   {
-    kr: '\u3153',
+    kr: '\u3153', // ㅓ
+    inSentence: '\u110b\u1165', // 어
     ro: ['eo'],
     type: 'plainVowel',
     name: 'eo',
     description: 'is pronounced like "...". It\'s exactly like the <u>o</u> in the word"g<u>o</u>ld"'
-  },                 // ㅓ
-  { kr: '\u3155', ro: ['yeo'], type: 'plainVowel', name: 'yeo' },                // ㅕ
+  },
   {
-    kr: '\u3157',
+    kr: '\u3155', // ㅕ
+    inSentence: '\u110b\u1167', // 여
+    ro: ['yeo'],
+    type: 'plainVowel',
+    name: 'yeo'
+  },
+  {
+    kr: '\u3157',       // ㅗ
+    inSentence: '\u110b\u1169', // 오
     ro: ['o', 'ô', 'oo'],
     type: 'plainVowel',
     name: 'o',
     description: 'is pronounced like "oh!". It sounds like <u>o</u> in "<u>O</u>hio" or "<u>O</u>ctober"'
-  },       // ㅗ
-  { kr: '\u315b', ro: ['yo', 'yô', 'yoo'], type: 'plainVowel', name: 'yo' },    // ᅭ
-  { kr: '\u315c', ro: ['ou', 'u'], type: 'plainVowel', name: 'u' },            // ᅮ
-  { kr: '\u3160', ro: ['you', 'yu'], type: 'plainVowel', name: 'yu' },          // ᅲ
-  { kr: '\u3161', ro: ['eu'], type: 'plainVowel', name: 'eu' },                 // ᅳ
-  { kr: '\u3163', ro: ['i', 'e', 'ee'], type: 'plainVowel', name: 'i' },                  // ᅵ
-  { kr: '\u3150', ro: ['ae', 'è'], type: 'doubleVowel' },           // ㅐ
-  { kr: '\u3152', ro: ['yae', 'yè'], type: 'doubleVowel' },         // ㅒ
-  { kr: '\u3154', ro: ['e', 'è'], type: 'doubleVowel' },           // ㅔ
-  { kr: '\u3156', ro: ['ye', 'yé'], type: 'doubleVowel' },          // ㅖ
-  { kr: '\u3158', ro: ['wa'], type: 'doubleVowel' },                // ㅘ
-  { kr: '\u3159', ro: ['wae', 'wè'], type: 'doubleVowel' },         // ㅙ
-  { kr: '\u315a', ro: ['oe', 'wé'], type: 'doubleVowel' },          // ㅚ
-  { kr: '\u315d', ro: ['wo', 'weo'], type: 'doubleVowel' },         // ㅝ
-  { kr: '\u315e', ro: ['we', 'wé'], type: 'doubleVowel' },          // ㅞ
-  { kr: '\u315f', ro: ['wi'], type: 'doubleVowel' },                // ㅟ
-  { kr: '\u3162', ro: ['ui', 'yi'], type: 'doubleVowel' },          // ㅢ
+  },
+  {
+    kr: '\u315b', // ᅭ
+    inSentence: '\u110b\u116d', // 요
+    ro: ['yo', 'yô', 'yoo'],
+    type: 'plainVowel',
+    name: 'yo'
+  },
+  {
+    kr: '\u315c', // ᅮ
+    inSentence: '\u110b\u116e', // 우
+    ro: ['ou', 'u'],
+    type: 'plainVowel',
+    name: 'u'
+  },
+  {
+    kr: '\u3160', // ᅲ
+    inSentence: '\uc720', // 유
+    ro: ['you', 'yu'],
+    type: 'plainVowel',
+    name: 'yu'
+  },
+  {
+    kr: '\u3161', // ᅳ
+    inSentence: '\u110b\u1173', // 으
+    ro: ['eu'],
+    type: 'plainVowel',
+    name: 'eu'
+  },
+  {
+    kr: '\u3163', // ᅵ
+    inSentence: '\u110b\u1175', // 이
+    ro: ['i', 'e', 'ee'],
+    type: 'plainVowel',
+    name: 'i'
+  },
+  {
+    kr: '\u3150', // ㅐ
+    inSentence: '\uc560', // 애
+    ro: ['ae', 'è'],
+    type: 'doubleVowel'
+  },
+  {
+    kr: '\u3152', // ㅒ
+    inSentence: '\uc598', // 얘
+    ro: ['yae', 'yè'],
+    type: 'doubleVowel'
+  },
+  {
+    kr: '\u3154', // ㅔ
+    inSentence: '\uc5d0', // 에
+    ro: ['e', 'è'],
+    type: 'doubleVowel'
+  },
+  {
+    kr: '\u3156', // ㅖ
+    inSentence: '\uc608', // 예
+    ro: ['ye', 'yé'],
+    type: 'doubleVowel'
+  },
+  {
+    kr: '\u3158', // ㅘ
+    inSentence: '\uc640', // 와
+    ro: ['wa'],
+    type: 'doubleVowel'
+  },
+  {
+    kr: '\u3159', // ㅙ
+    inSentence: '\uc65c', // 왜
+    ro: ['wae', 'wè'],
+    type: 'doubleVowel'
+  },
+  {
+    kr: '\u315a', // ㅚ
+    inSentence: '\uc678', // 외
+    ro: ['oe', 'wé'],
+    type: 'doubleVowel'
+  },
+  {
+    kr: '\u315d', // ㅝ
+    inSentence: '\uc6cc', // 워
+    ro: ['wo', 'weo'],
+    type: 'doubleVowel'
+  },
+  {
+    kr: '\u315e', // ㅞ
+    inSentence: '\uc6e8', // 웨
+    ro: ['we', 'wé'],
+    type: 'doubleVowel'
+  },
+  {
+    kr: '\u315f', // ㅟ
+    inSentence: '\uc704', // 위
+    ro: ['wi'],
+    type: 'doubleVowel'
+  },
+  {
+    kr: '\u3162', // ㅢ
+    inSentence: '\uc758', // 의
+    ro: ['ui', 'yi'],
+    type: 'doubleVowel'
+  },
   { kr: '\u3131', ro: ['g', 'k'], type: 'mainConsonant', name: 'giyeok' },          // ㄱ
   { kr: '\u3134', ro: ['n'], type: 'mainConsonant', name: 'nieun' },               // ㄴ
   { kr: '\u3137', ro: ['d', 't'], type: 'mainConsonant', name: 'digeut' },          // ㄷ

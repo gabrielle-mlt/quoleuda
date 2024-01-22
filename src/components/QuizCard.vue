@@ -1,8 +1,7 @@
 <template>
   <v-card
     :class="`${i === currentCard ? 'growing-card':''} ${!character.done && i !== currentCard &&
-      character.incorrect ?
-        'incorrect':''}`"
+      character.incorrect ?'incorrect':''}`"
     :color="character.done ? 'success' : (character.incorrect ? 'incorrect':'primary-lighten-2')"
     class="transition-card"
     elevation="0"
@@ -11,12 +10,20 @@
   >
     <v-card-title
       :class="fontClass"
-      :style="{ 'font-size': (fontClass === 'nanum-pen-script' ? '3.2rem' : '') }"
+      :style="{ 'font-size': (fontClass === 'nanum-pen-script-font' ? '3.2rem' : '') }"
       class="font-weight-bold mt-3 quiz-card-title"
       lang="ko"
     >
       {{ reverseMode ? character.ro[0] : character.kr }}
     </v-card-title>
+    <v-card-subtitle
+      v-if="character.inSentence"
+      :class="fontClass"
+      :style="{ 'font-size': (fontClass === 'nanum-pen-script-font' ? '1.2rem' : '') }"
+      lang="ko"
+    >
+      {{ character.inSentence }}
+    </v-card-subtitle>
     <v-spacer />
     <v-card-text>
       <v-text-field

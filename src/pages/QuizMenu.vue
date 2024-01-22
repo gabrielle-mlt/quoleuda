@@ -48,10 +48,10 @@
           </template>
           <template #action-button>
             <v-btn
+              :color="$vuetify.theme.current.dark ? level.color +'-lighten-1' : level.color +'-darken-1'"
               :disabled="!level.active"
               :to="level.button.to"
               class="mt-3"
-              color="primary"
             >
               {{ level.button.text }}
             </v-btn>
@@ -59,6 +59,65 @@
         </quiz-level-card>
       </v-col>
     </v-row>
+
+    <div class="custom-container">
+      <div
+        class="custom-card"
+        style="--clr:#ff0;"
+      />
+      <div
+        class="custom-card"
+        style="--clr:#f00;"
+      />
+    </div>
+    <v-btn color="primary">
+      Coucou
+    </v-btn>
+    <v-btn color="primary-lighten-1">
+      Coucou
+    </v-btn>
+    <v-btn color="primary-lighten-2">
+      Coucou
+    </v-btn>
+    <v-btn color="primary-lighten-3">
+      Coucou
+    </v-btn>
+    <v-btn color="primary-lighten-4">
+      Coucou
+    </v-btn>
+    <v-btn color="primary-lighten-5">
+      Coucou
+    </v-btn>
+    <v-btn color="primary-darken-1">
+      Coucou
+    </v-btn>
+    <v-btn color="primary-darken-2">
+      Coucou
+    </v-btn>
+    <v-btn color="primary-darken-3">
+      Coucou
+    </v-btn>
+    <v-btn color="primary-darken-4">
+      Coucou
+    </v-btn>
+    <v-btn color="primary-darken-5">
+      Coucou
+    </v-btn>
+    <v-btn color="primary-accent-1">
+      Coucou
+    </v-btn>
+    <v-btn color="primary-accent-2">
+      Coucou
+    </v-btn>
+    <v-btn color="primary-accent-3">
+      Coucou
+    </v-btn>
+    <v-btn color="primary-accent-4">
+      Coucou
+    </v-btn>
+    <v-btn color="primary-accent-5">
+      Coucou
+    </v-btn>
   </v-container>
 </template>
 
@@ -75,7 +134,7 @@ export default {
           title: 'Hangeul',
           slogan: 'This mode is the best for beginners !',
           stars: 1,
-          color: 'primary-darken-1',
+          color: 'primary',
           active: true,
           description: [
             { text: 'This quiz will test your knowledge of the Korean alphabet.' },
@@ -138,9 +197,68 @@ export default {
           }
         }
       ]
-
+    }
+  },
+  mounted () {
+    const cards = document.querySelectorAll('.custom-card')
+    for (const card of (cards)) {
+      card.onmousemove = (e) => {
+        const x = e.pageX - card.offsetLeft
+        const y = e.pageY - card.offsetTop
+        card.style.setProperty('--x', `${x}px`)
+        card.style.setProperty('--y', `${y}px`)
+      }
     }
   }
 }
 
 </script>
+
+<style>
+.custom-card {
+  position: relative;
+  width: 320px;
+  height: 400px;
+  background: rgb(var(--v-theme-primary-lighten-2));
+  opacity: 1;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.custom-card:before {
+  content: '';
+  position: absolute;
+  background: radial-gradient(rgb(var(--v-theme-primary-lighten-5)), transparent, transparent);
+  width: 800px;
+  height: 800px;
+  top: var(--y);
+  left: var(--x);
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: 0.5s, top 0s, left 0s
+}
+
+.custom-card:hover::before {
+  opacity: 1;
+}
+
+.custom-card:after {
+  content: '';
+  position: absolute;
+  inset: 5px;
+  border-radius: 8px;
+  background: rgb(var(--v-theme-primary-lighten-2));
+  opacity: 0.75;
+
+}
+
+.custom-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex: wrap;
+  gap: 50px;
+}
+
+</style>

@@ -135,16 +135,26 @@ const setMap = async () => {
 
     southKoreaSeries.mapPolygons.template.setAll({
       tooltipText: '{name}',
-      interactive: true,
-      templateField: 'polygonSettings'
+      toggleKey: "active",
+      templateField: 'polygonSettings',
+      showTooltipOn: "always",
     })
 
     southKoreaSeries.mapPolygons.template.states.create('hover', {
+      fill: theme.global.current.value.colors['primary-lighten-1'],
+      stroke: theme.global.current.value.colors['primary-lighten-1'],
+      strokeWidth: 7,
+      shadowColor: am5.color(0x000000),
+      shadowBlur: 12,
+    })
+
+    southKoreaSeries.mapPolygons.template.states.create("active", {
       fill: theme.current.value.colors.primary,
       stroke: theme.current.value.colors.primary,
       strokeWidth: 7,
       shadowColor: am5.color(0x000000),
       shadowBlur: 12,
+      showTooltipOn: "always",
     })
 
     southKoreaSeries.set('fill', am5.color(theme.global.current.value.colors['primary-lighten-2']))
@@ -157,6 +167,13 @@ const setMap = async () => {
       selectSection(id)
       const index = sections.value.findIndex((section) => section.id === id)
       if (scrollableSections.value) scrollableSections.value.scrollToIndex(index)
+
+      // change active state of all other polygons to false
+      southKoreaSeries.mapPolygons.each(function (polygon) {
+        if (polygon.get('id') !== id) {
+          polygon.set('active', false)
+        }
+      })
     })
 
     southKoreaSeries.mapPolygons.template.events.on("pointerover", function (ev) {

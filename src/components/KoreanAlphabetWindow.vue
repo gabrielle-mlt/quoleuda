@@ -16,6 +16,7 @@
             class="mb-4"
             density="compact"
             style="background-color: unset;"
+            theme="light"
           >
             <thead
               :style="$vuetify.display.mobile ?
