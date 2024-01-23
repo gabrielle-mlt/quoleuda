@@ -16,6 +16,11 @@
                 ref="chartdiv"
                 class="southKoreaMap"
             />
+            <v-tooltip v-if="isBrave" :open-on-hover="true" text="This chart could not work properly on Brave browser.">
+              <template #activator="{ props }">
+                <v-icon class="mb-2 float-right" color="primary" size="large" v-bind="props">mdi-alert-circle</v-icon>
+              </template>
+            </v-tooltip>
           </v-card-text>
         </v-card>
       </v-col>
@@ -90,6 +95,8 @@ const chartdiv = ref<HTMLElement | null>();
 let selectedPolygon: am5map.MapPolygon | undefined;
 let selectedPolyId = ref(null);
 
+const isBrave = ref(false)
+
 // vuetify theme
 const theme = useTheme()
 
@@ -97,7 +104,8 @@ watch(theme.current, async () => {
   await setMap()
 }, {deep: true})
 
-onMounted(() => {
+onMounted(async () => {
+  isBrave.value = await navigator?.brave?.isBrave()
   getSections()
   setMap()
 })

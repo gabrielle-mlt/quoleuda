@@ -1,5 +1,12 @@
 export default [
-  { id: 'KR-49', name: 'Jeju', area: 1849, population: 347000, description: 'Description incoming :)' },
+  {
+    id: 'KR-49',
+    name: 'Jeju',
+    area: 1849,
+    population: 347000,
+    description: 'Description incoming :)',
+    nameKO: '\uC81C\uC8FC\uD2B9\uBCC4\uC790\uCE58\uB3C4' // 제주특별자치도
+  },
   {
     id: 'KR-48',
     name: 'South Gyeongsang',
@@ -48,12 +55,54 @@ export default [
     area: 7405,
     nameKO: '\uCDA9\uCCAD\uBD81\uB3C4' // 충청북도
   },
-  { id: 'KR-42', name: 'Gangwon', description: 'Description incoming :)' },
-  { id: 'KR-41', name: 'Gyeonggi', description: 'Description incoming :)' },
-  { id: 'KR-31', name: 'Ulsan', description: 'Description incoming :)' },
-  { id: 'KR-30', name: 'Daejeon', description: 'Description incoming :)' },
-  { id: 'KR-29', name: 'Gwangju', description: 'Description incoming :)' },
-  { id: 'KR-28', name: 'Incheon', description: 'Description incoming :)' },
+  {
+    id: 'KR-42',
+    name: 'Gangwon',
+    description: 'Description incoming :)',
+    nameKO: '\uAC15\uC6D0\uB3C4', // 강원도
+    area: 16884,
+    population: 1536270
+  },
+  {
+    id: 'KR-41',
+    name: 'Gyeonggi',
+    description: 'Description incoming :)',
+    nameKO: '\uACBD\uAE30\uB3C4', // 경기도'
+    area: 10170,
+    population: 13511676
+  },
+  {
+    id: 'KR-31',
+    name: 'Ulsan',
+    description: 'Description incoming :)',
+    nameKO: '\uC6B8\uC0B0\uAD11\uC5ED\uC2DC', // 울산광역시
+    area: 16866,
+    population: 1521763
+  },
+  {
+    id: 'KR-30',
+    name: 'Daejeon',
+    description: 'Description incoming :)',
+    nameKO: '\uB300\uC804\uAD11\uC5ED\uC2DC', // '대전광역시',
+    population: 1488435,
+    area: 540
+  },
+  {
+    id: 'KR-29',
+    name: 'Gwangju',
+    description: 'Description incoming :)',
+    nameKO: '\uAD11\uC8FC\uAD11\uC5ED\uC2DC', // '광주광역시',
+    population: 1477573,
+    area: 501
+  },
+  {
+    id: 'KR-28',
+    name: 'Incheon',
+    description: 'Description incoming :)',
+    nameKO: '\uC778\uCC9C\uAD11\uC5ED\uC2DC', // 인천광역시
+    area: 1060,
+    population: 2940439
+  },
   {
     id: 'KR-27',
     name: 'Daegu',
