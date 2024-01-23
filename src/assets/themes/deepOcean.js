@@ -1,6 +1,6 @@
 import { TinyColor } from '@ctrl/tinycolor'
 
-const deepOceanThemeColor = new TinyColor('#2e6895')
+const deepOceanThemeColor = new TinyColor('#5eaad5')
 const successColor = new TinyColor('#a5daa5')
 const incorrectColor = new TinyColor('#ff8f81')
 

@@ -105,7 +105,7 @@
     <v-expand-transition>
       <v-row
         v-if="!finished"
-        class="d-flex justify-center mb-5 "
+        class="d-flex justify-center mb-5 mx-lg-12 mx-xl-12"
       >
         <v-col
           v-for="(character,i) in characterSet"
@@ -407,6 +407,18 @@ export default {
 </script>
 
 <style>
+@media screen and (min-width: 600px) {
+  .cards-container {
+    max-width: 1300px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .cards-container {
+    max-width: 600px;
+  }
+}
+
 .transition-card {
   transition: all .4s ease-in-out;
 }
