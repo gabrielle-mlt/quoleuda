@@ -18,13 +18,14 @@
     </v-btn>
     <v-item-group
       v-model="tab"
-      class="mt-12"
+      class="mt-lg-12 mt-xl-12 mt-8"
       group
       @update:model-value="$router.push({ name: 'CheatSheet', query: { tab: $event } });"
     >
       <v-item v-slot="{toggle }">
         <v-btn
           :ripple="false"
+          :size="$vuetify.display.mobile ? 'small' : undefined"
           :variant="tab !== 0 ? 'outlined' : undefined"
           class="mx-2"
           color="primary"
@@ -37,6 +38,7 @@
       <v-item v-slot="{toggle}">
         <v-btn
           :ripple="false"
+          :size="$vuetify.display.mobile ? 'small' : undefined"
           :variant="tab !== 1 ? 'outlined' : undefined"
           class="mx-2"
           color="primary"
@@ -49,6 +51,7 @@
       <v-item v-slot="{toggle}">
         <v-btn
           :ripple="false"
+          :size="$vuetify.display.mobile ? 'small' : undefined"
           :variant="tab !== 2 ? 'outlined' : undefined"
           class="mx-2"
           color="primary"
