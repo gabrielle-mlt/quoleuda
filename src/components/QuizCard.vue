@@ -11,7 +11,7 @@
     <v-card-title
       :class="fontClass"
       :style="{ 'font-size': (fontClass === 'nanum-pen-script-font' ? '3.2rem' : '') }"
-      class="font-weight-bold mt-3 quiz-card-title"
+      class="mt-3 quiz-card-title"
       lang="ko"
     >
       {{ reverseMode ? character.ro[0] : character.kr }}

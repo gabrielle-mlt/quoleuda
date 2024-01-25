@@ -1,6 +1,6 @@
 <script setup>
-import { computed, defineProps } from 'vue'
 import { useTheme } from 'vuetify'
+import { computed } from 'vue'
 
 // theme
 const theme = useTheme()

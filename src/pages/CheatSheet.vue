@@ -443,29 +443,29 @@ export default {
         {
           title: 'Single final consonant',
           type: 'mainConsonant',
-          items: hangeul.filter(c => c.type === 'mainConsonant' && !c.tense)
+          items: hangeul.consonant.mainConsonant.filter(c => !c.tense)
         },
         {
           title: 'Tense final consonant',
           type: 'mainConsonant',
-          items: hangeul.filter(c => c.type === 'mainConsonant' && c.tense)
+          items: hangeul.consonant.mainConsonant.filter(c => c.tense)
         },
         {
           title: 'Double final consonant',
           type: 'doubleConsonant',
-          items: hangeul.filter(c => c.type === 'doubleConsonant')
+          items: hangeul.consonant.doubleConsonant
         }
       ],
       vowelSubtype: [
         {
           title: 'Plain vowel',
           type: 'plainVowel',
-          items: hangeul.filter(c => c.type === 'plainVowel')
+          items: hangeul.vowel.plainVowel
         },
         {
           title: 'Double vowel',
           type: 'doubleVowel',
-          items: hangeul.filter(c => c.type === 'doubleVowel')
+          items: hangeul.vowel.doubleVowel
         }
       ],
       baseVowels: [
@@ -489,19 +489,19 @@ export default {
   },
   computed: {
     mainConsonant () {
-      return hangeul.filter(c => c.type === 'mainConsonant' && !c.tense)
+      return hangeul.consonant.mainConsonant.filter(c => !c.tense)
     },
     tenseConsonant () {
-      return hangeul.filter(c => c.type === 'mainConsonant' && c.tense)
+      return hangeul.consonant.mainConsonant.filter(c => c.tense)
     },
     doubleConsonant () {
-      return hangeul.filter(c => c.type === 'doubleConsonant')
+      return hangeul.consonant.doubleConsonant
     },
     plainVowels () {
-      return hangeul.filter(c => c.type === 'plainVowel')
+      return hangeul.vowel.plainVowel
     },
     doubleVowels () {
-      return hangeul.filter(c => c.type === 'doubleVowel')
+      return hangeul.vowel.doubleVowel
     }
   },
   watch: {
@@ -546,7 +546,7 @@ export default {
   }
 }
 
-.v-col > p > span {
+.v-col > p > span[lang="ko"] {
   color: rgb(var(--v-theme-primary));
   font-weight: bold;
 }

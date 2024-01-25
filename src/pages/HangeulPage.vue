@@ -138,7 +138,7 @@
   }
 }
 
-.v-col > div > p > span {
+.v-col > div > p > span[lang="ko"] {
   color: rgb(var(--v-theme-primary));
   font-weight: bold;
 }

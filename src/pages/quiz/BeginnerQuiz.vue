@@ -102,6 +102,14 @@
       </v-col>
     </v-row>
 
+    <div v-if="preparing">
+      <h2>Preparing</h2>
+      <v-progress-linear
+        color="primary"
+        indeterminate
+      />
+    </div>
+
     <v-expand-transition>
       <v-row
         v-if="!finished"
@@ -198,14 +206,6 @@
             variant="tonal"
             @click="startQuiz()"
           />
-          <v-btn
-            class="mt-3 mx-2"
-            color="primary"
-            icon="mdi-eye"
-            title="Show Results"
-            variant="tonal"
-            @click="printResults = !printResults"
-          />
         </v-col>
       </v-row>
     </v-expand-transition>
@@ -241,11 +241,12 @@ export default {
       characterSet: [],
       currentCard: 0,
       score: 0,
-      acceptedModes: ['plainVowel', 'doubleVowel', 'mainConsonant', 'doubleConsonant', 'syllable', 'all'],
+      acceptedModes: ['plainVowel', 'doubleVowel', 'mainConsonant', 'doubleConsonant', 'syllable-cv', 'syllable-vc', 'all'],
       modes: ['plainVowel', 'doubleVowel', 'mainConsonant'],
       chrono: null,
       time: 0,
-      showTimer: false
+      showTimer: false,
+      preparing: true
     }
   },
   computed: {
@@ -275,9 +276,6 @@ export default {
     }
 
     await this.resetGame()
-  },
-  unmounted () {
-    this.resetGame()
   },
   methods: {
     startQuiz (ev) {
@@ -358,6 +356,7 @@ export default {
     },
     async resetGame () {
       this.stopChrono()
+      this.preparing = true
       this.time = 0
       await this.prepareCharset()
 
@@ -371,14 +370,28 @@ export default {
         if (firstInput) {
           this.setCaretPosition(firstInput, 10)
         }
+        this.preparing = false
         this.startChrono()
       })
     },
     async prepareCharset () {
-      const shuffledArray = this.shuffle([...hangeul, ...syllables])
+      const hang = []
+      const syll = []
+      for (const m of this.modes) {
+        if (hangeul.vowel[m]) {
+          hang.push(...hangeul.vowel[m])
+        }
+        if (hangeul.consonant[m]) {
+          hang.push(...hangeul.consonant[m])
+        }
+        if (syllables[m]) {
+          syll.push(...syllables[m])
+        }
+      }
+      const shuffledArray = this.shuffle([...hang, ...syll])
 
       this.characterSet = await new Promise((resolve, reject) => {
-        const res = ([...shuffledArray].filter((v) => this.modes.includes(v.type)) || []).map((v, index) => {
+        const res = [...shuffledArray].map((v, index) => {
           return { ...v, answer: '', id: `input-${index}` }
         })
         resolve(res)
