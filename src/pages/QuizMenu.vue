@@ -60,64 +60,16 @@
       </v-col>
     </v-row>
 
-    <div class="custom-container">
-      <div
-        class="custom-card"
-        style="--clr:#ff0;"
-      />
-      <div
-        class="custom-card"
-        style="--clr:#f00;"
-      />
-    </div>
-    <v-btn color="primary">
-      Coucou
-    </v-btn>
-    <v-btn color="primary-lighten-1">
-      Coucou
-    </v-btn>
-    <v-btn color="primary-lighten-2">
-      Coucou
-    </v-btn>
-    <v-btn color="primary-lighten-3">
-      Coucou
-    </v-btn>
-    <v-btn color="primary-lighten-4">
-      Coucou
-    </v-btn>
-    <v-btn color="primary-lighten-5">
-      Coucou
-    </v-btn>
-    <v-btn color="primary-darken-1">
-      Coucou
-    </v-btn>
-    <v-btn color="primary-darken-2">
-      Coucou
-    </v-btn>
-    <v-btn color="primary-darken-3">
-      Coucou
-    </v-btn>
-    <v-btn color="primary-darken-4">
-      Coucou
-    </v-btn>
-    <v-btn color="primary-darken-5">
-      Coucou
-    </v-btn>
-    <v-btn color="primary-accent-1">
-      Coucou
-    </v-btn>
-    <v-btn color="primary-accent-2">
-      Coucou
-    </v-btn>
-    <v-btn color="primary-accent-3">
-      Coucou
-    </v-btn>
-    <v-btn color="primary-accent-4">
-      Coucou
-    </v-btn>
-    <v-btn color="primary-accent-5">
-      Coucou
-    </v-btn>
+    <!--    <div class="custom-container">
+          <div
+            class="custom-card"
+            style="&#45;&#45;clr:#ff0;"
+          />
+          <div
+            class="custom-card"
+            style="&#45;&#45;clr:#f00;"
+          />
+        </div>-->
   </v-container>
 </template>
 
