@@ -17,7 +17,7 @@
       {{ reverseMode ? character.ro[0] : character.kr }}
     </v-card-title>
     <v-card-subtitle
-      v-if="character.inSentence"
+      v-if="!reverseMode && character.inSentence"
       :class="fontClass"
       :style="{ 'font-size': (fontClass === 'nanum-pen-script-font' ? '1.2rem' : '') }"
       lang="ko"
