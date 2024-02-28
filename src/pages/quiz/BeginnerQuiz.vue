@@ -119,6 +119,11 @@
           v-for="(character,i) in characterSet"
           :key="`character-${i}`"
           cols="2"
+          xs="auto"
+          sm="auto"
+          md="2"
+          xl="2"
+          lg="2"
         >
           <QuizCard
             style="margin-inline: auto !important;"
