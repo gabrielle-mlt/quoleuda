@@ -39,7 +39,7 @@
     >
       <v-col
         cols="auto"
-        ordeer-xs="last"
+        order-xs="last"
         order="last"
         order-lg="first"
         order-md="first"
@@ -118,12 +118,7 @@
         <v-col
           v-for="(character,i) in characterSet"
           :key="`character-${i}`"
-          cols="4"
-          lg="auto"
-          md="auto"
-          sm="auto"
-          xl="auto"
-          xs="4"
+          cols="3"
         >
           <QuizCard
             :character="character"
@@ -422,7 +417,7 @@ export default {
 <style>
 @media screen and (min-width: 600px) {
   .cards-container {
-    max-width: 1300px;
+    max-width: 1400px;
   }
 }
 
