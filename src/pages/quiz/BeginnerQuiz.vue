@@ -118,7 +118,6 @@
         <v-col
           v-for="(character,i) in characterSet"
           :key="`character-${i}`"
-          cols="2"
           xs="6"
           sm="6"
           md="2"
