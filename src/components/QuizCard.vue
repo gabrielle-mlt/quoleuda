@@ -37,7 +37,7 @@
         class="elevation-0 font-weight-bold centered-input quiz-card-text"
         hide-details
         inputmode="search"
-        oninput="this.value?.length > 4 ? this.value = this.value.slice(0,4) : this.value"
+        oninput="this.value?.length > 6 ? this.value = this.value.slice(0,6) : this.value"
         rounded="circle"
         variant="solo"
         @keydown.enter.prevent="handleEnter($event)"
