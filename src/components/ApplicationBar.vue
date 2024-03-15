@@ -20,7 +20,7 @@
               max-width="60"
               src="/quoleuda.svg"
             />-->
-      <quoleuda-logo-icon size="50" />
+      <quoleuda-logo-icon :size="50" />
     </router-link>
     <v-app-bar-title
       style="color: rgb(var(--v-theme-primary));font-weight: bold; font-size: 32px;"
@@ -51,11 +51,28 @@
           <v-btn
             v-if="!$vuetify.display.mobile"
             :color="$route.name ? '' : 'primary' "
-            class="mx-4"
+            class="ml-4"
             fab
             icon="mdi-home"
             size="x-large"
             to="/"
+          />
+        </template>
+      </v-tab>
+      <v-tab
+        :ripple="false"
+        hide-slider
+        to="/won-converter"
+        value="/"
+        variant="plain"
+      >
+        <template #default>
+          <v-btn
+            v-if="!$vuetify.display.mobile"
+            :color="$route.name ? '' : 'primary' "
+            icon="mdi-currency-krw"
+            to="/won-converter"
+            variant="flat"
           />
         </template>
       </v-tab>
