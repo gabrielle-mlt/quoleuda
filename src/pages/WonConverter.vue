@@ -28,7 +28,6 @@ const convertFrom = () => {
 }
 
 const convertTo = () => {
-  console.log(fromAmount.value, coefficients[fromCurr.value])
   // toAmount.value = fromAmount.value / coefficients[fromCurr.value]
   toAmount.value = Math.round((fromAmount.value / coefficients[fromCurr.value]) * 100) / 100
 }
