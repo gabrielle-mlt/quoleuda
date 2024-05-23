@@ -19,7 +19,6 @@
         elevation="6"
         height="55"
         style="display: grid;justify-items: center;"
-        variant="tonal"
         width="55"
       >
         <v-icon
@@ -39,12 +38,12 @@
     >
       <v-col
         cols="auto"
-        order-xs="last"
         order="last"
         order-lg="first"
         order-md="first"
         order-sm="last"
         order-xl="first"
+        order-xs="last"
         order-xxl="first"
       >
         <v-expand-transition>
@@ -118,19 +117,19 @@
         <v-col
           v-for="(character,i) in characterSet"
           :key="`character-${i}`"
-          xs="6"
-          sm="6"
-          md="2"
-          xl="2"
           lg="2"
+          md="2"
+          sm="6"
+          xl="2"
+          xs="6"
         >
           <QuizCard
-            style="margin-inline: auto !important;"
             :character="character"
             :current-card="currentCard"
             :font-class="fontClass"
             :i="i"
             :reverse-mode="reverseMode"
+            style="margin-inline: auto !important;"
             @update:current-card="currentCard = $event"
             @update:next-input="goToNextInput($event)"
           />
@@ -214,6 +213,7 @@
       <v-expand-transition>
         <results-overview
           v-if="printResults && score !=null"
+          :modes="modes"
           :results="characterSet"
         />
       </v-expand-transition>
@@ -242,7 +242,8 @@ export default {
       currentCard: 0,
       score: 0,
       acceptedModes: ['plainVowel', 'doubleVowel', 'mainConsonant', 'doubleConsonant', 'syllable-cv', 'syllable-vc', 'all'],
-      modes: ['plainVowel', 'doubleVowel', 'mainConsonant'],
+      modes: [],
+      defaultModes: ['plainVowel', 'doubleVowel', 'mainConsonant'],
       chrono: null,
       time: 0,
       showTimer: false,
@@ -267,11 +268,12 @@ export default {
   },
   async created () {
     // if route query has mode and mode.split(',') are included by acceptedModes
+    if (!this.$route.query.mode) this.modes = this.defaultModes
     if (this.$route.query.mode && this.$route.query.mode.split(',').filter((v) => !this.acceptedModes.includes(v)).length) {
       this.$router.push({ query: {} })
     }
 
-    if (this.$route.query.mode && this.$route.query.mode !== 'all') {
+    if (this.$route.query.mode /* && this.$route.query.mode !== 'all' */) {
       this.modes = this.$route.query.mode.split(',')
     }
 
@@ -353,6 +355,9 @@ export default {
       this.calculateScore()
       if (this.score === 0) this.printResults = true
       this.finished = true
+
+      // smooth scroll to top
+      window.scrollTo({ top: 0 })
     },
     async resetGame () {
       this.stopChrono()
@@ -377,21 +382,33 @@ export default {
     async prepareCharset () {
       const hang = []
       const syll = []
-      for (const m of this.modes) {
-        if (hangeul.vowel[m]) {
-          hang.push(...hangeul.vowel[m])
-        }
-        if (hangeul.consonant[m]) {
-          hang.push(...hangeul.consonant[m])
-        }
-        if (syllables[m]) {
-          syll.push(...syllables[m])
+      console.log(this.modes)
+      if (this.$route.query.mode === 'all') {
+        // get all leaf of hangeul
+        hang.push(...Object.values(hangeul.vowel).flat())
+        hang.push(...Object.values(hangeul.consonant).flat())
+        syll.push(...Object.values(syllables).flat())
+      } else {
+        for (const m of this.modes) {
+          if (hangeul.vowel[m]) {
+            hang.push(...hangeul.vowel[m])
+          }
+          if (hangeul.consonant[m]) {
+            hang.push(...hangeul.consonant[m])
+          }
+          if (syllables[m]) {
+            syll.push(...syllables[m])
+          }
         }
       }
       const shuffledArray = this.shuffle([...hang, ...syll])
 
       this.characterSet = await new Promise((resolve, reject) => {
         const res = [...shuffledArray].map((v, index) => {
+          delete v.description
+          delete v.name
+          // delete v.type
+          delete v.components
           return { ...v, answer: '', id: `input-${index}` }
         })
         resolve(res)

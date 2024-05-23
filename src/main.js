@@ -77,6 +77,11 @@ const vuetify = createVuetify({
 const routes = [
   { path: '/', name: 'Home', component: () => import('./pages/HomePage.vue') },
   { path: '/won-converter', name: 'WonConverter', component: () => import('./pages/WonConverter.vue') },
+  {
+    path: '/korean-transliterate',
+    name: 'KoreanTransliterate',
+    component: () => import('./pages/KoreanTransliterate.vue')
+  },
   { path: '/quiz-menu', name: 'QuizMenu', component: () => import('./pages/QuizMenu.vue') },
   {
     path: '/quiz-menu/beginner',

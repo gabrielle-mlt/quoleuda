@@ -70,7 +70,7 @@
             <tbody>
               <tr
                 v-for="(group,gindex) in groupByConsonant('syllable-cv')"
-                :key="`char-${gindex}`"
+                :key="`char-syllable-cv-${gindex}`"
               >
                 <td
                   lang="ko"
@@ -103,6 +103,14 @@
             </tbody>
           </v-table>
           <v-row no-gutters>
+            <v-col>
+              <v-btn
+                :to="{ name: 'Quiz', query:{mode : 'syllable-cv'} }"
+                color="primary"
+              >
+                Play this mode
+              </v-btn>
+            </v-col>
             <v-col cols="12">
               <v-switch
                 v-model="chartRo"
@@ -178,7 +186,7 @@
             <tbody>
               <tr
                 v-for="(group,gindex) in groupByConsonant('syllable-vc')"
-                :key="`char-${gindex}`"
+                :key="`char-syllable-vc-${gindex}`"
               >
                 <td
                   lang="ko"
@@ -229,6 +237,14 @@
               </v-switch>
             </v-col>
           </v-row>
+          <v-col>
+            <v-btn
+              :to="{ name: 'Quiz', query:{mode : 'syllable-vc'} }"
+              color="primary"
+            >
+              Play this mode
+            </v-btn>
+          </v-col>
         </v-card-text>
       </v-card>
     </v-col>
@@ -278,7 +294,8 @@ export default {
     groupByConsonant (id) {
       // return an array
       return this.koreanAlphabetChart[id].reduce((acc, char) => {
-        const consonant = char.components.consonant
+        const consonant = char.components?.consonant || undefined
+        if (!consonant) return acc
         if (!acc.find((c) => c.id === consonant)) {
           acc.push({ id: consonant, items: [] })
         }

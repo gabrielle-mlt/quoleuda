@@ -291,6 +291,8 @@ export default {
       }
     },
     startQuiz () {
+      console.log(this.selectedModes && this.selectedModes.length && this.selectedModes.slice().sort().toString())
+      console.log(['plainVowel', 'doubleVowel', 'mainConsonant', 'doubleConsonant', 'syllable-cv', 'syllable-vc'].slice().sort().toString())
       const all = this.selectedModes && this.selectedModes.length && this.selectedModes.slice().sort().toString() ===
           ['plainVowel', 'doubleVowel', 'mainConsonant', 'doubleConsonant', 'syllable-cv', 'syllable-vc'].slice().sort().toString()
       const queryParams = { mode: all ? 'all' : this.selectedModes.join(',') }

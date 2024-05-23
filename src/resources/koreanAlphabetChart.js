@@ -35,16 +35,16 @@ export default {
     { kr: '\uB4DC', ro: ['deu'], components: { consonant: '\u3137', vowel: '\u3161' } }, // 드
     { kr: '\uB514', ro: ['di'], components: { consonant: '\u3137', vowel: '\u3163' } }, // 디
     /* r */
-    { kr: '\uB77C', ro: ['ra'], components: { consonant: '\u3139', vowel: '\u314f' } }, // 라
-    { kr: '\uB7B4', ro: ['rya'], components: { consonant: '\u3139', vowel: '\u3153' } }, // 랴
-    { kr: '\uB7EC', ro: ['reo'], components: { consonant: '\u3139', vowel: '\u3157' } }, // 러
-    { kr: '\uB824', ro: ['ryeo'], components: { consonant: '\u3139', vowel: '\u315b' } }, // 려
-    { kr: '\uB85C', ro: ['ro'], components: { consonant: '\u3139', vowel: '\u315f' } }, // 로
-    { kr: '\uB8CC', ro: ['ryo'], components: { consonant: '\u3139', vowel: '\u3163' } }, // 료
-    { kr: '\uB8E8', ro: ['ru'], components: { consonant: '\u3139', vowel: '\u3161' } }, // 루
-    { kr: '\uB958', ro: ['ryu', 'ryou'], components: { consonant: '\u3139', vowel: '\u3163' } }, // 류
-    { kr: '\uB974', ro: ['reu'], components: { consonant: '\u3139', vowel: '\u3161' } }, // 르
-    { kr: '\uB9AC', ro: ['ri'], components: { consonant: '\u3139', vowel: '\u3163' } }, // 리
+    { kr: '\uB77C', ro: ['ra', 'la'], components: { consonant: '\u3139', vowel: '\u314f' } }, // 라
+    { kr: '\uB7B4', ro: ['rya', 'lya'], components: { consonant: '\u3139', vowel: '\u3153' } }, // 랴
+    { kr: '\uB7EC', ro: ['reo', 'leo'], components: { consonant: '\u3139', vowel: '\u3157' } }, // 러
+    { kr: '\uB824', ro: ['ryeo', 'lyeo'], components: { consonant: '\u3139', vowel: '\u315b' } }, // 려
+    { kr: '\uB85C', ro: ['ro', 'lo'], components: { consonant: '\u3139', vowel: '\u315f' } }, // 로
+    { kr: '\uB8CC', ro: ['ryo', 'lyo'], components: { consonant: '\u3139', vowel: '\u3163' } }, // 료
+    { kr: '\uB8E8', ro: ['ru', 'lu'], components: { consonant: '\u3139', vowel: '\u3161' } }, // 루
+    { kr: '\uB958', ro: ['ryu', 'lyu', 'ryou', 'lyou'], components: { consonant: '\u3139', vowel: '\u3163' } }, // 류
+    { kr: '\uB974', ro: ['reu', 'leu'], components: { consonant: '\u3139', vowel: '\u3161' } }, // 르
+    { kr: '\uB9AC', ro: ['ri', 'li'], components: { consonant: '\u3139', vowel: '\u3163' } }, // 리
     /* m */
     { kr: '\uB9C8', ro: ['ma'], components: { consonant: '\u3141', vowel: '\u314f' } }, // 마
     { kr: '\uBA00', ro: ['mya'], components: { consonant: '\u3141', vowel: '\u3153' } }, // 먀
@@ -231,16 +231,16 @@ export default {
     { kr: '\uc785', ro: ['im'], components: { consonant: '\u3142', vowel: '\u3163' } }, // 입
 
     /* s */
-    { kr: '\uc557', ro: ['sa'], components: { consonant: '\u3145', vowel: '\u314f' } }, // 앗
-    { kr: '\uc58f', ro: ['sya'], components: { consonant: '\u3145', vowel: '\u3153' } }, // 얏
-    { kr: '\uc5c7', ro: ['seo'], components: { consonant: '\u3145', vowel: '\u3157' } }, // 엇
-    { kr: '\uc5ff', ro: ['syeo'], components: { consonant: '\u3145', vowel: '\u315b' } }, // 엿
-    { kr: '\uc637', ro: ['so'], components: { consonant: '\u3145', vowel: '\u315f' } }, // 옷
-    { kr: '\uc6a7', ro: ['syo'], components: { consonant: '\u3145', vowel: '\u3163' } }, // 욧
-    { kr: '\uc6c3', ro: ['su'], components: { consonant: '\u3145', vowel: '\u3161' } }, // 웃
-    { kr: '\uc733', ro: ['syu', 'syou'], components: { consonant: '\u3145', vowel: '\u3163' } }, // 윳
-    { kr: '\uc74f', ro: ['seu'], components: { consonant: '\u3145', vowel: '\u3161' } }, // 읏
-    { kr: '\uc787', ro: ['si'], components: { consonant: '\u3145', vowel: '\u3163' } }, // 잇
+    { kr: '\uc557', ro: ['at'], components: { consonant: '\u3145', vowel: '\u314f' } }, // 앗
+    { kr: '\uc58f', ro: ['yat'], components: { consonant: '\u3145', vowel: '\u3153' } }, // 얏
+    { kr: '\uc5c7', ro: ['eot'], components: { consonant: '\u3145', vowel: '\u3157' } }, // 엇
+    { kr: '\uc5ff', ro: ['yeot'], components: { consonant: '\u3145', vowel: '\u315b' } }, // 엿
+    { kr: '\uc637', ro: ['ot'], components: { consonant: '\u3145', vowel: '\u315f' } }, // 옷
+    { kr: '\uc6a7', ro: ['yot'], components: { consonant: '\u3145', vowel: '\u3163' } }, // 욧
+    { kr: '\uc6c3', ro: ['ut'], components: { consonant: '\u3145', vowel: '\u3161' } }, // 웃
+    { kr: '\uc733', ro: ['yut', 'yout'], components: { consonant: '\u3145', vowel: '\u3163' } }, // 윳
+    { kr: '\uc74f', ro: ['eut'], components: { consonant: '\u3145', vowel: '\u3161' } }, // 읏
+    { kr: '\uc787', ro: ['it'], components: { consonant: '\u3145', vowel: '\u3163' } }, // 잇
 
     /* ng */
     { kr: '\uc559', ro: ['ang'], components: { consonant: '\u3147', vowel: '\u314f' } }, // 앙
